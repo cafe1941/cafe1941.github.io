@@ -83,7 +83,7 @@ body {
     transform: translate(-50%, -50%);
     z-index: 0;
     object-fit: cover;
-    opacity: 0.4;
+    opacity: 0.6;
 }
 
 .hero-overlay {
@@ -164,10 +164,10 @@ body {
 
 .map-container {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
     align-items: center;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -185,7 +185,7 @@ body {
 .info-group {
     margin-bottom: 32px;
     padding-bottom: 32px;
-    border-bottom: 1px solid rgba(92, 37, 16, 0.08);
+    border-bottom: 1px solid rgba(244, 247, 214, 0.3);
 }
 
 .info-group:last-child {
@@ -264,7 +264,7 @@ body {
     grid-template-columns: 1fr;
     gap: 1px;
     margin-top: 0;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(244, 247, 214, 0.2);
 }
 
 .about-item {
