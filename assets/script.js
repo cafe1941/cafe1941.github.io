@@ -26,12 +26,8 @@ function updateAboutParallax() {
                 const parallaxSpeed = 0.05; // Slower movement
                 const translateX = distanceFromCenter * parallaxSpeed;
 
-                // Apply different directions for each item
-                if (index % 2 === 0) {
-                    bgImage.style.transform = `translateX(${-translateX}px)`;
-                } else {
-                    bgImage.style.transform = `translateX(${translateX}px)`;
-                }
+                // All items move in the same direction (to the right)
+                bgImage.style.transform = `translateX(${-translateX}px)`;
             }
         }
     });
