@@ -291,8 +291,8 @@ body {
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
-    height: 40vh;
-    min-height: 350px;
+    height: 60vh;
+    min-height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
