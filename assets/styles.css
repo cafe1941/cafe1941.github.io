@@ -78,7 +78,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%);
     z-index: 1;
 }
 
@@ -112,14 +112,14 @@ body {
 }
 
 .title-cafe {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 100;
     letter-spacing: 0.02em;
     color: white;
 }
 
 .title-year {
-    font-size: clamp(4rem, 10vw, 9rem);
+    font-size: clamp(3.5rem, 9vw, 8rem);
     font-weight: 500;
     letter-spacing: -0.01em;
     color: white;
@@ -261,92 +261,85 @@ body {
 
 .about-item {
     text-align: center;
-    padding: 50px 30px;
-    background: white;
+    padding: 0;
+    background: #000;
     border-radius: 24px;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.about-item::before {
-    content: '';
+.about-bg-image {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 4px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.about-item:nth-child(1)::before {
-    background: var(--gradient-1);
+.about-item[data-image="nature"] .about-bg-image {
+    background-image: url('nature.jpg');
 }
 
-.about-item:nth-child(2)::before {
-    background: var(--gradient-2);
+.about-item[data-image="culture"] .about-bg-image {
+    background-image: url('culture.jpg');
 }
 
-.about-item:nth-child(3)::before {
-    background: var(--gradient-3);
+.about-item[data-image="history"] .about-bg-image {
+    background-image: url('history.jpg');
 }
 
-.about-item:nth-child(4)::before {
-    background: var(--gradient-4);
+.about-item[data-image="creative"] .about-bg-image {
+    background-image: url('creative.jpg');
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px 30px;
+    color: white;
+    text-align: center;
 }
 
 .about-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08),
-                0 24px 48px rgba(0, 0, 0, 0.06);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 30px 60px rgba(0, 0, 0, 0.2);
 }
 
-.about-item:hover::before {
-    opacity: 1;
+.about-item:hover .about-bg-image {
+    opacity: 0.6;
+    transform: scale(1.1);
 }
 
-.about-icon {
-    font-size: 3.5rem;
-    margin-bottom: 30px;
-    display: inline-block;
-    animation: float 3s ease-in-out infinite;
-}
 
-.about-item:nth-child(2) .about-icon {
-    animation-delay: 0.5s;
-}
-
-.about-item:nth-child(3) .about-icon {
-    animation-delay: 1s;
-}
-
-.about-item:nth-child(4) .about-icon {
-    animation-delay: 1.5s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-.about-item h3 {
-    font-size: 1.75rem;
+.about-content h3 {
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 20px;
-    color: var(--text-dark);
+    color: white;
     letter-spacing: -0.015em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.about-item p {
-    color: var(--text-light);
-    font-weight: 400;
+.about-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
     font-size: 1.0625rem;
     line-height: 1.625;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Reservation Section */
