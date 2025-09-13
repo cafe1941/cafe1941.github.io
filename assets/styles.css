@@ -261,19 +261,19 @@ body {
 }
 
 .about-item[data-image="nature"] .about-bg-image {
-    background-image: url('nature.JPG');
+    background-image: url('optimized_nature.jpg');
 }
 
 .about-item[data-image="culture"] .about-bg-image {
-    background-image: url('culture.JPG');
+    background-image: url('optimized_culture.jpg');
 }
 
 .about-item[data-image="history"] .about-bg-image {
-    background-image: url('history.JPG');
+    background-image: url('optimized_history.jpg');
 }
 
 .about-item[data-image="creative"] .about-bg-image {
-    background-image: url('creative.JPG');
+    background-image: url('optimized_creative.jpg');
 }
 
 .about-content {
