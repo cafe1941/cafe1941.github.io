@@ -293,19 +293,19 @@ body {
 }
 
 .about-item[data-image="nature"] .about-bg-image {
-    background-image: url('nature.jpg');
+    background-image: url('nature.JPG');
 }
 
 .about-item[data-image="culture"] .about-bg-image {
-    background-image: url('culture.jpg');
+    background-image: url('culture.JPG');
 }
 
 .about-item[data-image="history"] .about-bg-image {
-    background-image: url('history.jpg');
+    background-image: url('history.JPG');
 }
 
 .about-item[data-image="creative"] .about-bg-image {
-    background-image: url('creative.jpg');
+    background-image: url('creative.JPG');
 }
 
 .about-content {
