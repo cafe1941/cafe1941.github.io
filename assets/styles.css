@@ -266,8 +266,9 @@ body {
 .about-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 1px;
     margin-top: 0;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .about-item {
