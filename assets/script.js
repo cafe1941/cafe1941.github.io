@@ -8,30 +8,7 @@ const observerOptions = {
 
 // Remove parallax effect for about items
 
-// Parallax Effect for Hero - Simplified version without overlay
-let ticking = false;
-function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const heroTitle = document.querySelector('.hero-title');
-
-    if (scrolled < window.innerHeight) {
-        if (heroTitle) {
-            // 타이틀은 제자리에서 페이드아웃만
-            heroTitle.style.opacity = Math.max(0, 1 - (scrolled / window.innerHeight) * 1.2);
-        }
-    }
-
-    ticking = false;
-}
-
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-    }
-}
-
-window.addEventListener('scroll', requestTick);
+// Remove all parallax effects
 
 // Smooth Scroll for Anchor Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
