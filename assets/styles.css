@@ -372,8 +372,8 @@ body {
     padding: 14px 28px;
     margin-top: 20px;
     background: white;
-    color: #03c75a;
-    border: 1px solid #03c75a;
+    color: #5c2510;
+    border: 1px solid #5c2510;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
@@ -385,9 +385,9 @@ body {
 }
 
 .reservation-btn:hover {
-    background: #03c75a;
+    background: #5c2510;
     color: white;
-    box-shadow: 0 8px 20px rgba(3, 199, 90, 0.25);
+    box-shadow: 0 8px 20px rgba(92, 37, 16, 0.25);
 }
 
 /* Footer Section */
