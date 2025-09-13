@@ -377,10 +377,10 @@ body {
 }
 
 .reservation-btn:hover {
-    background: #5c2510;
-    color: #f4f7d6;
+    background: #f8fbe8;
+    color: #5c2510;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(244, 247, 214, 0.5);
 }
 
 /* Footer Section */
