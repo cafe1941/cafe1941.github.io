@@ -60,33 +60,44 @@ if (mapSection && routePath) {
     updatePath();
 }
 
-// Staggered Animation for About Items
+// Parallax Animation for About Items based on scroll
 const aboutItems = document.querySelectorAll('.about-item');
-const aboutObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '0';
-                entry.target.style.transform = 'translateY(40px) scale(0.95)';
 
-                requestAnimationFrame(() => {
-                    entry.target.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0) scale(1)';
-                });
-            }, index * 100);
+function updateAboutParallax() {
+    aboutItems.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const bgImage = item.querySelector('.about-bg-image');
 
-            aboutObserver.unobserve(entry.target);
+        if (bgImage) {
+            // Calculate how much the item is visible in viewport
+            const windowHeight = window.innerHeight;
+            const itemCenter = rect.top + rect.height / 2;
+            const distanceFromCenter = itemCenter - windowHeight / 2;
+
+            // Only apply effect when item is in viewport
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                // Calculate parallax offset based on scroll position
+                const parallaxSpeed = 0.05; // Slower movement
+                const translateX = distanceFromCenter * parallaxSpeed;
+
+                // Apply different directions for each item
+                if (index % 2 === 0) {
+                    bgImage.style.transform = `translateX(${-translateX}px)`;
+                } else {
+                    bgImage.style.transform = `translateX(${translateX}px)`;
+                }
+            }
         }
     });
-}, {
-    threshold: 0.05
+}
+
+// Add to existing scroll listener
+window.addEventListener('scroll', () => {
+    requestAnimationFrame(updateAboutParallax);
 });
 
-aboutItems.forEach(item => {
-    item.style.opacity = '0';
-    aboutObserver.observe(item);
-});
+// Initial check
+updateAboutParallax();
 
 // Parallax Effect for Hero
 let ticking = false;

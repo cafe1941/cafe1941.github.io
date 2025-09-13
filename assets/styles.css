@@ -22,8 +22,9 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
     font-weight: 300;
-    line-height: 1.47059;
-    letter-spacing: -0.022em;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
     color: var(--text-dark);
     overflow-x: hidden;
     background: var(--bg-light);
@@ -163,11 +164,11 @@ body {
 
 .section-title {
     text-align: center;
-    font-size: 3.5rem;
-    font-weight: 600;
-    margin-bottom: 80px;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 60px;
     color: var(--text-dark);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
 }
 
 .map-container {
@@ -213,7 +214,7 @@ body {
 }
 
 .marker-text {
-    font-size: 14px;
+    font-size: 0.875rem;
     fill: var(--text-light);
     opacity: 0;
     animation: fadeInPop 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -243,11 +244,11 @@ body {
 }
 
 .map-info p {
-    margin-bottom: 20px;
-    font-size: 1.125rem;
+    margin-bottom: 16px;
+    font-size: 1rem;
     font-weight: 400;
     color: var(--text-light);
-    line-height: 1.625;
+    line-height: 1.6;
 }
 
 /* About Section */
@@ -282,12 +283,13 @@ body {
     position: absolute;
     top: -10%;
     left: -10%;
-    width: 120%;
-    height: 120%;
+    width: 130%;
+    height: 130%;
     background-size: cover;
     background-position: center;
     opacity: 0.4;
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+    will-change: transform;
 }
 
 .about-item[data-image="nature"] .about-bg-image {
@@ -314,28 +316,26 @@ body {
     text-align: center;
 }
 
-.about-item:hover .about-bg-image {
-    opacity: 0.6;
-    transform: translateX(-30px);
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
+/* 호버 효과 제거 - 스크롤 기반으로 변경 */
 
 
 .about-content h3 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
     margin-bottom: 20px;
     color: white;
-    letter-spacing: -0.015em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
 .about-content p {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 300;
-    font-size: 1.0625rem;
-    line-height: 1.625;
+    font-size: 1rem;
+    line-height: 1.6;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 /* Reservation Section */
@@ -350,45 +350,30 @@ body {
 .reservation-section .section-title {
     color: white;
     position: relative;
+    margin-bottom: 30px;
 }
 
 .reservation-btn {
     display: inline-block;
-    padding: 18px 60px;
+    padding: 16px 48px;
     margin-top: 20px;
     background: #f4f7d6;
     color: #5c2510;
     text-decoration: none;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 500;
+    letter-spacing: 0.05em;
     border-radius: 980px;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
 }
 
-.reservation-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(92, 37, 16, 0.1);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
 .reservation-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15),
-                0 24px 48px rgba(0, 0, 0, 0.1);
-}
-
-.reservation-btn:hover::before {
-    width: 300px;
-    height: 300px;
+    background: #5c2510;
+    color: #f4f7d6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Scroll reveal animations */
@@ -419,8 +404,8 @@ body {
     }
 
     .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 50px;
+        font-size: 2rem;
+        margin-bottom: 40px;
     }
 
     .map-container {
