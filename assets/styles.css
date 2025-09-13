@@ -27,7 +27,7 @@ body {
     letter-spacing: -0.01em;
     color: var(--text-dark);
     overflow-x: hidden;
-    background: #f4f7d6;
+    background: #5c2510;
 }
 
 .container {
@@ -159,7 +159,7 @@ body {
 /* Map Section */
 .map-section {
     padding: 100px 0;
-    background: linear-gradient(180deg, #f4f7d6 0%, #f9fce8 100%);
+    background: #f4f7d6;
     position: relative;
 }
 
@@ -358,7 +358,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: #5c2510;
+    background: transparent;
 }
 
 .reservation-section .section-title {
@@ -369,24 +369,25 @@ body {
 
 .reservation-btn {
     display: inline-block;
-    padding: 16px 48px;
+    padding: 14px 28px;
     margin-top: 20px;
-    background: #f4f7d6;
-    color: #5c2510;
+    background: white;
+    color: #03c75a;
+    border: 1px solid #03c75a;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     letter-spacing: 0.05em;
-    border-radius: 980px;
+    border-radius: 50px;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
 }
 
 .reservation-btn:hover {
-    background: #f8fbe8;
-    color: #5c2510;
-    box-shadow: 0 8px 20px rgba(244, 247, 214, 0.5);
+    background: #03c75a;
+    color: white;
+    box-shadow: 0 8px 20px rgba(3, 199, 90, 0.25);
 }
 
 /* Footer Section */
