@@ -27,7 +27,7 @@ body {
     letter-spacing: -0.01em;
     color: var(--text-dark);
     overflow-x: hidden;
-    background: var(--bg-light);
+    background: #f4f7d6;
 }
 
 .container {
@@ -89,17 +89,14 @@ body {
     height: 100%;
     background: #5c2510;
     z-index: 1;
-    animation: overlayFade 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 1;
+    transition: opacity 3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes overlayFade {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.05;
-    }
+.hero-overlay.loaded {
+    opacity: 0.02;
 }
+
 
 .hero-title {
     font-family: 'Futura', 'Futura PT', 'Futura Std', sans-serif;
@@ -120,7 +117,7 @@ body {
 .dada-logo {
     width: 100px;
     height: auto;
-    filter: brightness(0) invert(1) sepia(1) saturate(0.5) hue-rotate(40deg) brightness(0.95);
+    filter: brightness(0) invert(1);
     opacity: 0.9;
     transition: opacity 0.3s ease;
 }
@@ -133,21 +130,21 @@ body {
     font-size: clamp(1.6rem, 4vw, 3.2rem);
     font-weight: 100;
     letter-spacing: 0.02em;
-    color: #f4f7d6;
+    color: white;
 }
 
 .title-year {
     font-size: clamp(2.8rem, 7.2vw, 6.4rem);
     font-weight: 500;
     letter-spacing: -0.01em;
-    color: #f4f7d6;
+    color: white;
 }
 
 
 /* Map Section */
 .map-section {
     padding: 120px 0;
-    background: var(--bg-light);
+    background: #f4f7d6;
     position: relative;
 }
 
@@ -324,7 +321,7 @@ body {
     font-weight: 700;
     margin-bottom: 20px;
     color: white;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
 }
 

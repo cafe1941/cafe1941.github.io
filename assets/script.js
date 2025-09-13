@@ -155,15 +155,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Video Speed Control and Error Handling
 const heroVideo = document.querySelector('.hero-video');
+const heroOverlay = document.querySelector('.hero-overlay');
+
 if (heroVideo) {
     // Set video playback speed (0.5 = 50% speed, 2 = 200% speed)
     heroVideo.playbackRate = 0.7; // 70% of normal speed for smoother background
-
-    // You can change the speed here:
-    // heroVideo.playbackRate = 0.5;  // Slower (50% speed)
-    // heroVideo.playbackRate = 0.7;  // Moderate (70% speed)
-    // heroVideo.playbackRate = 1.0;  // Normal speed
-    // heroVideo.playbackRate = 1.5;  // Faster (150% speed)
 
     heroVideo.addEventListener('error', () => {
         console.log('Video failed to load');
@@ -173,6 +169,17 @@ if (heroVideo) {
         }
     });
 }
+
+// Apply overlay fade only once on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.querySelector('.hero-overlay');
+    if (overlay) {
+        // Small delay to ensure smooth transition
+        setTimeout(() => {
+            overlay.classList.add('loaded');
+        }, 100);
+    }
+});
 
 // Add Scroll Reveal Class to Elements
 const revealElements = document.querySelectorAll('.section-title, .map-container, .reservation-btn');
