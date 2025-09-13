@@ -185,7 +185,7 @@ body {
 .info-group {
     margin-bottom: 32px;
     padding-bottom: 32px;
-    border-bottom: 1px solid rgba(244, 247, 214, 0.3);
+    border-bottom: 1px solid rgba(92, 37, 16, 0.15);
 }
 
 .info-group:last-child {
@@ -264,7 +264,7 @@ body {
     grid-template-columns: 1fr;
     gap: 1px;
     margin-top: 0;
-    background: rgba(244, 247, 214, 0.2);
+    background: rgba(92, 37, 16, 0.1);
 }
 
 .about-item {
