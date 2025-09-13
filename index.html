@@ -28,43 +28,7 @@
         <div class="container">
             <h2 class="section-title">오시는 길</h2>
             <div class="map-container">
-                <svg class="route-svg" viewBox="0 0 800 600">
-                    <!-- Background Grid -->
-                    <defs>
-                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#f0f0f0" stroke-width="1"/>
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" opacity="0.3"/>
-
-                    <!-- Route Path with gradient -->
-                    <defs>
-                        <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#5c2510;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#8b4a2f;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-
-                    <path class="route-path" d="M100,300 Q200,250 300,280 T500,320 Q650,340 700,400"
-                          stroke="url(#pathGradient)" stroke-width="4" fill="none"
-                          stroke-linecap="round" stroke-linejoin="round"/>
-
-                    <!-- Location Markers -->
-                    <g class="marker start-marker">
-                        <circle cx="100" cy="300" r="12" fill="#5c2510" opacity="0.2"/>
-                        <circle cx="100" cy="300" r="8" fill="#5c2510"/>
-                        <circle cx="100" cy="300" r="4" fill="white"/>
-                    </g>
-
-                    <g class="marker end-marker">
-                        <circle cx="700" cy="400" r="12" fill="#8b4a2f" opacity="0.2"/>
-                        <circle cx="700" cy="400" r="8" fill="#8b4a2f"/>
-                        <circle cx="700" cy="400" r="4" fill="white"/>
-                    </g>
-
-                    <text x="100" y="280" class="marker-text">출발</text>
-                    <text x="700" y="380" class="marker-text">cafe1941</text>
-                </svg>
+                <img src="assets/map.png" alt="cafe1941 약도" class="map-image">
                 <div class="map-info">
                     <div class="info-group">
                         <p>수원시 장안구 상광교동 322</p>
@@ -73,6 +37,10 @@
                     <div class="info-group">
                         <p>화-일: 10:00 - 22:00 (Last Order 21:00)</p>
                         <p>월요일 정기휴무</p>
+                    </div>
+                    <div class="info-group">
+                        <p>버스: 13번</p>
+                        <p>상광교신다리.광교로컬푸드직매장역</p>
                     </div>
                     <div class="map-buttons">
                         <a href="https://naver.me/xNLw4JtD" target="_blank" class="map-btn naver-map">
