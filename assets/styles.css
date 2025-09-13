@@ -52,6 +52,10 @@ body {
     align-items: center;
     justify-content: center;
     background: linear-gradient(145deg, #2a1508 0%, #5c2510 50%, #3a1a08 100%);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .hero::before {
@@ -88,20 +92,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #5c2510;
+    background: rgba(92, 37, 16, 0.02);
     z-index: 1;
     pointer-events: none;
-    animation: overlayFadeOnce 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    animation-play-state: paused;
-}
-
-@keyframes overlayFadeOnce {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.02;
-    }
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 
@@ -194,54 +191,17 @@ body {
 }
 
 .route-path {
-    stroke-dasharray: 2000;
-    stroke-dashoffset: 2000;
-    opacity: 0;
-}
-
-@keyframes drawPath {
-    to {
-        stroke-dashoffset: 0;
-    }
+    opacity: 1;
 }
 
 .marker {
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.start-marker {
-    transform-origin: center;
-}
-
-.end-marker {
-    transform-origin: center;
+    opacity: 1;
 }
 
 .marker-text {
     font-size: 0.875rem;
     fill: var(--text-light);
-    opacity: 0;
-    animation: fadeInPop 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.marker-text:first-of-type {
-    animation-delay: 0.3s;
-}
-
-.marker-text:last-of-type {
-    animation-delay: 1.8s;
-}
-
-@keyframes fadeInPop {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    opacity: 1;
 }
 
 .map-info {
@@ -260,6 +220,8 @@ body {
 .about-section {
     padding: 0;
     background: #000;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .about-grid {
@@ -273,7 +235,7 @@ body {
     text-align: center;
     padding: 0;
     background: #000;
-    border-radius: 0;
+    border-radius: 0 !important;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
@@ -282,6 +244,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .about-bg-image {
@@ -381,17 +344,6 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Scroll reveal animations */
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
@@ -422,11 +374,15 @@ body {
     .about-grid {
         grid-template-columns: 1fr;
         gap: 0;
+        width: 100%;
     }
 
     .about-item {
         height: 40vh;
         min-height: 300px;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        border-radius: 0 !important;
     }
 
     .reservation-btn {
@@ -472,7 +428,9 @@ body {
         border-radius: 16px;
     }
 
-    .about-item {
-        border-radius: 16px;
+    .about-section {
+        margin: 0;
+        padding: 0;
     }
+
 }

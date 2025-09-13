@@ -4,61 +4,7 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
-// Map Route Animation with Scroll Progress
-const mapSection = document.querySelector('.map-section');
-const routePath = document.querySelector('.route-path');
-
-if (mapSection && routePath) {
-    // Get the total length of the path
-    const pathLength = routePath.getTotalLength();
-
-    // Set initial styles
-    routePath.style.strokeDasharray = pathLength;
-    routePath.style.strokeDashoffset = pathLength;
-    routePath.style.opacity = 1;
-
-    // Function to update path based on scroll
-    function updatePath() {
-        const rect = mapSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        // Calculate how much of the section is visible
-        const sectionTop = rect.top;
-        const sectionBottom = rect.bottom;
-        const sectionHeight = rect.height;
-
-        // Start animation when section enters viewport
-        if (sectionTop < windowHeight && sectionBottom > 0) {
-            // Calculate progress (0 to 1)
-            let progress = 0;
-
-            if (sectionTop < windowHeight * 0.8) {
-                // Calculate based on how far we've scrolled into the section
-                const scrollIntoSection = (windowHeight * 0.8) - sectionTop;
-                progress = Math.min(scrollIntoSection / (sectionHeight * 0.5), 1);
-            }
-
-            // Update the path
-            const drawLength = pathLength * (1 - progress);
-            routePath.style.strokeDashoffset = drawLength;
-
-            // Animate markers based on progress
-            const markers = document.querySelectorAll('.marker');
-            if (progress > 0) {
-                markers[0].style.opacity = Math.min(progress * 2, 1);
-            }
-            if (progress > 0.7) {
-                markers[1].style.opacity = (progress - 0.7) * 3.33;
-            }
-        }
-    }
-
-    // Add scroll listener
-    window.addEventListener('scroll', updatePath);
-
-    // Initial check
-    updatePath();
-}
+// Remove map animation - show everything immediately
 
 // Parallax Animation for About Items based on scroll
 const aboutItems = document.querySelectorAll('.about-item');
@@ -158,34 +104,9 @@ if (heroVideo) {
     });
 }
 
-// Run overlay animation once on page load
-window.addEventListener('load', () => {
-    const overlay = document.querySelector('.hero-overlay');
-    if (overlay) {
-        overlay.style.animationPlayState = 'running';
-    }
-});
+// No animation needed - static overlay
 
-// Add Scroll Reveal Class to Elements
-const revealElements = document.querySelectorAll('.section-title, .map-container, .reservation-btn');
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('scroll-reveal');
-            setTimeout(() => {
-                entry.target.classList.add('revealed');
-            }, 100);
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
-
-revealElements.forEach(element => {
-    revealObserver.observe(element);
-});
+// Remove all scroll reveal animations
 
 // Mouse Move Gradient Effect for Hero
 const hero = document.querySelector('.hero');
