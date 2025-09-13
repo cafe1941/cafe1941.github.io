@@ -211,6 +211,8 @@ body {
     color: var(--text-dark);
     line-height: 1.7;
     letter-spacing: -0.01em;
+    word-break: keep-all;
+    word-wrap: break-word;
 }
 
 .info-group p:first-child {
@@ -227,14 +229,15 @@ body {
 
 .map-btn {
     flex: 1;
-    padding: 14px 28px;
+    padding: 16px 32px;
     text-align: center;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     border-radius: 50px;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     border: 1px solid transparent;
+    min-width: 140px;
 }
 
 .naver-map {
@@ -362,6 +365,8 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     max-width: 400px;
     margin: 0 auto;
+    word-break: keep-all;
+    word-wrap: break-word;
 }
 
 /* Reservation Section */
@@ -381,19 +386,20 @@ body {
 
 .reservation-btn {
     display: inline-block;
-    padding: 14px 28px;
+    padding: 16px 40px;
     margin-top: 20px;
     background: white;
     color: #5c2510;
     border: 1px solid #5c2510;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     border-radius: 50px;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
+    min-width: 180px;
 }
 
 .reservation-btn:hover {
@@ -429,6 +435,25 @@ body {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .map-btn {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+        min-width: 120px;
+    }
+
+    .reservation-btn {
+        padding: 14px 32px;
+        font-size: 1rem;
+        min-width: 160px;
+    }
+
+    .info-group p {
+        font-size: 0.95rem;
+    }
+
+    .about-content p {
+        font-size: 0.9rem;
+    }
     .logo-container {
         top: 20px;
         left: 20px;
@@ -492,6 +517,26 @@ body {
 }
 
 @media (max-width: 480px) {
+    .map-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        min-width: 100px;
+    }
+
+    .reservation-btn {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+        min-width: 140px;
+    }
+
+    .info-group p {
+        font-size: 0.9rem;
+    }
+
+    .about-content p {
+        font-size: 0.85rem;
+        max-width: 90%;
+    }
     .hero {
         min-height: 600px;
     }
