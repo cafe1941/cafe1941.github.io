@@ -6,40 +6,7 @@ const observerOptions = {
 
 // Remove map animation - show everything immediately
 
-// Parallax Animation for About Items based on scroll
-const aboutItems = document.querySelectorAll('.about-item');
-
-function updateAboutParallax() {
-    aboutItems.forEach((item, index) => {
-        const rect = item.getBoundingClientRect();
-        const bgImage = item.querySelector('.about-bg-image');
-
-        if (bgImage) {
-            // Calculate how much the item is visible in viewport
-            const windowHeight = window.innerHeight;
-            const itemCenter = rect.top + rect.height / 2;
-            const distanceFromCenter = itemCenter - windowHeight / 2;
-
-            // Only apply effect when item is in viewport
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                // Calculate parallax offset based on scroll position
-                const parallaxSpeed = 0.05; // Slower movement
-                const translateX = distanceFromCenter * parallaxSpeed;
-
-                // All items move in the same direction (to the right)
-                bgImage.style.transform = `translateX(${-translateX}px)`;
-            }
-        }
-    });
-}
-
-// Add to existing scroll listener
-window.addEventListener('scroll', () => {
-    requestAnimationFrame(updateAboutParallax);
-});
-
-// Initial check
-updateAboutParallax();
+// Remove parallax effect for about items
 
 // Parallax Effect for Hero - Simplified version without overlay
 let ticking = false;
