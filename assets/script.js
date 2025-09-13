@@ -99,28 +99,16 @@ window.addEventListener('scroll', () => {
 // Initial check
 updateAboutParallax();
 
-// Parallax Effect for Hero
+// Parallax Effect for Hero - Simplified version without overlay
 let ticking = false;
 function updateParallax() {
     const scrolled = window.pageYOffset;
     const heroTitle = document.querySelector('.hero-title');
-    const titleCafe = document.querySelector('.title-cafe');
-    const titleYear = document.querySelector('.title-year');
-    const heroVideo = document.querySelector('.hero-video');
-    const heroOverlay = document.querySelector('.hero-overlay');
 
     if (scrolled < window.innerHeight) {
         if (heroTitle) {
             // 타이틀은 제자리에서 페이드아웃만
             heroTitle.style.opacity = Math.max(0, 1 - (scrolled / window.innerHeight) * 1.2);
-        }
-
-        if (heroVideo) {
-            heroVideo.style.transform = `translate(-50%, -50%) scale(${1 + scrolled * 0.0002})`;
-        }
-
-        if (heroOverlay) {
-            heroOverlay.style.opacity = 0.5 + (scrolled / window.innerHeight) * 0.3;
         }
     }
 
@@ -170,14 +158,11 @@ if (heroVideo) {
     });
 }
 
-// Apply overlay fade only once on page load
-document.addEventListener('DOMContentLoaded', () => {
+// Run overlay animation once on page load
+window.addEventListener('load', () => {
     const overlay = document.querySelector('.hero-overlay');
     if (overlay) {
-        // Small delay to ensure smooth transition
-        setTimeout(() => {
-            overlay.classList.add('loaded');
-        }, 100);
+        overlay.style.animationPlayState = 'running';
     }
 });
 
