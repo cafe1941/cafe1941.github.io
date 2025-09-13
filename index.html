@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cafe1941</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- Hero Section with Video Background -->
+    <section class="hero">
+        <!-- Logo in top left -->
+        <div class="logo-container">
+            <img src="assets/DADA_logo.svg" alt="DADA" class="dada-logo">
+        </div>
+
+        <video autoplay muted loop playsinline class="hero-video" id="bgVideo">
+            <source src="assets/background-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <h1 class="hero-title">
+            <span class="title-cafe">CAFE</span><span class="title-year">1941</span>
+        </h1>
+    </section>
+
+    <!-- Map Section with Scroll Animation -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">오시는 길</h2>
+            <div class="map-container">
+                <svg class="route-svg" viewBox="0 0 800 600">
+                    <!-- Background Grid -->
+                    <defs>
+                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#f0f0f0" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" opacity="0.3"/>
+
+                    <!-- Route Path with gradient -->
+                    <defs>
+                        <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+
+                    <path class="route-path" d="M100,300 Q200,250 300,280 T500,320 Q650,340 700,400"
+                          stroke="url(#pathGradient)" stroke-width="4" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Location Markers -->
+                    <g class="marker start-marker">
+                        <circle cx="100" cy="300" r="12" fill="#667eea" opacity="0.2"/>
+                        <circle cx="100" cy="300" r="8" fill="#667eea"/>
+                        <circle cx="100" cy="300" r="4" fill="white"/>
+                    </g>
+
+                    <g class="marker end-marker">
+                        <circle cx="700" cy="400" r="12" fill="#764ba2" opacity="0.2"/>
+                        <circle cx="700" cy="400" r="8" fill="#764ba2"/>
+                        <circle cx="700" cy="400" r="4" fill="white"/>
+                    </g>
+
+                    <text x="100" y="280" class="marker-text">출발</text>
+                    <text x="700" y="380" class="marker-text">cafe1941</text>
+                </svg>
+                <div class="map-info">
+                    <p>서울특별시 종로구 삼청로 12</p>
+                    <p>지하철: 3호선 경복궁역 3번 출구 도보 10분</p>
+                    <p>버스: 109, 151, 162, 171, 172, 272, 601</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">CAFE1941</h2>
+
+            <div class="about-grid">
+                <div class="about-item">
+                    <div class="about-icon">🌿</div>
+                    <h3>자연</h3>
+                    <p>도심 속 자연을 품은 공간, 사계절의 변화를 느낄 수 있는 정원과 함께 여유로운 시간을 보내세요.</p>
+                </div>
+
+                <div class="about-item">
+                    <div class="about-icon">🎨</div>
+                    <h3>문화예술</h3>
+                    <p>지역 예술가들의 작품 전시와 문화 프로그램이 진행되는 창작과 소통의 플랫폼입니다.</p>
+                </div>
+
+                <div class="about-item">
+                    <div class="about-icon">🏛️</div>
+                    <h3>역사 및 장소성</h3>
+                    <p>1941년부터 이어진 건축물의 역사를 보존하며, 과거와 현재가 공존하는 특별한 공간입니다.</p>
+                </div>
+
+                <div class="about-item">
+                    <div class="about-icon">💡</div>
+                    <h3>창의적 장소 잠재력</h3>
+                    <p>영감과 아이디어가 샘솟는 곳, 창의적 에너지가 흐르는 만남과 교류의 허브입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="container">
+            <h2 class="section-title">예약하기</h2>
+            <a href="https://booking.naver.com" target="_blank" class="reservation-btn">
+                네이버 예약
+            </a>
+        </div>
+    </section>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>
