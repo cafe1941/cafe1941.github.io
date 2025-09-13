@@ -100,7 +100,7 @@ function updateParallax() {
 
     if (scrolled < window.innerHeight) {
         if (heroTitle) {
-            heroTitle.style.transform = `translateY(${scrolled * 0.3}px)`;
+            // 타이틀은 제자리에서 페이드아웃만
             heroTitle.style.opacity = Math.max(0, 1 - (scrolled / window.innerHeight) * 1.2);
         }
 
