@@ -63,7 +63,32 @@ if (heroVideo) {
 
 // No animation needed - static overlay
 
-// Remove all scroll reveal animations
+// Scroll reveal animation for about content
+const observeAboutContent = () => {
+    const aboutContents = document.querySelectorAll('.about-content');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    aboutContents.forEach(content => {
+        observer.observe(content);
+    });
+};
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observeAboutContent);
+} else {
+    observeAboutContent();
+}
 
 // Mouse Move Gradient Effect for Hero
 const hero = document.querySelector('.hero');
