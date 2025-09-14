@@ -98,7 +98,7 @@ body {
 .hero-logo {
     position: relative;
     z-index: 10;
-    width: clamp(112px, 16vw, 224px);
+    width: clamp(146px, 21vw, 291px);
     height: auto;
     opacity: 1;
 }
@@ -444,7 +444,7 @@ body {
     }
 
     .hero-logo {
-        width: clamp(120px, 40vw, 200px);
+        width: clamp(156px, 40vw, 260px);
     }
 
     .section-title {
@@ -535,7 +535,7 @@ body {
     }
 
     .hero-logo {
-        width: clamp(100px, 45vw, 160px);
+        width: clamp(130px, 45vw, 208px);
     }
 
     .section-title {
