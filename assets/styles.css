@@ -57,6 +57,7 @@ body {
     backface-visibility: hidden;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+    will-change: transform;
 }
 
 .hero::before {
@@ -81,14 +82,20 @@ body {
     min-height: 100%;
     width: auto;
     height: auto;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
     z-index: 0;
     object-fit: cover;
     opacity: 0.6;
     animation: videoFadeIn 3s ease-out;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -webkit-perspective: 1000;
+    -webkit-animation: videoFadeIn 3s ease-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: opacity;
 }
 
 @keyframes videoFadeIn {

@@ -32,8 +32,25 @@ const heroVideo = document.querySelector('.hero-video');
 const heroOverlay = document.querySelector('.hero-overlay');
 
 if (heroVideo) {
-    // Set video playback speed (0.5 = 50% speed, 2 = 200% speed)
-    heroVideo.playbackRate = 0.7; // 70% of normal speed for smoother background
+    // Set video playback speed
+    heroVideo.playbackRate = 0.7;
+
+    // Force video to keep playing on iOS
+    const forceVideoPlay = () => {
+        if (heroVideo.paused) {
+            heroVideo.play().catch(e => console.log('Video play interrupted:', e));
+        }
+    };
+
+    // iOS specific fixes
+    document.addEventListener('touchstart', forceVideoPlay, { passive: true });
+    document.addEventListener('touchmove', forceVideoPlay, { passive: true });
+    document.addEventListener('scroll', forceVideoPlay, { passive: true });
+
+    // Ensure video stays playing
+    heroVideo.addEventListener('pause', () => {
+        heroVideo.play().catch(e => console.log('Video play interrupted:', e));
+    });
 
     heroVideo.addEventListener('error', () => {
         console.log('Video failed to load');
