@@ -28,6 +28,7 @@ body {
     color: var(--text-dark);
     overflow-x: hidden;
     background: #5c2510;
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -85,9 +86,21 @@ body {
     object-fit: cover;
     opacity: 0.6;
     animation: videoFadeIn 3s ease-out;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
 }
 
 @keyframes videoFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.6;
+    }
+}
+
+@-webkit-keyframes videoFadeIn {
     from {
         opacity: 0;
     }
