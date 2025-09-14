@@ -98,7 +98,7 @@ body {
 .hero-logo {
     position: relative;
     z-index: 10;
-    width: clamp(160px, 24vw, 320px);
+    width: clamp(140px, 20vw, 280px);
     height: auto;
     opacity: 1;
 }
@@ -323,7 +323,7 @@ body {
 
 
 .about-content h3 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 20px;
     color: white;
@@ -431,7 +431,7 @@ body {
     }
 
     .about-content h3 {
-        font-size: 1.75rem;
+        font-size: 1.9rem;
         margin-bottom: 24px;
     }
     .logo-container {
@@ -444,7 +444,7 @@ body {
     }
 
     .hero-logo {
-        width: clamp(144px, 48vw, 240px);
+        width: clamp(120px, 40vw, 200px);
     }
 
     .section-title {
@@ -520,7 +520,7 @@ body {
     }
 
     .about-content h3 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         margin-bottom: 20px;
     }
     .hero {
@@ -528,7 +528,7 @@ body {
     }
 
     .hero-logo {
-        width: clamp(120px, 56vw, 200px);
+        width: clamp(100px, 45vw, 160px);
     }
 
     .section-title {
