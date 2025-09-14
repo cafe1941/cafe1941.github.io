@@ -35,7 +35,7 @@ const heroOverlay = document.querySelector('.hero-overlay');
 if (heroOverlay) {
     let overlayAnimationComplete = false;
     let startTime = null;
-    const duration = 1500; // 1.5 seconds
+    const duration = 1000; // 1 second
 
     function animateOverlay(timestamp) {
         if (!startTime) startTime = timestamp;

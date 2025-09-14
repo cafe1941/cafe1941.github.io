@@ -101,8 +101,8 @@ body {
     backface-visibility: hidden;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    transition: opacity 1.5s ease-out;
-    -webkit-transition: opacity 1.5s ease-out;
+    transition: opacity 1s ease-out;
+    -webkit-transition: opacity 1s ease-out;
     will-change: opacity;
 }
 
@@ -155,10 +155,10 @@ body {
 
 .map-container {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.8fr 1fr;
     gap: 60px;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
