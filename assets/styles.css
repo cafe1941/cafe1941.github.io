@@ -133,12 +133,12 @@ body {
 
 
 
-.hero-title {
-    font-family: 'Futura', 'Futura PT', 'Futura Std', sans-serif;
+.hero-logo {
+    position: relative;
     z-index: 2;
-    display: flex;
-    align-items: baseline;
-    gap: 0.15em;
+    width: clamp(200px, 30vw, 400px);
+    height: auto;
+    opacity: 0.95;
 }
 
 /* Logo Container */
@@ -159,20 +159,6 @@ body {
 
 .dada-logo:hover {
     opacity: 1;
-}
-
-.title-cafe {
-    font-size: clamp(1.6rem, 4vw, 3.2rem);
-    font-weight: 100;
-    letter-spacing: 0.02em;
-    color: white;
-}
-
-.title-year {
-    font-size: clamp(2.8rem, 7.2vw, 6.4rem);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: white;
 }
 
 
@@ -489,8 +475,8 @@ body {
         width: 70px;
     }
 
-    .hero-title {
-        font-size: clamp(2.4rem, 9.6vw, 4rem);
+    .hero-logo {
+        width: clamp(180px, 60vw, 300px);
     }
 
     .section-title {
@@ -573,8 +559,8 @@ body {
         min-height: 600px;
     }
 
-    .hero-title {
-        font-size: 3.5rem;
+    .hero-logo {
+        width: clamp(150px, 70vw, 250px);
     }
 
     .section-title {
