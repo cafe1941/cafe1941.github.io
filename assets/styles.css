@@ -87,34 +87,12 @@ body {
     z-index: 0;
     object-fit: cover;
     opacity: 0.6;
-    animation: videoFadeIn 3s ease-out;
-    -webkit-animation: videoFadeIn 3s ease-out;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
     -webkit-perspective: 1000px;
     perspective: 1000px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    will-change: opacity;
 }
 
-@keyframes videoFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 0.6;
-    }
-}
-
-@-webkit-keyframes videoFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 0.6;
-    }
-}
 
 .hero-overlay {
     position: absolute;
