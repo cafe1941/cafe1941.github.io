@@ -101,8 +101,8 @@ body {
     backface-visibility: hidden;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    transition: opacity 3s ease-out;
-    -webkit-transition: opacity 3s ease-out;
+    transition: opacity 2s ease-out;
+    -webkit-transition: opacity 2s ease-out;
     will-change: opacity;
 }
 
