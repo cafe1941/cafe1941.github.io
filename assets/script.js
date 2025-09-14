@@ -31,6 +31,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const heroVideo = document.querySelector('.hero-video');
 const heroOverlay = document.querySelector('.hero-overlay');
 
+// Overlay fade animation using JavaScript
+if (heroOverlay) {
+    let overlayAnimationComplete = false;
+    let startTime = null;
+    const duration = 3000; // 3 seconds
+
+    function animateOverlay(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+
+        // Animate from opacity 1 to 0.3
+        const opacity = 1 - (progress * 0.7);
+        heroOverlay.style.opacity = opacity;
+
+        if (progress < 1) {
+            requestAnimationFrame(animateOverlay);
+        } else {
+            overlayAnimationComplete = true;
+        }
+    }
+
+    // Start animation on page load
+    requestAnimationFrame(animateOverlay);
+
+    // Prevent animation reset on iOS
+    let scrollTimeout;
+    document.addEventListener('touchmove', (e) => {
+        if (!overlayAnimationComplete) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Continue animation after touch ends
+            }, 100);
+        }
+    }, { passive: true });
+}
+
 if (heroVideo) {
     // Set video playback speed
     heroVideo.playbackRate = 0.7;
