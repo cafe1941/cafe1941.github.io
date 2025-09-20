@@ -31,47 +31,61 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const heroVideo = document.querySelector('.hero-video');
 const heroOverlay = document.querySelector('.hero-overlay');
 
-// Overlay fade with CSS animation
+// Overlay fade animation using JavaScript
 if (heroOverlay) {
-    // Use CSS animation instead of JavaScript for better performance
-    heroOverlay.style.animation = 'fadeOverlay 1s ease-out forwards';
+    let overlayAnimationComplete = false;
+    let startTime = null;
+    const duration = 1000; // 1 second
 
-    // Add CSS animation
-    if (!document.querySelector('#overlay-animation')) {
-        const style = document.createElement('style');
-        style.id = 'overlay-animation';
-        style.innerHTML = `
-            @keyframes fadeOverlay {
-                from { opacity: 1; }
-                to { opacity: 0.3; }
-            }
-        `;
-        document.head.appendChild(style);
+    function animateOverlay(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+
+        // Animate from opacity 1 to 0.3
+        const opacity = 1 - (progress * 0.7);
+        heroOverlay.style.opacity = opacity;
+
+        if (progress < 1) {
+            requestAnimationFrame(animateOverlay);
+        } else {
+            overlayAnimationComplete = true;
+        }
     }
+
+    // Start animation on page load
+    requestAnimationFrame(animateOverlay);
+
+    // Prevent animation reset on iOS
+    let scrollTimeout;
+    document.addEventListener('touchmove', (e) => {
+        if (!overlayAnimationComplete) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Continue animation after touch ends
+            }, 100);
+        }
+    }, { passive: true });
 }
 
 if (heroVideo) {
     // Set video playback speed
     heroVideo.playbackRate = 0.7;
 
-    // Optimize video playback
-    let videoPlayTimer;
+    // Force video to keep playing on iOS
     const forceVideoPlay = () => {
-        clearTimeout(videoPlayTimer);
-        videoPlayTimer = setTimeout(() => {
-            if (heroVideo.paused) {
-                heroVideo.play().catch(e => console.log('Video play interrupted:', e));
-            }
-        }, 100);
+        if (heroVideo.paused) {
+            heroVideo.play().catch(e => console.log('Video play interrupted:', e));
+        }
     };
 
-    // iOS specific fixes with throttling
+    // iOS specific fixes
     document.addEventListener('touchstart', forceVideoPlay, { passive: true });
+    document.addEventListener('touchmove', forceVideoPlay, { passive: true });
     document.addEventListener('scroll', forceVideoPlay, { passive: true });
 
     // Ensure video stays playing
     heroVideo.addEventListener('pause', () => {
-        forceVideoPlay();
+        heroVideo.play().catch(e => console.log('Video play interrupted:', e));
     });
 
     heroVideo.addEventListener('error', () => {
@@ -85,19 +99,14 @@ if (heroVideo) {
 
 // No animation needed - static overlay
 
-// Scroll reveal animation for about content - Optimized
+// Scroll reveal animation for about content
 const observeAboutContent = () => {
     const aboutContents = document.querySelectorAll('.about-content');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Use setTimeout to defer non-critical animations
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, 0);
-                // Stop observing after animation trigger
-                observer.unobserve(entry.target);
+                entry.target.classList.add('visible');
             }
         });
     }, {
@@ -110,66 +119,26 @@ const observeAboutContent = () => {
     });
 };
 
-// Lazy loading for background images
-const lazyLoadBackgrounds = () => {
-    const lazyBackgrounds = document.querySelectorAll('.about-bg-image');
-
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bgElement = entry.target;
-                const parent = bgElement.parentElement;
-                const imageType = parent.dataset.image;
-
-                // Load the background image
-                if (imageType) {
-                    bgElement.style.backgroundImage = `url('assets/optimized_${imageType}.jpg')`;
-                }
-
-                // Stop observing this element
-                observer.unobserve(bgElement);
-            }
-        });
-    }, {
-        rootMargin: '100px 0px',
-        threshold: 0.01
-    });
-
-    lazyBackgrounds.forEach(bg => {
-        imageObserver.observe(bg);
-    });
-};
-
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        observeAboutContent();
-        lazyLoadBackgrounds();
-    });
+    document.addEventListener('DOMContentLoaded', observeAboutContent);
 } else {
     observeAboutContent();
-    lazyLoadBackgrounds();
 }
 
-// Mouse Move Gradient Effect for Hero - Throttled
+// Mouse Move Gradient Effect for Hero
 const hero = document.querySelector('.hero');
 if (hero) {
-    let isThrottled = false;
     hero.addEventListener('mousemove', (e) => {
-        if (isThrottled) return;
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
 
-        isThrottled = true;
-        requestAnimationFrame(() => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-
-            if (hero.style) {
-                hero.style.setProperty('--mouse-x', `${x * 100}%`);
-                hero.style.setProperty('--mouse-y', `${y * 100}%`);
-            }
-            isThrottled = false;
-        });
-    }, { passive: true });
+        const heroBeforeElement = hero.querySelector('::before');
+        if (hero.style) {
+            hero.style.setProperty('--mouse-x', `${x * 100}%`);
+            hero.style.setProperty('--mouse-y', `${y * 100}%`);
+        }
+    });
 }
 
 // Performance Optimization - Debounce Resize
@@ -180,7 +149,7 @@ window.addEventListener('resize', () => {
     resizeTimer = setTimeout(() => {
         document.body.classList.remove('resize-animation-stopper');
     }, 400);
-}, { passive: true });
+});
 
 // Add resize animation stopper CSS dynamically
 const style = document.createElement('style');
