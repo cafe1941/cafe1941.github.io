@@ -160,3 +160,55 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+// Popup Modal Logic (temporarily disabled)
+/*
+const initPopup = () => {
+    const popup = document.getElementById('welcomePopup');
+    const popupCloseBtn = document.querySelector('.popup-close');
+    const popupConfirmBtn = document.querySelector('.popup-btn');
+
+    if (!popup) return;
+
+    // Close popup function
+    const closePopup = () => {
+        popup.classList.remove('active');
+    };
+
+    // Show popup after a short delay
+    setTimeout(() => {
+        popup.classList.add('active');
+    }, 500);
+
+    // Close popup when close button is clicked
+    if (popupCloseBtn) {
+        popupCloseBtn.addEventListener('click', closePopup);
+    }
+
+    // Close popup when confirm button is clicked
+    if (popupConfirmBtn) {
+        popupConfirmBtn.addEventListener('click', closePopup);
+    }
+
+    // Close popup when clicking outside the popup content
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popup.classList.contains('active')) {
+            closePopup();
+        }
+    });
+};
+
+// Initialize popup when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPopup);
+} else {
+    initPopup();
+}
+*/
