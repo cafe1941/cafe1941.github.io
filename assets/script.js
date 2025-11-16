@@ -165,7 +165,6 @@ document.head.appendChild(style);
 const initPopup = () => {
     const popup = document.getElementById('welcomePopup');
     const popupCloseBtn = document.querySelector('.popup-close');
-    const popupConfirmBtn = document.querySelector('.popup-btn');
 
     if (!popup) return;
 
@@ -182,11 +181,6 @@ const initPopup = () => {
     // Close popup when close button is clicked
     if (popupCloseBtn) {
         popupCloseBtn.addEventListener('click', closePopup);
-    }
-
-    // Close popup when confirm button is clicked
-    if (popupConfirmBtn) {
-        popupConfirmBtn.addEventListener('click', closePopup);
     }
 
     // Close popup when clicking outside the popup content

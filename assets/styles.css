@@ -593,7 +593,7 @@ body {
     background: white;
     padding: 0;
     border-radius: 20px;
-    max-width: 500px;
+    max-width: 800px;
     width: 90%;
     position: relative;
     transform: scale(0.9);
@@ -630,8 +630,15 @@ body {
 }
 
 .popup-body {
-    padding: 60px 40px 40px;
+    padding: 0;
     text-align: center;
+}
+
+.popup-image {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    display: block;
 }
 
 .popup-body h2 {
@@ -671,7 +678,11 @@ body {
 
 @media (max-width: 480px) {
     .popup-body {
-        padding: 50px 30px 30px;
+        padding: 0;
+    }
+
+    .popup-image {
+        border-radius: 20px;
     }
 
     .popup-body h2 {
