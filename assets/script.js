@@ -161,8 +161,7 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// Popup Modal Logic (temporarily disabled)
-/*
+// Popup Modal Logic
 const initPopup = () => {
     const popup = document.getElementById('welcomePopup');
     const popupCloseBtn = document.querySelector('.popup-close');
@@ -211,4 +210,3 @@ if (document.readyState === 'loading') {
 } else {
     initPopup();
 }
-*/
