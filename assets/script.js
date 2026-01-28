@@ -183,11 +183,9 @@ const initPopup = () => {
         popupCloseBtn.addEventListener('click', closePopup);
     }
 
-    // Close popup when clicking outside the popup content
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            closePopup();
-        }
+    // Close popup when clicking anywhere in the popup overlay (including content)
+    popup.addEventListener('click', () => {
+        closePopup();
     });
 
     // Close popup with Escape key
