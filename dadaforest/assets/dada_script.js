@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
-    const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    // Modal elements were detected but not present in current HTML. Keeping declarations safe if used later, 
+    // but noting that projectModal is strictly in index.html if at all.
+    // If modal HTML was removed (it seems so in index.html rewrite), these might error.
+    // However, user only asked to remove filtering. I will remove filtering logic.
     const modal = document.getElementById('projectModal');
     const modalImg = modal.querySelector('.modal-img');
     const modalTitle = modal.querySelector('.modal-title');
@@ -17,27 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Filtering logic
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filter = btn.dataset.filter;
-
-            // Update buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Update gallery
-            projectCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.classList.remove('hide');
-                    setTimeout(() => card.style.opacity = '1', 10);
-                } else {
-                    card.classList.add('hide');
-                    card.style.opacity = '0';
-                }
-            });
-        });
-    });
 
     // Modal logic
     projectCards.forEach(card => {
