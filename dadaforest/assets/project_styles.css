@@ -43,15 +43,19 @@ header {
 .back-link {
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    /* Smaller font */
     text-transform: uppercase;
     letter-spacing: 0.1em;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 24px;
+    padding: 8px 20px;
+    /* Reduced padding (approx 32px total height) */
     border-radius: 40px;
     transition: all 0.3s;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
+    line-height: 1;
+    /* Ensure height is effectively controlled by padding */
 }
 
 .back-link:hover {
