@@ -1,9 +1,0 @@
-<query id="getLabelBox" action="select">
-    <tables>
-        <table name="pxeboard_labelbox" />
-    </tables>
-    <columns />
-    <conditions>
-        <condition operation="equal" column="pxeboard_labelbox_srl" var="pxeboard_labelbox_srl" filter="number" />
-    </conditions>
-</query>
