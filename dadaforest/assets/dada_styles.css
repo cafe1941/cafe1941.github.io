@@ -36,11 +36,21 @@ header {
 }
 
 header.scrolled {
-    background: rgba(13, 23, 13, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 15px 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Gradient background for smooth text readability */
+    background: linear-gradient(to bottom, rgba(13, 23, 13, 0.95) 0%, rgba(13, 23, 13, 0.8) 60%, rgba(13, 23, 13, 0) 100%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 20px 40px;
+    /* Keep consistent padding */
+    border-bottom: none;
+    /* Remove border for cleaner look */
+    /* Ensure the gradient height covers the header area comfortably */
+    height: 100px;
+    /* Force height to contain the gradient visual if essential, or just padding. 
+                      Actually, let's stick to padding but use a background that fades out. 
+                   */
+    align-items: flex-start;
+    /* Align incorrectly? No, center is fine. */
 }
 
 .logo img {

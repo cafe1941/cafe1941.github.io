@@ -252,7 +252,11 @@ header {
     }
 
     header {
-        padding: 20px;
+        padding: 20px 20px;
+        /* Ensure 20px horizontal padding on mobile */
+        width: 100%;
+        box-sizing: border-box;
+        /* Critical to keep padding inside width */
     }
 
     .project-hero-container {
