@@ -1,0 +1,14 @@
+<filter name="export_board" module="pxeboard" act="procPxeboardAdminExportBoard" confirm_msg_code="confirm_submit">
+    <form>
+        <node target="module_srls" required="true" />
+        <node target="skin" required="true" />
+    </form>
+    <parameter>
+        <param name="module_srls" target="module_srls" />
+        <param name="skin" target="skin" />
+    </parameter>
+    <response callback_func="completeExportBoard">
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

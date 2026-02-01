@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+/* board Title */
+.boardHeaderleft h1,
+.boardHeaderleft h2,
+.boardHeaderleft h3,
+.boardHeaderleft h4,
+.boardHeaderleft h5,
+.boardHeaderleft h6 { margin:25px 0 0 25px; text-align:left; }
+.boardHeaderleft { float:left; width:90%; background:url(../images/white/tl.gif) no-repeat left top; height:60px; overflow:hidden;}
+.boardHeaderright { _float:right; width:10%; background:url(../images/white/tr.gif) no-repeat right top; height:60px; overflow:hidden; }
+
+/* board Description */
+.boardDescription { border:1px solid #bbbbbb; border-top:none; color:#ffffff; padding:10px 10px 5px 10px; margin-top:0px; background-color:#d0d3d2; overflow:hidden; }
+
+/* board Information */
+.articleNum { float:left; background:url(../images/white/iconArticle.gif) no-repeat left top; }
+.articleNum strong { font:bold 11px Tahoma; color:#666666;}
+
+/* account Navigation */
+.accountNavigation li.join a { background:url(../images/white/iconMyInfo.gif) no-repeat left top; padding-left:14px; }
+.accountNavigation li.myInfo a { background:url(../images/white/iconMyInfo.gif) no-repeat left top; padding-left:14px; }
+
+/* style.list */
+.boardList th { background:#ffffff url(../images/white/lineBoardListTh.gif) no-repeat left bottom; }
+.boardList td.recommend { color:#2895c0; }
+.boardList td .replyAndTrackback { color:#2895c0; }
+.buttonTypeGo { background:url(../images/white/buttonTypeInput24.gif) no-repeat; }
+
+/* pagination */
+.pagination strong { color:#2895c0; !important; }
+
+/* boardRead */
+.boardRead .titleAndUser .title .title1 a { color:#666666; text-decoration:none; }
+.boardRead .titleAndUser .title .title1 a:hover { color:#4C4C4C; }
+.boardRead .fileAttached li { background:url(../images/white/iconFile.gif) no-repeat left top;}
+.boardRead .readHeader .dateLabel { background:url(../images/white/cal.png); }
+.boardRead .readHeader .dateLabel .dateMonth { color:#ffffff; }
+.boardRead .titleAndUser span.replyCount { background:url(../images/white/iconReply.gif) no-repeat; }
+
+/* replyAndTrackback */
+.buttonBox .replyAndTrackback a strong { color:#2895c0;}
+.replyBox .fileAttached li { background:url(../images/white/iconFile.gif) no-repeat left top;}

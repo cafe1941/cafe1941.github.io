@@ -1,0 +1,21 @@
+.ro_rating {
+	width:80px;
+	height:16px;
+    margin:0;
+	padding:0;
+	background: url(../img/common/star-matrix.gif) no-repeat 0 0;
+	text-indent:-999em;
+}
+
+.rating-0 {background-position:0 0}
+.rating-1 {background-position:0 -16px}
+.rating-2 {background-position:0 -32px}
+.rating-3 {background-position:0 -48px}
+.rating-4 {background-position:0 -64px}
+.rating-5 {background-position:0 -80px}
+.rating-6 {background-position:0 -96px}
+.rating-7 {background-position:0 -112px}
+.rating-8 {background-position:0 -128px}
+.rating-9 {background-position:0 -144px}
+.rating-10 {background-position:0 -160px}
+

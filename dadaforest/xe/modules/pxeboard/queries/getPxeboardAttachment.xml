@@ -1,0 +1,12 @@
+<query id="getPxeboardAttachment" action="select">
+    <tables>
+        <table name="pxeboard_attachment" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="document_srl" var="document_srl" filter="number" />
+        <condition operation="in" column="document_srl" var="document_srls" />
+    </conditions>
+</query>

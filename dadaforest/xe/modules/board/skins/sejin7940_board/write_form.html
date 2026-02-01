@@ -1,0 +1,455 @@
+<!--%import("js/sejin7940_board.js")-->
+
+
+<script>
+var title_limit = <!--@if($module_info->subject_limit)-->{$module_info->subject_limit}<!--@else-->0<!--@end-->;
+var title_limit_min  = <!--@if($module_info->subject_limit_min)-->{$module_info->subject_limit_min}<!--@else-->0<!--@end-->;
+function check_title() {
+	var title_length = document.getElementById('postTitle').value.length;
+	if ( title_limit>0 && title_length > title_limit) {
+		alert('제목은 '+title_limit+'자 이내로만 기재가능합니다. 줄여주세요!');
+		document.getElementById('postTitle').focus();
+		return false; 
+	}
+	else if ( title_limit_min>0 && title_length < title_limit_min) {
+		alert('제목은 '+title_limit_min+'자 이상 쓰셔야만 등록가능합니다. 더 길게 써주세요!');
+		document.getElementById('postTitle').focus();
+		return false; 
+	}
+	else return true;
+}
+
+function auto_title() {
+	var name =  document.getElementById('nick_name').value ;
+	document.getElementById('postTitle').value = name;	
+}
+
+function auto_content() {
+	var name =  document.getElementById('nick_name').value ;
+	document.getElementById('postContent').value = name;	
+}
+
+
+function write_check() {
+}
+
+</script>
+
+<!--@if( !(!$act && $module_info->default_style == 'order'))-->
+	<!--#include("_header.html")-->
+<!--@end-->
+
+
+<!--@if($module_info->default_style == 'memo')-->
+	<!--#include("write_memo.html")-->
+<!--@else-->
+
+
+
+<form action="./" method="post" onsubmit="write_check(); jQuery(this).find('input').each(function(){if(this.title==this.value)this.value='';});return procFilter(this, window.insert)" id="fo_write" class="boardWrite">
+
+	<input type="hidden" name="mid" value="{$mid}" />
+	<!--@if(!$oDocument->getContentText() && $module_info->content_default)-->
+		<!--<input type="hidden" name="content" value="{nl2br(htmlspecialchars($module_info->content_default))}" />-->
+		<input type="hidden" name="content" value="{$module_info->content_default}" />
+	<!--@elseif($module_info->auto_content=="Y")-->
+		<!--@if($logged_info->nick_name && !$oDocument->getMemberSrl() )-->
+		<input type="hidden" name="content" id="postContent" value="{$logged_info->nick_name}" />
+		<!--@elseif($oDocument->getContentText())-->
+		<input type="hidden" name="content" id="postContent" value="{$oDocument->getContentText()}" />
+		<!--@else-->
+		<input type="hidden" name="content" id="postContent" value="" >
+		<!--@end-->
+	<!--@else-->
+		<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+	<!--@end-->
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+
+	<!--@if(!$is_logged && $module_info->display_guest_form!="bottom")-->
+		<div class="editorOption">
+		<!--@if($module_info->write_style=="table")-->
+	    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList" style="table-layout:fixed">
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->writer} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td><input type="text" name="nick_name" id="nick_name" class="inputText userName" value="{$oDocument->getNickName()}" onchange="<!--@if($module_info->auto_content=='Y' && !$oDocument->getContent() && $module_info->auto_title=='Y' && !$oDocument->getTitle())-->auto_title(); auto_content();<!--@elseif($module_info->auto_content=='Y' && !$oDocument->getContent() )--> auto_content();<!--@elseif($module_info->auto_title=='Y' && !$oDocument->getTitle() )-->auto_title();<!--@end--><!--@if($module_info->use_fake_name=='Y' )-->fake_name();<!--@end-->" /></td>
+			</tr>
+			<!--@if($module_info->display_write_pwd=="N")-->
+				<input type="hidden" name="password" value="{rand(111111111,9999999999)}">
+			<!--@else-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->password} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td><input type="password" name="password" class="inputText userPw" value="" /></td>
+			</tr>
+			<!--@end-->
+			<!--@if($module_info->display_write_email!="N")-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->email_address} <!--@if($val->is_required=='Y' || $module_info->display_write_email=="W")--><em>*</em><!--@end--></th>
+				<td><input type="text" name="email_address" class="inputText emailAddress" value="{htmlspecialchars($oDocument->get('email_address'))}" /></td>
+			</tr>
+			<!--@end-->
+			<!--@if($module_info->display_write_homepage!="N")-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->homepage} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td><input type="text" name="homepage" class="inputText homePage" value="{htmlspecialchars($oDocument->get('homepage'))}" /></td>
+			</tr>
+			<!--@end-->
+		</table>
+
+		<!--@else-->
+			<input type="text" name="nick_name" id="nick_name" class="inputText userName" value="<!--@if($oDocument->getNickName())-->{$oDocument->getNickName()}<!--@else-->{$lang->writer}<!--@end-->" title="{$lang->writer}"  onchange="<!--@if($module_info->auto_content=='Y' && !$oDocument->getContent() && $module_info->auto_title=='Y' && !$oDocument->getTitle())-->auto_title(); auto_content();<!--@elseif($module_info->auto_content=='Y' && !$oDocument->getContent() )--> auto_content();<!--@elseif($module_info->auto_title=='Y' && !$oDocument->getTitle() )-->auto_title();<!--@end--><!--@if($module_info->use_fake_name=='Y' )-->fake_name();<!--@end-->" onfocus="if(this.value==this.title)this.value='';return false;" />
+			<!--@if($module_info->display_write_pwd=="N")-->
+			<input type="hidden" name="password" value="{rand(111111111,9999999999)}">
+			<!--@else-->
+		    <input type="password" name="password" class="inputText userPw" value="{$lang->password}" title="{$lang->password}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		    <!--@end-->
+		   <!--@if($module_info->display_write_email!="N")-->
+		   <input type="text" name="email_address" class="inputText emailAddress" value="<!--@if(htmlspecialchars($oDocument->get('email_address')))-->{htmlspecialchars($oDocument->get('email_address'))}<!--@else-->{$lang->email_address}<!--@end-->" title="{$lang->email_address}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <!--@end-->
+		   <!--@if($module_info->display_write_homepage!="N")-->
+		   <input type="text" name="homepage" class="inputText homePage" value="<!--@if(htmlspecialchars($oDocument->get('homepage')))-->{htmlspecialchars($oDocument->get('homepage'))}<!--@else-->{$lang->homepage}<!--@end-->" title="{$lang->homepage}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <!--@end-->
+		<!--@end-->
+		</div>
+	<!--@end-->
+
+
+	<!--@if($module_info->display_option=="N" && !$grant->manager)-->
+       <!--@if($module_info->secret=="Y")-->
+			<!--@if($module_info->secret_sort=="secret_all")-->
+			<input type="hidden" name="is_secret" value="Y" id="is_secret" >
+			<!--@elseif($module_info->secret_sort=="secret")-->
+			<input type="hidden" name="is_secret" value="Y" id="is_secret" >
+			<!--@end-->
+        <!--@end-->
+            <input type="hidden" name="allow_comment" value="Y"/>
+	<!--@else-->
+	<div class="editorOption" style="margin:0px">		
+		<!--@if($module_info->write_style=="table")-->
+	    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList" style="table-layout:fixed">
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->option} </th>
+				<td>
+		<!--@end-->
+
+		<!--@if ( ($module_info->color_grant=="member" && $logged_info) || ($module_info->color_grant=="admin" && $grant->manager ) || $module_info->color_grant=="all"  || !$module_info->color_grant )-->
+        {@ $_color = array('555555','222288','226622','2266EE','8866CC','88AA66','EE2222','EE6622','EEAA22','EEEE22') }
+        <select name="title_color" id="title_color" <!--@if($oDocument->get('title_color'))-->style="color:#{$oDocument->get('title_color')};"<!--@end--> onchange="this.style.color=this.options[this.selectedIndex].style.color;">
+                <option value="" style="color:#CCCCCC;">{$lang->title_color}</option>
+                <!--@foreach($_color as $_col)-->
+                <option value="{$_col}" style="color:#{$_col}" <!--@if($oDocument->get('title_color')==$_col)-->selected="selected"<!--@end-->>{$lang->title_color}</option>
+                <!--@endforeach-->
+            </select>
+		<!--@end-->
+        <!--@if($grant->manager)-->
+            <input type="checkbox" name="title_bold" id="title_bold" value="Y" <!--@if($oDocument->get('title_bold')=='Y')-->checked="checked"<!--@end--> />
+            <label for="title_bold">{$lang->title_bold}</label>
+            <input type="checkbox" name="is_notice" value="Y" <!--@if($oDocument->isNotice())-->checked="checked"<!--@end--> id="is_notice" />
+            <label for="is_notice">{$lang->notice}</label>
+            <input type="checkbox" name="lock_comment" value="Y" <!--@if($oDocument->isLocked())-->checked="checked"<!--@end--> id="lock_comment" />
+            <label for="lock_comment">{$lang->lock_comment}</label>
+        <!--@endif-->
+        <!--@if($module_info->secret=="Y")-->
+			<!--@if($module_info->secret_sort=="secret_all")-->
+			<input type="hidden" name="is_secret" value="Y" id="is_secret" >
+            <label for="is_secret">{$lang->secret_all}</label>
+			<!--@elseif ( ($module_info->secret_grant=="member" && $logged_info) || ($module_info->secret_grant=="admin" && $grant->manager ) || $module_info->secret_grant=="all"  || !$module_info->secret_sort )-->
+            <input type="checkbox" name="is_secret" value="Y" <!--@if($oDocument->isSecret() || $module_info->secret_sort=="secret")-->checked="checked"<!--@end--> id="is_secret" />
+            <label for="is_secret">{$lang->secret}</label>
+			<!--@end-->
+
+        <!--@end-->
+            <input type="checkbox" name="allow_comment" value="Y" <!--@if($oDocument->allowComment())-->checked="checked"<!--@end--> id="allow_comment" />
+            <label for="allow_comment">{$lang->allow_comment}</label>
+            <!--@if($oDocument->allowTrackback())--><input type="checkbox" name="allow_trackback" value="Y" checked="checked" id="allow_trackback" /><label for="allow_trackback">{$lang->allow_trackback}</label><!--@end-->
+        <!--@if($is_logged)-->
+            <input type="checkbox" name="notify_message" value="Y" <!--@if($oDocument->useNotify())-->checked="checked"<!--@end--> id="notify_message" />
+            <label for="notify_message">{$lang->notify}</label>
+        <!--@end-->
+
+		<!--@if($module_info->write_style=="table")-->
+			</td></tr>
+		</table>
+		<!--@end-->
+    </div>
+	<!--@end-->
+
+	<div class="boardWriteHeader">
+		<!--@if($module_info->write_style=="table" && $module_info->auto_title!="Y")-->
+	    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList" style="table-layout:fixed">
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->title} </th>
+				<td>
+		<!--@end-->
+
+		<!--@if($module_info->use_category=="Y")-->
+		<select name="category_srl" class="category">
+			<option value="">{$lang->category}</option>
+			{@$category_count=0}
+			<!--@foreach($category_list as $val)-->
+			{@$category_count++}
+			<option <!--@if(!$val->grant)-->disabled="disabled"<!--@endif--> value="{$val->category_srl}" <!--@if((!$oDocument->get('category_srl') && $category_count==$module_info->category_default) || ($val->category_srl==$oDocument->get('category_srl')) )-->selected="selected"<!--@endif-->>
+				{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})
+			</option>
+			<!--@endforeach-->
+		</select>
+		<!--@endif-->
+		
+		<!--@if($publish=="Y" && $title)-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{$title}"  onblur="return check_title()" />
+		<!--@elseif($module_info->auto_title=="Y")-->
+			<!--@if($logged_info->nick_name && !$oDocument->getMemberSrl() )-->
+			<input type="hidden" name="title" id="postTitle" class="inputText" value="{$logged_info->nick_name}" />
+			<!--@elseif($oDocument->getTitle())-->
+			<input type="hidden" name="title" id="postTitle" class="inputText" value="{$oDocument->getTitle()}" />
+			<!--@else-->
+			<input type="hidden" name="title" id="postTitle" class="inputText" value="" >
+			<!--@end-->
+		<!--@elseif($oDocument->getTitleText())-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{htmlspecialchars($oDocument->getTitleText())}"  onblur="return check_title()" />
+		<!--@else-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{$lang->title}" title="{$lang->title}" onfocus="if(this.value==this.title) this.value='';" onblur="return check_title()" />
+		<!--@end-->
+        <!--@if($is_logged && $moulde_info->use_tempsave!="N")-->
+        <span class="buttonOfficial"><button type="button" onclick="doDocumentLoad(this); return false;">{$lang->cmd_load}</button></span>
+        <!--@end-->
+
+		<!--@if($module_info->write_style=="table")-->
+			</td>
+		</tr>
+		</table>
+		<!--@end-->
+
+	</div>
+
+	<!-- sejin7490 수정 - 프로필에 상세 회원정보 넣기 위해서 (시작) -->
+	<!--@if($module_info->extra_member=="Y")-->
+		{@
+		$oMemberModel = &getModel('member');
+		$group_list = $oMemberModel->getGroups($module_info->site_srl);
+	//	$member_info = $oMemberModel->getMemberInfoByMemberSrl($oDocument->getMemberSrl(), $module_info->site_srl);
+		$member_info = $oMemberModel->getMemberInfoByMemberSrl($logged_info->member_srl, $module_info->site_srl);
+		$extend_form_list = $oMemberModel->getCombineJoinForm($member_info);
+		}
+		<!-- 회원 추가입력사항의 변수 받기 위해서 -->
+		<!--@foreach($extend_form_list as $key => $val)-->
+			<!--@if($val->column_name == "tel")-->
+			{@ $member_info->tel = $val->value;}
+			<!--@elseif($val->column_name == "address")-->
+			{@ $member_info->address = $val->value;}
+			<!--@end-->
+		<!--@end-->
+	<!--@end-->
+	<!-- sejin7490 수정 - 프로필에 상세 회원정보 넣기 위해서 (끝) -->
+
+
+
+<!--@if(!($act==dispBoardWrite && $document_srl && !$grant->manager && $mid=="community_market" && $oDocument->getCommentCount() ))-->
+    <!--@if(count($extra_keys))-->
+    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList" style="table-layout:fixed">
+	<col style="width:{$module_info->write_table_width}px;">
+	<!--<caption><em>*</em> : {$lang->is_required}</caption>-->
+
+	<!--@foreach($extra_keys as $key => $val)-->
+
+		<!--@if($val->eid=='group_grantAA' && $module_info->grant_document!="N")-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td>{$val->getFormHTML()}</td>
+				<td><span class="buttonOfficial"><input type="button" value="그룹찾기" href="?act=dispMemberAdminGroupList" onclick="window.open(this.href,'','width=700,height=700,toolbar=0, location=0, directories=0, status=0, menubar=0, scrollbars=1, resizable=1'); return false" /></span></td>
+			</tr>
+		<!--@elseif($val->eid=='member_grantAA' && $module_info->grant_document!="N")-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td>{$val->getFormHTML()}</td>
+				<td><span class="buttonOfficial"><input type="button" value="ID찾기" href="?act=dispMemberAdminList" onclick="window.open(this.href,'','width=700,height=700,toolbar=0, location=0, directories=0, status=0, menubar=0, scrollbars=1, resizable=1'); return false" /></span></span></td>
+			</tr>
+
+		<!--@else-->
+			<!--  게시판 연결기능 (sejin7940) - parent_srl, parent_title 값 이용 -->
+			<!--@if(strstr(strtolower($val->eid),"parent_title") && parent_title)-->
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center; padding-top:7px">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td><input type="text" name="extra_vars{$key}" value="{$parent_title}" readonly class="text" style="border:0px"/></td>
+				</tr>
+			<!--@elseif(strstr(strtolower($val->eid),"parent_mid"))--> 
+				<!--@if($parent_mid)--> 
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center; padding-top:9px">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td><input type="text" name="extra_vars{$key}" value="{$parent_mid}" readonly class="text" style="border:0px"/></td>
+				</tr>
+				<!--@else-->
+					<input type="hidden" name="extra_vars{$key}" value="N"/>
+				<!--@end-->
+			<!--@elseif($val->eid=="link_srl")--> 
+				<!--@if($link_srl)--> 
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center; padding-top:9px">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td><input type="text" name="extra_vars{$key}" value="{$link_srl}" readonly class="text" style="border:0px"/></td>
+				</tr>
+				<!--@else-->
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td>{$val->getFormHTML()}</td>
+				</tr>
+				<!--@end-->
+			<!--@elseif(strstr(strtolower($val->eid),"parent_srl"))--> 
+				<!--@if($parent_srl)--> 
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center; padding-top:9px">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td><input type="text" name="extra_vars{$key}" value="{$parent_srl}" readonly class="text" style="border:0px"/></td>
+				</tr>
+				<!--@else-->
+					<input type="hidden" name="extra_vars{$key}" value="N"/>
+				<!--@end-->
+			<!--@elseif($val->eid=="parent_name")--> 
+				<!--@if($parent_name)--> 
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;padding-top:9px">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td><input type="text" name="extra_vars{$key}" value="{$parent_name}" readonly class="text" style="border:0px"/></td>
+				</tr>
+				<!--@else-->
+				<tr>
+					<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+					<td>{$val->getFormHTML()}</td>
+				</tr>
+				<!--@end-->
+			<!--@elseif($module_info->grant_extra=="Y" && (((substr_count($val->eid,'_grantAA') || substr_count($val->eid,'_grantAM') || substr_count($val->eid,'_grantAG')) && !$grant->manager) || ((substr_count($val->eid,'_grantMA') || substr_count($val->eid,'_grantMM') || substr_count($val->eid,'_grantMG')) && !$logged_info)) )-->
+			<!--@else-->
+			<tr>
+				<th scope="row" <!--@if($module_info->default_style=='survey' && strstr($val->eid,"qna"))-->colspan="2"<!--@else-->style="width:{$module_info->write_table_width}px; text-align:center;"<!--@end-->>{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<!--@if($module_info->default_style=='survey' && strstr($val->eid,"qna"))--></tr><tr><!--@end-->
+				<td <!--@if($module_info->default_style=='survey' && strstr($val->eid,"qna"))-->colspan="2"<!--@end-->>{$val->getFormHTML()}</td>
+			</tr>
+			<!--@end-->
+
+			<!--@if($module_info->extra_member=="Y")-->
+				<!--@if(!$member_srl)-->{@$member_srl = $member_info->member_srl}<!--@end-->
+				<!--@if($member_srl && !$val->value && ($val->eid=='name' || substr_count($val->eid,'name_grant')) )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$logged_info->user_name}'</script>
+				<!--@elseif(!$val->value && ($val->eid=='id' || substr_count($val->eid,'id_grant')) && !($module_info->default_style == 'consult' && $grant->manager && ($val->eid=='id' || substr_count($val->eid,'id_grant')))  )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$logged_info->user_id}'</script>
+				<!--@elseif($member_srl && !$val->value && ($val->eid=='email' || substr_count($val->eid,'email_grant')) )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$logged_info->email_address}'</script>
+				<!--@elseif($member_srl && !$val->value && ($val->eid=='homepage'  || substr_count($val->eid,'homepage_grant')) )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$logged_info->homepage}'</script>
+				<!--@elseif($member_srl && !$val->value && ($val->eid=='blog' || substr_count($val->eid,'blog_grant')) )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$logged_info->blog}'</script>
+				<!--@elseif($member_srl && !$val->value && ($val->eid=='birthday' || substr_count($val->eid,'birthday_grant')) )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$logged_info->birthday}'</script>
+				<!--@elseif($member_srl && !$val->value && ($val->eid=='tel' || substr_count($val->eid,'tel_grant')) )-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$member_info->tel[0]}'</script>
+					<script>document.getElementsByName('extra_vars{$key}')[1].value = '{$member_info->tel[1]}'</script>
+					<script>document.getElementsByName('extra_vars{$key}')[2].value = '{$member_info->tel[2]}'</script>
+				<!--@elseif($member_srl && !$val->value && ($val->eid=='address' || substr_count($val->eid,'address_grant')) )-->
+					<script>document.getElementById('addr_searched_extra_vars{$key}').style.display='inline'</script>
+					<script>document.getElementById('addr_search_extra_vars{$key}').style.display='none'</script>
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$member_info->address[0]}'</script>
+					<script>document.getElementsByName('extra_vars{$key}')[1].value = '{$member_info->address[1]}'</script>
+				<!--@end-->
+			<!--@end-->
+			<!--@if($module_info->calendar_location && $module_info->calendar_location!="hide" && extra_vars1 && $key==1)-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = '{$extra_vars1}'</script>
+			<!--@end-->
+
+		<!--@end-->
+	<!--@endforeach-->
+    </table>
+    <!--@endif-->
+
+	<!--@if($module_info->auto_content!="Y")-->
+    <div class="editor">{$oDocument->getEditor()}</div>
+	<!--@end-->
+
+
+	<!--@if($module_info->use_tag=="Y")-->
+    <div class="tag">
+        <input type="text" name="tags" value="{htmlspecialchars($oDocument->get('tags'))}" class="inputText" title="Tag" />
+		<p>{$lang->about_tag}</p>
+    </div>
+	<!--@end-->
+
+<!--@end-->
+
+	<!--@if(!$is_logged && $module_info->display_guest_form=="bottom")-->
+		<div class="editorOption">
+		<!--@if($module_info->write_style=="table")-->
+	    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList" style="table-layout:fixed">
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->writer} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td><input type="text" name="nick_name" id="nick_name" class="inputText userName" value="{$oDocument->getNickName()}" onchange="<!--@if($module_info->auto_content=='Y' && !$oDocument->getContent() && $module_info->auto_title=='Y' && !$oDocument->getTitle())-->auto_title(); auto_content();<!--@elseif($module_info->auto_content=='Y' && !$oDocument->getContent() )--> auto_content();<!--@elseif($module_info->auto_title=='Y' && !$oDocument->getTitle() )-->auto_title();<!--@end--><!--@if($module_info->use_fake_name=='Y' )-->fake_name();<!--@end-->" /></td>
+			</tr>
+			<!--@if($module_info->display_write_pwd=="N")-->
+				<input type="hidden" name="password" value="{rand(111111111,9999999999)}">
+			<!--@else-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->password} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td><input type="password" name="password" class="inputText userPw" value="" /></td>
+			</tr>
+			<!--@end-->
+			<!--@if($module_info->display_write_email!="N")-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->email_address} <!--@if($val->is_required=='Y' || $module_info->display_write_email=="W")--><em>*</em><!--@end--></th>
+				<td><input type="text" name="email_address" class="inputText emailAddress" value="{htmlspecialchars($oDocument->get('email_address'))}" /></td>
+			</tr>
+			<!--@end-->
+			<!--@if($module_info->display_write_homepage!="N")-->
+			<tr>
+				<th scope="row" style="width:{$module_info->write_table_width}px; text-align:center;">{$lang->homepage} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+				<td><input type="text" name="homepage" class="inputText homePage" value="{htmlspecialchars($oDocument->get('homepage'))}" /></td>
+			</tr>
+			<!--@end-->
+		</table>
+
+		<!--@else-->
+			<input type="text" name="nick_name" id="nick_name" class="inputText userName" value="<!--@if($oDocument->getNickName())-->{$oDocument->getNickName()}<!--@else-->{$lang->writer}<!--@end-->" title="{$lang->writer}"  onchange="<!--@if($module_info->auto_content=='Y' && !$oDocument->getContent() && $module_info->auto_title=='Y' && !$oDocument->getTitle())-->auto_title(); auto_content();<!--@elseif($module_info->auto_content=='Y' && !$oDocument->getContent() )--> auto_content();<!--@elseif($module_info->auto_title=='Y' && !$oDocument->getTitle() )-->auto_title();<!--@end--><!--@if($module_info->use_fake_name=='Y' )-->fake_name();<!--@end-->" onfocus="if(this.value==this.title)this.value='';return false;" />
+			<!--@if($module_info->display_write_pwd=="N")-->
+			<input type="hidden" name="password" value="{rand(111111111,9999999999)}">
+			<!--@else-->
+		    <input type="password" name="password" class="inputText userPw" value="{$lang->password}" title="{$lang->password}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		    <!--@end-->
+		   <!--@if($module_info->display_write_email!="N")-->
+		   <input type="text" name="email_address" class="inputText emailAddress" value="<!--@if(htmlspecialchars($oDocument->get('email_address')))-->{htmlspecialchars($oDocument->get('email_address'))}<!--@else-->{$lang->email_address}<!--@end-->" title="{$lang->email_address}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <!--@end-->
+		   <!--@if($module_info->display_write_homepage!="N")-->
+		   <input type="text" name="homepage" class="inputText homePage" value="<!--@if(htmlspecialchars($oDocument->get('homepage')))-->{htmlspecialchars($oDocument->get('homepage'))}<!--@else-->{$lang->homepage}<!--@end-->" title="{$lang->homepage}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <!--@end-->
+		<!--@end-->
+		</div>
+	<!--@end-->
+
+
+	<div class="boardNavigation" style="clear:both">
+    <div class="buttonLeft">
+		<!--@if($module_info->default_style == 'order')-->
+			<!--@if( !$logged_info  && !$document_srl)-->
+			<!--@elseif( !$grant->manager && $logged_info  && !$search_keyword )-->
+				<a href="{getUrl('','mid',$mid,'page',$page,'document_srl','','listStyle',$listStyle)}" class="buttonOfficial"><span>{$lang->cmd_list}</span></a>&nbsp;&nbsp;&nbsp;
+			<!--@elseif( $grant->manager || ( $logged_info && count($document_list) ))-->
+				<a href="{getUrl('','mid',$mid,'page',$page,'document_srl','','listStyle',$listStyle)}" class="buttonOfficial"><span>{$lang->cmd_list}</span></a>&nbsp;&nbsp;&nbsp;
+					<!--#include("./_style.list.html")-->
+			<!--@elseif(!$grant->manager && $logged_info )-->
+			<!--@end-->
+		<!--@else-->
+			<a href="{getUrl('','mid',$mid,'page',$page,'document_srl','','listStyle',$listStyle)}" class="buttonOfficial"><span>{$lang->cmd_list}</span></a>&nbsp;&nbsp;&nbsp;
+		<!--@end-->
+		<!--@if($moulde_info->use_tempsave!="N" && $is_logged)--><span class="buttonOfficial"><button type="button" onclick="doDocumentSave(this);">{$lang->cmd_temp_save}</button></span><!--@end-->
+		<!--@if($moulde_info->use_tempsave!="N" && $is_logged)--><span class="buttonOfficial"><button type="button" onclick="doDocumentLoad(this);">{$lang->cmd_load}</button></span><!--@end-->
+	</div>
+    <div class="buttonRight">
+		<span class="buttonOfficial"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+	</div>
+	</div>
+
+
+	<!--@if($module_info->multiselect_eid && $module_info->grant_document!="N")-->
+		<input id="multiSelect_first" type="hidden" value="{$multiSelect_array[0]}">
+		<input id="multiSelect_second" type="hidden" value="{trim(strstr($multiSelect,' '))}">
+		<!--<input id="multiSelect_third" type="hidden" value="{$multiSelect_array[2]}">-->
+	<!--@end-->
+
+</form>
+
+<!--@end-->  <!-- memo 인지 아닌지 if 문을 닫음)-->
+
+
+<!--#include("_footer.html")-->

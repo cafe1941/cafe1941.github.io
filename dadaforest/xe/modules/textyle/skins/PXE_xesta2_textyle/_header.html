@@ -1,0 +1,26 @@
+<!--2차 로고 이미지-->
+<span class="second_logo"></span>
+
+<div class="extension">
+    <ul>
+        <li class="<!--@if($act=='dispTextyleGuestbook')-->active<!--@end-->">
+            <a class="guestbook" href="{$guestbook_url}"></a>
+        </li>
+        
+        <li class="tags <!--@if($act=='dispTextyleTag')-->active<!--@end-->">
+            <a class="tags" href="{$tag_url}"></a>
+        </li>
+        
+        <li class="profile <!--@if($act=='dispTextyleProfile')-->active<!--@end-->">
+            <a class="profile" href="{$profile_url}"></a>
+        </li>	
+    </ul>
+</div><!--extension끝-->
+
+<ul class="globalMenu">
+    <li><a href="http://www.premiumxe.com">premiumxe.com</a></li>
+    <li><a href="http://www.xpressengine.com" target="_blank">XpressEngine 2</a></li>
+    <li><a href="http://www.jquery.com" target="_blank">Jquery</a></li>
+    <li><a href="http://www.webappers.com" target="_blank">WebAppers</a></li>
+    <li><a href="{$admin_url}" accesskey="A" target="_blank"><strong>Administator</strong></a></li>
+</ul><!--globalMenu 끝-->

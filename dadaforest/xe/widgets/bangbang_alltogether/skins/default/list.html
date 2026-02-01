@@ -1,0 +1,84 @@
+<!--%import("./css/default.css")-->
+
+<!--%import("js/jquery.easing.1.3.js")-->
+<!--%import("js/jquery.roundabout-1.0.js")-->
+<!--%import("js/jquery.roundabout-shapes-1.1.js")-->
+
+<div class="bangbang_alltogether bangbang_alltogether{$ba_widget_count}">
+	<ul id="photos">
+		<!--@foreach($widget_vals->document_list as $oDocument)-->
+		<li><img title="{$oDocument->getTitle()}"  <!--@if($widget_vals->clickable == "true")-->alt="{getUrl('','document_srl',$oDocument->document_srl)}"<!--@end--> src="{$oDocument->getThumbnail($widget_vals->thumb_width*25,$widget_vals->thumb_height*25,$widget_vals->thumbnail_type)}" /></li>
+		<!--@end--> 
+	</ul>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+
+
+	if(jQuery && jQuery('.bangbang_alltogether{$ba_widget_count} ul#photos').roundabout
+	&& jQuery('.bangbang_alltogether{$ba_widget_count} .roundabout-holder').length < 1){
+
+		var auto_go{$ba_widget_count} = true;
+
+		function startAutoPlay{$ba_widget_count}() {
+		<!--@if($widget_vals->transition_interval != 0)-->
+			return setInterval(function() {
+				if(auto_go{$ba_widget_count})
+				jQuery('.bangbang_alltogether{$ba_widget_count} .roundabout-holder').roundabout_animateToNextChild();
+			}, {$widget_vals->transition_interval});
+		<!--@end-->
+		}
+
+		jQuery('.bangbang_alltogether{$ba_widget_count} ul#photos').roundabout({
+			duration: {$widget_vals->transition_speed},
+			minOpacity: {$widget_vals->back_opacity},
+			minScale: 0.2,
+			clickToFocus: true,
+			focusBearing: '{$widget_vals->focusBearing}',
+			easing: '{$widget_vals->sliding_effect}',
+			shape: '{$widget_vals->shape}'
+		})<!--@if($widget_vals->pause_on_hover)-->.hover(
+			function() {
+				auto_go{$ba_widget_count} = false;
+			},
+			function() {
+				auto_go{$ba_widget_count} = true;
+			}
+		)<!--@end-->;
+		
+		<!--@if($widget_vals->transition_interval != 0)-->
+		startAutoPlay{$ba_widget_count}();
+		<!--@end-->
+
+		jQuery('.bangbang_alltogether{$ba_widget_count}').css('height','auto').css('overflow','visible');
+	}
+});
+
+</script> 
+<style type="text/css">
+
+.bangbang_alltogether{$ba_widget_count} {
+	height:100px; overflow:hidden; font: normal normal normal 2em/1.5 Georgia, serif;
+}
+
+.bangbang_alltogether{$ba_widget_count} .roundabout-holder { 
+	list-style: none;
+	width: {$widget_vals->canvas_width}em;
+	height: {$widget_vals->canvas_height}em;
+	margin: 1em auto;
+}
+.bangbang_alltogether{$ba_widget_count} .roundabout-moveable-item { 
+	width: {$widget_vals->thumb_width}em; 
+	height: {$widget_vals->thumb_height}em;
+	cursor: pointer; 
+}
+.bangbang_alltogether{$ba_widget_count} .roundabout-moveable-item img { 
+	width: 100%; 
+	height: 100%;
+}
+.bangbang_alltogether{$ba_widget_count} .roundabout-in-focus { 
+	cursor: pointer; 
+}
+</style>

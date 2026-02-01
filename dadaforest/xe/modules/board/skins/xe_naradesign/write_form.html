@@ -1,0 +1,82 @@
+<!--#include("header.html")-->
+
+<form action="./" method="post" onsubmit="jQuery(this).find('input').each(function(){if(this.title==this.value)this.value='';});return procFilter(this, window.insert)" id="fo_write" class="boardWrite">
+<input type="hidden" name="mid" value="{$mid}" />
+<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+<input type="hidden" name="document_srl" value="{$document_srl}" />
+
+	<div class="boardWriteHeader">
+	
+		<!--@if($module_info->use_category=="Y")-->
+		<select name="category_srl" class="category">
+			<option value="">{$lang->category}</option>
+			<!--@foreach($category_list as $val)-->
+			<option <!--@if(!$val->grant)-->disabled="disabled"<!--@endif--> value="{$val->category_srl}" <!--@if($val->grant&&$val->selected||$val->category_srl==$oDocument->get('category_srl'))-->selected="selected"<!--@endif-->>
+				{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})
+			</option>
+			<!--@endforeach-->
+		</select>
+		<!--@endif-->
+		
+		<!--@if($oDocument->getTitleText())-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{htmlspecialchars($oDocument->getTitleText())}" />
+		<!--@else-->
+		<input type="text" name="title" id="postTitle" class="inputText" value="{$lang->title}" title="{$lang->title}" onfocus="if(this.value==this.title) this.value='';" />
+		<!--@end-->
+	
+        <!--@if($is_logged)-->
+        <span class="button"><button type="button" onclick="doDocumentLoad(this); return false;">{$lang->cmd_load}</button></span>
+        <!--@end-->
+		
+	</div>
+
+    <!--@if(count($extra_keys))-->
+    <table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList">
+	<caption><em>*</em> : {$lang->is_required}</caption>
+    <!--@foreach($extra_keys as $key => $val)-->
+    <tr>
+        <th scope="row">{$val->name} <!--@if($val->is_required=='Y')--><em>*</em><!--@end--></th>
+        <td>{$val->getFormHTML()}</td>
+    </tr>
+    <!--@endforeach-->
+    </table>
+    <!--@endif-->
+
+    <div class="editor">{$oDocument->getEditor()}</div>
+
+    <div class="tag">
+        <input type="text" name="tags" value="{htmlspecialchars($oDocument->get('tags'))}" class="inputText" title="Tag" />
+		<p>{$lang->about_tag}</p>
+    </div>
+
+	<div class="editorOption">
+			<input type="hidden" name="allow_comment" value="Y" id="allow_comment" />
+			<input type="hidden" name="allow_trackback" value="Y" id="allow_trackback" />
+		<!--@if(!$is_logged)-->
+		   <input type="text" name="nick_name" class="inputText userName" value="{$lang->writer}" title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <input type="password" name="password" class="inputText userPw" value="{$lang->password}" title="{$lang->password}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <input type="text" name="email_address" class="inputText emailAddress" value="{$lang->email_address}" title="{$lang->email_address}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		   <input type="text" name="homepage" class="inputText homePage" value="{$lang->homepage}" title="{$lang->homepage}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+		<!--@end-->
+		
+        <!--@if($grant->manager)-->
+            <input type="checkbox" name="is_notice" value="Y" <!--@if($oDocument->isNotice())-->checked="checked"<!--@end--> id="is_notice" />
+            <label for="is_notice">{$lang->notice}</label>
+        <!--@endif-->
+        <!--@if($module_info->secret=="Y")-->
+            <input type="checkbox" name="is_secret" value="Y" <!--@if($oDocument->isSecret())-->checked="checked"<!--@end--> id="is_secret" />
+            <label for="is_secret">{$lang->secret}</label>
+        <!--@end-->
+        <!--@if($is_logged)-->
+            <input type="checkbox" name="notify_message" value="Y" <!--@if($oDocument->useNotify())-->checked="checked"<!--@end--> id="notify_message" />
+            <label for="notify_message">{$lang->notify}</label>
+        <!--@end-->
+    </div>
+
+	<div class="boardNavigation">
+	<span class="button strong"><input type="submit" value="{$lang->cmd_registration}" /></span>
+		<span class="button"><button type="button" onclick="doDocumentSave(this);">{$lang->cmd_temp_save}</button></span>
+	</div>
+
+    </form>
+<!--#include("footer.html")-->

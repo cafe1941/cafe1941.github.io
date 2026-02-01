@@ -1,0 +1,17 @@
+<query id="getBestCommentList" action="select">
+    <tables>
+        <table name="comments" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="in" column="module_srl" var="module_srl"   pipe="and"/>
+		<condition operation="equal" column="document_srl" var="document_srl"  pipe="and"/>        
+		<condition operation="more" column="voted_count" var="min_vote"   pipe="and"/>        
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="list_order" order="order_type" />
+        <list_count var="list_count" default="20" />
+    </navigation>
+</query>

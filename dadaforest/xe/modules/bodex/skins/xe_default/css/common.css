@@ -1,0 +1,233 @@
+@charset "utf-8";
+
+select.dStyle,
+textarea.dStyle,
+input.dStyle {padding:2px;vertical-align:middle;border:1px solid; font-size:1.1em}
+
+select.dStyle {padding:0;height:23px}
+textarea.dStyle {height:100px}
+input.dStyle {height:17px}
+
+.bodexContent a,
+.accountNavigation a {text-decoration:none}
+
+.displayHide {display:none}
+.displayShow {display:block}
+
+/* bodex Title */
+.bodexHeader {border:0; border-bottom:3px; vertical-align:bottom; overflow:hidden; *zoom:1}
+.bodexHeader h3,
+.bodexHeader h4 {border-bottom:3px solid; margin:0; float:left; padding:10px 13px 5px 10px; font-size:1.4em}
+.bodexHeader h4 {border:0; padding-top:13px; font-size:1.2em; padding-top:11px\9}
+.bodexHeader h3 a{text-decoration:none}
+
+/* bodex Description */
+.bodexDescription {border:1px solid; overflow:hidden; padding:10px; margin: 5px 0; *zoom:1}
+.bodexDescription:after { content:""; clear:both; display:block}
+
+.displayPointConfig {float:right; margin:0; padding:0}
+.displayPointConfig ul {margin:0 0 0 8px; padding:0}
+.displayPointConfig li {float:left; margin-left:2px;list-style:none; height:32px; width:32px; background:url(../images/common/balloonText.gif) no-repeat}
+.displayPointConfig li div {font:9px Tahoma; line-height:10px; text-align:center; padding:3px 0 0 0}
+
+/* bodex Information */
+.bodexInformation {margin:6px 0 3px 0; overflow:hidden; *zoom:1}
+
+/* document count */
+.articleNum {float:left; padding:0 0 0 16px; font-size:12px; line-height:13px}
+
+/* account Navigation */
+.accountNavigation {margin:0; padding:0; float:right}
+.accountNavigation li {float:left; font-size:12px; line-height:14px; margin-left:5px; list-style:none}
+.accountNavigation li.loginAndLogout a {padding-left:5px}
+.accountNavigation li.myInfoAndJoin a {padding-left:5px}
+
+.accountNavigation li.icon a{display:block; float:left; width:13px; height:13px; overflow:hidden; background-repeat:no-repeat}
+.accountNavigation li.icon a span{display:none}
+.accountNavigation li.rss a {margin-left:5px}
+
+.accountNavigation li.listTypeClassic a{background-position:0 0}
+.accountNavigation li.listTypeClassicActive a{background-position:0 -13px}
+.accountNavigation li.listTypeZine a{background-position:-13px 0}
+.accountNavigation li.listTypeZineActive a{background-position:-13px -13px}
+.accountNavigation li.listTypeGallery a{background-position:-26px 0}
+.accountNavigation li.listTypeGalleryActive a{background-position:-26px -13px}
+
+/* category Navigation */
+.categoryTab ul {margin:0 0 2px 0; padding:0; overflow:hidden}
+.categoryTab li {position:relative; list-style:none; float:left; white-space:nowrap; margin:0 2px 0 0; padding:0; *margin-bottom:2px}
+.categoryTab li a {text-decoration:none; border:1px solid; float:left; padding:7px 10px 0 10px; height:18px}
+.categoryTab li a span {font-size:.8em}
+.categoryTab li.on {font-weight:bold;margin-bottom:-1px}
+.categoryTab li.on a {height:19px; background:none}
+
+.categoryMenu {border:0px; width:100%}
+.categoryMenu td {white-space:nowrap; overflow:hidden; vertical-align:top}
+.categoryMenu td .navigation {border:1px solid; margin:0; padding:0 0 10px 0}
+.categoryMenu td .navigation div {white-space:nowrap; font-size:1em;padding:10px 13px 0 13px}
+.categoryMenu td .navigation div a {text-decoration:none}
+.categoryMenu td .navigation div.on a {font-weight:bold}
+.categoryMenu td .navigation div a span {font-size:.8em}
+.categoryMenu td .navigation div.total {padding:9px 0 5px 13px; border-bottom:1px solid}
+
+/* bodex Bottom, list button */
+.bodexBottom {margin-top:5px}
+.bodexBottom .leftButtonBox {float: left}
+.bodexBottom .rightButtonBox {float: right}
+
+/* bodexSearch */
+.bodexSearch{position:relative; margin:0; padding:1px 0; line-height:normal}
+.bodexSearch *{margin:0; padding:0}
+.bodexSearch select{height:23px}
+.bodexSearch input.dStyle {width:140px}
+.bodexSearch fieldset {border:0; margin:0; padding:0}
+.bodexSearch .infoEtc{position:absolute; top:13px}
+.bodexSearch .infoEtc li{display:inline}
+.bodexSearch .infoEtc li a{display:inline-block; height:11px; background-repeat:no-repeat; overflow:hidden;background-image:url(../images/common/buttonContributorsTaglist.gif)}
+.bodexSearch .infoEtc li a span{position:absolute; width:0; height:0; overflow:hidden; font-size:0; line-height:0; visibility:hidden}
+.bodexSearch .infoEtc li.contributors a{width:12px; background-position:0 0}
+.bodexSearch .infoEtc li.tag a{width:41px; background-position:-12px 0}
+
+/* Page */
+.pagination {padding:15px 0 5px; margin:0; text-align:center; *zoom:1}
+.pagination:after { content:""; clear:both; display:block}
+.pagination *{margin:0; padding:0}
+.pagination img{border:0}
+.pagination a,
+.pagination strong{border:none; text-decoration:none; position:relative; display:inline-block; line-height:normal; font-family:Tahoma, Sans-serif; vertical-align:middle}
+.pagination a{font-weight:normal !important}
+.pagination a.prev,
+.pagination a.prevEnd,
+.pagination a.next,
+.pagination a.nextEnd{font-weight:normal !important; white-space:nowrap}
+
+/* Pagination A1 */
+.pagination.a1 a,
+.pagination.a1 strong{margin-left:-5px; padding:1px 8px 1px 8px; border-left:1px solid; border-right:1px solid; font-weight:bold; font-size:1em;line-height:.9em;*line-height:1em}
+.pagination.a1 a.prev{padding-left:10px; background: url(../images/common/arrowPrevA1.gif) no-repeat left center}
+.pagination.a1 a.prevEnd{border-left:0;padding-left:15px; background: url(../images/common/arrowPrevEndA1.gif) no-repeat left center}
+.pagination.a1 a.next{padding-right:10px; background: url(../images/common/arrowNextA1.gif) no-repeat right center}
+.pagination.a1 a.nextEnd{border-right:0;padding-right:15px; background: url(../images/common/arrowNextEndA1.gif) no-repeat right center}
+
+.documentNavigation div * {vertical-align:middle}
+.documentNavigation div {margin:2px 0}
+.documentNavigation div img {margin-right:2px}
+.documentNavigation a,
+.documentNavigation strong.category {margin:0 3px 0 0; font-size:1.1em; text-decoration:none}
+.documentNavigation strong.category {margin:0; padding-right:5px}
+.documentNavigation span.replies,
+.documentNavigation span.trackbacks {margin-left:-3px; font-size:.8em}
+
+/* message box */
+.smallBox {border:1px solid; width:280px; margin: 30px auto 30px auto; padding-bottom:10px}
+.smallBox h3 {border-bottom:3px solid; margin:0; font-size:1.2em; padding:.8em 2em .6em 1.2em}
+.smallBox .inputPassword {text-align:center;border:none; padding:2em 2em 1.5em 2em}
+.smallBox .inputPassword input {width:5em}
+.smallBox .inputPassword input.userPw {margin-right:5px;width:7em}
+.smallBox .messageBox {padding:10px}
+
+.iframe_include {margin:0; border:0;width:100%}
+
+/* multimedia box */
+.exSkinMediaBox {margin:auto; padding:10px}
+.exSkinMediaBox h3 {border-bottom:3px solid}
+
+/* xpress-editor */
+.xpress-editor .fileUploader {padding-left:10px}
+.commentWrite .xeTextEditor textarea {margin:0; padding:1px}
+
+/* star */
+.starPointFrame {overflow:hidden; width:75px; height:14px; background:url(../images/common/starOff.png) no-repeat left top}
+.starPointFrame span {float:left; text-indent: -9999px; display:block; overflow:hidden;height:14px;font-size:0; line-height:0}
+.starPointFrame span.starColorR {background:url(../images/common/starOnR.png) no-repeat left top}
+.starPointFrame span.starColorG {background:url(../images/common/starOnG.png) no-repeat left top}
+.starPointFrame span.starColorY {background:url(../images/common/starOnY.png) no-repeat left top}
+.starPointFrame i {display:none}
+
+.starPointFrame.small {width:40px; height:8px; background-image:url(../images/common/star_Off.png)}
+.starPointFrame.small span {height:8px}
+.starPointFrame.small span.starColorR {background-image:url(../images/common/star_OnR.png)}
+.starPointFrame.small span.starColorG {background-image:url(../images/common/star_OnG.png)}
+.starPointFrame.small span.starColorY {background-image:url(../images/common/star_OnY.png)}
+
+/* Bodex Write */
+.bodexWrite {border:1px solid}
+.bodexWrite fieldset {border:none}
+
+.bodexWrite .writerInfo {margin:5px 10px 0 10px}
+.bodexWrite .writerInfo input {margin-right:10px}
+.bodexWrite .writerInfo input.userName,
+.bodexWrite .writerInfo input.userPw {width:60px}
+.bodexWrite .writerInfo input.emailAddress,
+.bodexWrite .writerInfo input.homePage {width:90px}
+
+.bodexWrite dl {padding:0; margin:0}
+.bodexWrite dl dd {padding:0; margin:0}
+.bodexWrite dl.option {margin:5px 0 0 10px; padding:0}
+.bodexWrite dl.option dd {display:inline;margin:0 5px 0 0}
+.bodexWrite dl.option dd input {margin:0}
+.bodexWrite dl.option dd * {vertical-align:middle}
+
+/* tag List */
+.tagsBox {border:1px solid; padding:10px; overflow:hidden}
+.tagsBox h4 {margin:0; padding:2px}
+.tagsBox .tags div {float:left; padding:2px; margin-right:10px; overflow:hidden; white-space:nowrap; height:15px}
+.tagsBox .tags div a {text-decoration:none; line-height:150%}
+.tagsBox .tags .tagTypeA a {font-weight:bold; font-size:12pt; margin:0}
+.tagsBox .tags .tagTypeB a {font-size:11pt; margin:0}
+.tagsBox .tags .tagTypeC a {font-weight:bold; font-size:11pt; margin:0}
+.tagsBox .tags .tagTypeD a {font-weight:bold; margin:0}
+.tagsBox .tags .tagTypeE a {font-weight:normal; margin:0}
+
+/* list */
+.bodexList {width:100%; border-style:solid; border-width:1px 0}
+
+.bodexList th,
+.bodexList td {font-size:1em; font-weight:normal; border:0; padding:7px 5px; vertical-align:middle; text-align:center; white-space:nowrap}
+
+.bodexList thead th {border-bottom:1px solid; height:1.2em}
+.bodexList tr.notice td {border-bottom:1px dotted}
+
+.bodexList th.sort a {font-weight:bold; padding-right:5px}
+/* ie6~7 */.bodexList th.sort a.asc,
+.bodexList th.sort a[rel=asc] {background:transparent url(../images/common/buttonAscending.gif) no-repeat right center}
+/* ie6~7 */.bodexList th.sort a.desc,
+.bodexList th.sort a[rel=desc] {background:transparent url(../images/common/buttonDescending.gif) no-repeat right center}
+
+.bodexList th.title {width:100%}
+.bodexList td.title {width:100%; white-space:normal}
+
+.bodexList td.title,
+.bodexList td.nick_name {text-align:left}
+.bodexList td.nick_name div {cursor:pointer}
+
+.bodexList td.no,
+.bodexList td.regdate,
+.bodexList td.ipaddress,
+.bodexList td.last_update,
+.bodexList td.readed_count,
+.bodexList td.voted_count,
+.bodexList td.blamed_count {font:.8em Tahoma}
+
+.bodexList td span.rewardPoint {font:bold .8em Tahoma; border:1px solid; padding: 0 1px}
+
+.bodexList td strong.category {padding-right:5px; font-size:1em; line-height:1em}
+
+.bodexList th.title div.category  {position:relative; left:0; top:0; text-align:left}
+.bodexList th.title div.category select {float:left;position:absolute; left:0; top:-5px; margin:0; padding:0}
+
+.bodexList th.checkbox,
+.bodexList td.checkbox {font-size:1px; text-align:left; margin:0; padding:0}
+
+.bodexList .replies,
+.bodexList .trackbacks {font:.8em Tahoma;margin-left:-3px}
+.bodexList .replyAndTrackback {margin-left:3px}
+
+/* historyList */
+.bodexList.historyList th.title {text-align:right;padding-right:5px}
+.bodexList.historyList td.title a,
+.bodexList.historyList td.restore a {text-decoration:none}
+.bodexList.historyList td.restore .deleteButton {text-decoration:line-through}
+
+div.ccl {font:7px Tahoma; height:15px; line-height:15px}
+

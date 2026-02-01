@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+/**
+ * bodexList webzine
+ **/
+
+.bodexList th.title div.category {float:left}
+.bodexList th.title span.extravalue {margin:0 0 0 5px}
+.bodexList th.title span.extravalue a {font-weight:bold}
+.bodexList th.title {text-align:right}
+
+.bodexList td.summary,
+.bodexList td.thumb {vertical-align:top}
+.bodexList td.thumb img {border:1px solid; padding:2px; margin:0}
+
+.bodexList td.webzineTitle {height:1.25em; padding-bottom:3px}
+.bodexList tr.category td {height:1.25em; padding-top:0; padding-bottom:0}
+
+.bodexList div.summary {overflow:hidden; margin-top:5px; vertical-align:top; line-height:1.25em; white-space:normal}
+
+.bodexList .extraTable,
+.bodexList .extraTable th,
+.bodexList .extraTable td {border:0;margin:0;padding:2px 0;text-align:left;background:none}
+.bodexList .extraTable th {padding-right:5px}
+.bodexList .extraTable td {overflow:hidden; white-space:normal}
+.bodexList .extraTable {word-break:break-all}
+

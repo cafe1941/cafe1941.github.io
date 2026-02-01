@@ -1,0 +1,8 @@
+<query id="deleteRegistrantRating" action="delete">
+	<tables>
+		<table name="pxeboard_registrant_rating" />
+	</tables>
+	<conditions>
+		<condition operation="equal" column="document_srl" var="document_srl" notnull="notnull" />
+	</conditions>
+</query>

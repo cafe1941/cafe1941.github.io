@@ -1,0 +1,75 @@
+<!--%import("js/sejin7940_board.js")-->
+<!--%import("filter/insert.xml")-->
+
+<div class="memoWrite">
+	<form action="./" method="post" onsubmit="subject_to_content(); return procFilter(this, window.insert)" id="fo_write" name="memoinput" >
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<input type="hidden" name="allow_comment" value="Y" />
+	<input type="hidden" name="content" id="postContent" value="sejin7940_board" />
+
+		<!--@if(!$is_logged)-->
+			<div class="editorOption" style="margin:0px;">
+			   <input type="text" name="nick_name" class="inputText userName" value="{$lang->writer}" title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+			   <input type="password" name="password" class="inputText userPw" value="{$lang->password}" title="{$lang->password}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+			   <input type="text" name="email_address" class="inputText emailAddress" value="{$lang->email_address}" title="{$lang->email_address}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+			   <input type="text" name="homepage" class="inputText homePage" value="{$lang->homepage}" title="{$lang->homepage}"  onfocus="if(this.value==this.title)this.value='';return false;" />
+			</div>
+		<!--@end-->
+		<div class="editorOption boardWriteHeader" style="margin:0px">		
+			<!--@if($grant->manager)-->
+				<input type="checkbox" name="is_notice" value="Y" <!--@if($oDocument->isNotice())-->checked="checked"<!--@end--> id="is_notice" />
+				<label for="is_notice">{$lang->notice}</label>
+				<input type="checkbox" name="title_bold" id="title_bold" value="Y" <!--@if($oDocument->get('title_bold')=='Y')-->checked="checked"<!--@end--> />
+				<label for="title_bold">{$lang->title_bold}</label>
+			<!--@endif-->
+			<!--@if($module_info->secret=="Y")-->
+				<!--@if($module_info->secret_sort=="secret_all")-->
+				<input type="hidden" name="is_secret" value="Y" id="is_secret" >
+	            <label for="is_secret">{$lang->secret_all}</label>
+				<!--@elseif ( ($module_info->secret_grant=="member" && $logged_info) || ($module_info->secret_grant=="admin" && $grant->admin) || $module_info->secret_grant=="all"  || !$module_info->secret_sort )-->
+				<input type="checkbox" name="is_secret" value="Y" <!--@if($oDocument->isSecret() || $module_info->secret_sort=="secret")-->checked="checked"<!--@end--> id="is_secret" />
+				<label for="is_secret">{$lang->secret}</label>
+				<!--@end-->
+			<!--@end-->
+
+			<!--@if($module_info->use_category=="Y")-->
+			<select name="category_srl" class="category">
+				<option value="">{$lang->category}</option>
+				<!--@foreach($category_list as $val)-->
+				<option <!--@if(!$val->grant)-->disabled="disabled"<!--@endif--> value="{$val->category_srl}" <!--@if($val->grant&&$val->selected||$val->category_srl==$oDocument->get('category_srl'))-->selected="selected"<!--@endif-->>
+					{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})
+				</option>
+				<!--@endforeach-->
+			</select>
+			<!--@endif-->
+			<!--@if ( ($module_info->color_grant=="member" && $logged_info) || ($module_info->color_grant=="admin" && $grant->manager ) || $module_info->color_grant=="all"  || !$module_info->color_grant )-->
+			{@ $_color = array('555555','222288','226622','2266EE','8866CC','88AA66','EE2222','EE6622','EEAA22','EEEE22') }
+			<select name="title_color" id="title_color" <!--@if($oDocument->get('title_color'))-->style="color:#{$oDocument->get('title_color')};"<!--@end--> onchange="this.style.color=this.options[this.selectedIndex].style.color;">
+				<option value="" style="color:#CCCCCC;">{$lang->title_color}</option>
+				<!--@foreach($_color as $_col)-->
+				<option value="{$_col}" style="color:#{$_col}" <!--@if($oDocument->get('title_color')==$_col)-->selected="selected"<!--@end-->>{$lang->title_color}</option>
+				<!--@endforeach-->
+		   </select>
+		   <!--@end-->
+			
+			<!--@if($oDocument->getTitleText())-->
+			<input type="text" name="title" id="postTitle" class="inputText" value="{htmlspecialchars($oDocument->getTitleText())}" />
+			<!--@else-->
+			<input type="text" name="title" id="postTitle" class="inputText" value="{$lang->memo}" title="{$lang->memo}" onfocus="if(this.value==this.title) this.value='';" />
+			<!--@end-->
+
+			<span class="buttonOfficial"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+		</div>
+
+		<!-- 확장변수 초기화 위해서 (write.php 가 list 에서 직접 불러지면서 가장 최근글의 확장변수 값이 들어가버림)-->
+		<!--@if(!$document_srl)-->
+		    <!--@foreach($extra_keys as $key => $val)-->
+				<!--@if($key>=2)-->
+					<script>document.getElementsByName('extra_vars{$key}')[0].value = ''</script>
+				<!--@end-->
+			<!--@end-->
+		<!--@end-->
+
+    </form>
+</div>

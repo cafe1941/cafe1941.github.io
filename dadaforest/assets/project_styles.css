@@ -1,0 +1,311 @@
+:root {
+    --forest-deep: #0d170d;
+    --forest-mid: #1a331a;
+    --forest-light: #4c6b4c;
+    --earth-sand: #d4c5b3;
+    --pure-white: #ffffff;
+}
+
+body {
+    font-family: "Pretendard Variable", -apple-system, sans-serif;
+    background-color: var(--forest-deep);
+    color: var(--pure-white);
+    line-height: 1.6;
+    margin: 0;
+}
+
+header {
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* Center the header */
+    transform: translateX(-50%);
+    /* Center the header */
+    width: 100%;
+    max-width: 1680px;
+    /* Match content max-width (1600) + padding buffer */
+    z-index: 100;
+    background: transparent;
+    /* Remove gradient which might look weird if centered */
+    /* If the gradient was full width, we might need a wrapper. 
+       But transparent is cleaner for this "panel" look. */
+}
+
+.logo img {
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 24px;
+    border-radius: 40px;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.back-link:hover {
+    background: white;
+    color: var(--forest-deep);
+}
+
+/* =========================================
+   New Layout V4: Title -> Image -> Detail
+   ========================================= */
+
+.project-content-wrapper {
+    max-width: 1400px;
+    /* Slightly tighter for readability */
+    margin: 120px auto 100px auto;
+    padding: 0 40px;
+}
+
+/* 1. Header (Title Top) */
+.project-header {
+    text-align: left;
+    margin-bottom: 50px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 30px;
+}
+
+.project-header .category {
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 15px;
+    color: var(--earth-sand);
+}
+
+.project-header h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* 2. Image Panel (Middle) */
+.project-image-panel {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.project-full-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Clean, natural image. No crop. No cover. */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Detail (Bottom) */
+.project-detail-bottom {
+    max-width: 800px;
+    /* Optimal reading width */
+    margin: 0;
+    /* Left aligned or 0 auto for center? User likes alignment. */
+}
+
+.detail-text p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    word-break: keep-all;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .project-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+
+    .project-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .project-content-wrapper {
+        padding: 0 20px;
+        margin-top: 100px;
+    }
+
+    .detail-text p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Updated Project Hero to show full image */
+/* Removed overlay styles */
+
+/* New Container Wrapper to align Image and Text perfectly */
+.project-content-wrapper {
+    max-width: 1600px;
+    margin: 100px auto 100px auto;
+    /* Centered, vertical spacing */
+    padding: 0 40px;
+    /* Outer gutters */
+}
+
+/* 1. Image Panel (Full width of wrapper) */
+.project-hero-container {
+    width: 100%;
+    margin: 0 0 60px 0;
+    /* Space between image and text */
+    position: relative;
+    /* No border radius, Clean sharp edges */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    /* Prevent it from being too tall on huge screens */
+    display: block;
+    object-fit: cover;
+}
+
+/* 2. Split Layout Info Grid */
+.project-info-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    /* Title takes left, Description takes right */
+    gap: 60px;
+    align-items: flex-start;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle divider */
+    padding-top: 40px;
+}
+
+/* Left Column: Core Identity */
+.hero-content {
+    /* Previously this was a wrapper, now it's part of the grid? 
+       Actually, existing HTML has .hero-content separate from .project-detail.
+       We will need to use CSS Grid on a parent or simulate it. 
+       Let's create a visual alignment. 
+    */
+    /* Force alignment if we can't change HTML structure easily here. */
+    margin: 0;
+    max-width: 100%;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.hero-content .category {
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 20px;
+    color: var(--earth-sand);
+}
+
+/* Description Section */
+.project-detail {
+    max-width: none;
+    /* Reset */
+    margin: 40px 0 0 0;
+    padding: 0;
+}
+
+.detail-section h2 {
+    display: none;
+    /* Hide "Project Description" label, it's redundant if designed well */
+}
+
+.detail-section p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    word-break: keep-all;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    .project-hero-container {
+        margin: 80px 20px 0 20px;
+    }
+
+    .hero-content {
+        margin: 20px 20px 0 20px;
+    }
+
+    .project-detail {
+        padding: 0 20px;
+        margin: 40px auto;
+        /* Reduce margin */
+    }
+
+    .detail-section p {
+        font-size: 1.1rem;
+    }
+
+    .hero-overlay {
+        padding: 60px 20px 40px 20px;
+    }
+}
+
+/* Desktop Grid Layout via Media Query */
+@media (min-width: 1024px) {
+
+    /* We effectively want Title Left, Desc Right.
+       We can float them or use grid on a common wrapper if we add one.
+       If we don't add a wrapper, we can't easily grid them side-by-side if they are siblings.
+       
+       Wait, let's use the update_layout.py to WRAP them in a .info-grid container.
+       That is the robust way.
+       
+       For now, let's define the CSS assuming we HAVE that wrapper.
+       Let's call it .project-meta-grid
+    */
+    .project-meta-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 2.5fr;
+        gap: 80px;
+        padding-top: 50px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-content {
+        /* Left Column */
+    }
+
+    .project-detail {
+        /* Right Column */
+        margin-top: 0;
+        /* Reset margin */
+    }
+
+    .detail-section p {
+        font-size: 1.1rem;
+    }
+}

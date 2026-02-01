@@ -1,0 +1,454 @@
+{@$member_grantAA=$oDocument->getExtraEidValue('member_grantAA')}
+{@$group_grantAA=$oDocument->getExtraEidValue('group_grantAA')}
+<!--@if(!(((!$member_grantAA || ($member_grantAA &&  substr_count(",".$member_grantAA.",", ",".$logged_info->user_id.","))) && (!$group_grantAA || ($group_grantAA &&  substr_count(",".$group_grantAA.",", ",".$logged_info->group.",")))) || $grant->manager=="Y" || $grant->document_grant=="N"))-->
+<div class="boardRead" style="border-top:1px solid #ccc;;border-bottom:1px solid #ccc;">
+	<div class="boardReadBody" style="padding:20px 0px 20px 0px">
+	<p style="text-align:center; font-weight:bold;">&quot;{$lang->msg_is_no_grant}&quot;</p>
+	</div>
+</div>
+
+<!--@else-->
+
+	<!--@if ($grant->manager!="Y" && $logged_info->user_id!=$oDocument->get('user_id') && $module_info->use_link == "Y" && $oDocument->getExtraEidValue('link_url'))-->
+		<!--@if (!strstr($document->getExtraEidValue('link_url'),'http://'))-->
+			{@$link_url = 'http://'.$document->getExtraEidValue('link_url');}
+		<!--@else-->
+			{@$link_url = $document->getExtraEidValue('link_url');}
+		<!--@end-->
+		<script>location.href='{$link_url}';</script>
+	<!--@end-->
+
+
+	<!--  view 화면에서 관리자 설정 버튼 넣어주기 위해서 (시작) (목록의 하단에 카테고리 배치되게 하고자 header 에서 이전시킴) -->
+	<!--@if($grant->manager && $module_info->display_setup_button != 'N' && $module_info->default_style != 'blog')-->
+	<div class="boardInformation" style="border:0px solid red;">
+		<!--@if($total_count && $module_info->default_style != 'blog')-->
+		<div class="infoSum">{$lang->document_count} <strong>{number_format($total_count)}</strong></div>
+		<!--@end-->
+
+		<div class="infoView">
+			<ul>
+				<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
+				<li class="setup"><a href="{getUrl('act','dispBoardAdminBoardInfo')}" onclick="window.open(this.href);return false" title="{$lang->cmd_setup}"><span>{$lang->cmd_setup}</span></a></li>
+				<!--@end-->
+				<span style="display:none">
+					<li class="listTypeClassic icon<!--@if($module_info->default_style=='list')--> active<!--@end-->"><a href="{getUrl('listStyle','list','act','','document_srl','')}" title="Classic Style"><span>Classic Style</span></a></li>
+					<li class="listTypeZine icon<!--@if($module_info->default_style=='webzine')--> active<!--@end-->"><a href="{getUrl('listStyle','webzine','act','','document_srl','')}" title="Zine Style"><span>Zine Style</span></a></li>
+					<li class="listTypeGallery icon<!--@if($module_info->default_style=='gallery')--> active<!--@end-->"><a href="{getUrl('listStyle','gallery','act','','document_srl','')}" title="Gallery Style"><span>Gallery Style</span></a></li>
+				</span>
+			</ul>
+		</div>
+	</div>
+	<!--@end-->
+	<!--  view 화면에서 관리자 설정 버튼 넣어주기 위해서 (끝)  -->
+
+
+	<div class="boardRead">
+
+		<div class="boardReadHeader">
+			
+			<div class="titleArea">
+				<h3 class="title"><a href="{$oDocument->getPermanentUrl()}">{$oDocument->getTitle()}</a></h3>
+				<a href="{getUrl('category',$oDocument->get('category_srl'), 'document_srl', '')}" class="category">{$category_list[$oDocument->get('category_srl')]->title}</a>
+				<span class="sum">
+					<!--@if($grant->manager || $module_info->display_readed_count!='N')--><span class="read">{$lang->readed_count} <span class="num">{$oDocument->get('readed_count')}</span></span><!--@end-->
+					<!--@if($module_info->display_voted_count!='N')--><span class="vote">{$lang->voted_count} <span class="num">{$oDocument->get('voted_count')}</span></span><!--@end-->
+					<!--@if($grant->manager || $module_info->display_regdate!='N')--><span class="date">{$oDocument->getRegdate('Y.m.d')} {$oDocument->getRegdate('H:i:s')}</span><!--@end-->
+				</span>
+			</div>
+			
+			<div class="authorArea">
+			<!--@if($grant->manager || $module_info->display_author!='N')-->
+				<!--@if(!$oDocument->getMemberSrl())-->
+					<!--@if($oDocument->isExistsHomepage())-->
+						<a href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;" class="author">{$oDocument->getNickName()}</a>
+					<!--@else-->
+						{$oDocument->getNickName()}
+					<!--@end-->
+				<!--@else-->
+					<a href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
+				<!--@end-->
+			<!--@end-->
+				<span class="ipAddress"><!--@if($grant->manager || $module_info->display_ip_address!='N')-->{$oDocument->getIpaddress()}<!--@end--></span>
+				<!--@if( $module_info->display_permalink!='N')--><a href="{$oDocument->getPermanentUrl()}" class="permaLink">{$oDocument->getPermanentUrl()}</a><!--@end-->
+			</div>
+			<!--@if($oDocument->hasUploadedFiles() && ($module_info->display_file=='top' || $module_info->display_file=='top_bottom'))-->
+			<dl id="files_top"  class="attachedFile<!--@if($module_info->file_style=='open_line' || $module_info->file_style=='open_br')--> open<!--@end-->" style="border-top:1px solid #ddd; padding:5px 0px 5px 3px">
+				<dt><img src="./img/common/iconFiles.gif" width="27" height="11" alt="{$lang->uploaded_file}" /> <button type="button" class="fileToggle" onclick="jQuery(this).parents('dl.attachedFile').toggleClass('open');return false;">{$lang->uploaded_file} ({$oDocument->get('uploaded_count')})</button></dt>
+				<dd>
+					<ul class="files">
+						{@ $uploaded_list = $oDocument->getUploadedFiles() }
+						{@ $file_count=0;}
+						<!--@foreach($uploaded_list as $key => $file)-->
+						<!--@if( $module_info->file_excpetimage=='Y' && (substr_count(strtolower($file->source_filename),'.jpg') || substr_count(strtolower($file->source_filename),'.gif') || substr_count(strtolower($file->source_filename),'.bmp') || substr_count(strtolower($file->source_filename),'.png')))-->
+						<!--@else-->
+						{@$file_count++}
+						<li<!--@if($module_info->file_style=='close_br' || $module_info->file_style=='open_br')--> style="width:100%"<!--@end-->><a <!--@if($module_info->file_downmessage=="Y")-->onclick="return file_download_check();"<!--@end--> href="{getUrl('')}{$file->download_url}">{$file->source_filename} ({number_format($file->download_count)}{$lang->text_times})  <span class="bubble">[File Size:{FileHandler::filesize($file->file_size)}/Download:{number_format($file->download_count)}]</span></a></li>
+						<!--@end-->
+						<!--@end-->
+					</ul>
+				</dd>
+			</dl>
+			<!--@if(!$file_count)-->
+			<script>document.getElementById('files_top').style.display='none'</script>
+			<!--@end-->
+			<!--@end-->
+
+		</div>
+
+		<!--@if($oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted()) )-->
+		<table border="1" cellspacing="0" summary="Extra Form" class="extraVarsList" <!--@if($oDocument->hasUploadedFiles() && $module_info->display_file=='middle' )-->style="margin-bottom:0px; border-bottom:0px;"<!--@end-->>
+		<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+			<!--@if(strstr($val->name,"장비") && $mid=="offer_reservation")-->
+					{@$order_num++;}
+					<!--@if($order_num==1)-->
+					</table>
+					<table cellpadding=3>
+						<col align=center width=50><col align=center width=100><col align=center width=60><col align=center width=70><col align=center width=70><col align=center width=350>
+						<tr style="background:#333;"><td>번호</td><td>이름</td><td>종류</td><td>신발사이즈</td><td>키(신장)</td><td>기타사항</td></tr>
+					<!--@end-->
+						<!--@if($val->getValueHTML())-->
+						{@  $order="";
+							$order=explode(";",$val->value);
+						}
+						<tr>
+							<td>{$order_num}</td>
+							<td>{$order[0]}</td>
+							<td>{$order[1]}</td>
+							<td>{$order[2]}</td>
+							<td>{$order[3]}</td>
+							<td>{$order[4]}&nbsp;</td>
+						</tr>
+						<!--@end-->
+					<!--@if($order_num==10)-->
+						</table>
+						<br><br><br>기타 하고 싶은 말 : <br>
+					<!--@end-->
+			<!--@elseif( $module_info->grant_extra=="Y" && (((substr_count($val->eid,'_grantAA') || substr_count($val->eid,'_grantGA')) && !$grant->manager) || (substr_count($val->eid,'_grantMA') && (!$grant->manager && !$oDocument->isGranted())) || ((substr_count($val->eid,'_grantAM') || substr_count($val->eid,'_grantMM') || substr_count($val->eid,'_grantGM')) && !$logged_info)) )-->
+			<!--@else-->
+				<!--@if( $module_info->extra_hidden=="Y" && !strip_tags($val->getValueHTML()))-->
+				<!--@else-->
+				<tr>
+					<th>{$val->name} :</th>
+					<td>{$val->getValueHTML()}&nbsp;</td>
+				</tr>
+				<!--@end-->
+			<!--@end-->
+		<!--@end-->
+		</table>
+		<!--@end-->
+
+		<!--@if($oDocument->hasUploadedFiles() && $module_info->display_file=='middle' )-->
+		<dl id="files_middle" class="attachedFile<!--@if($module_info->file_style=='open_line' || $module_info->file_style=='open_br')--> open<!--@end-->" style="border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin-top:0px; padding:5px 0px 5px 3px">
+			<dt><img src="./img/common/iconFiles.gif" width="27" height="11" alt="{$lang->uploaded_file}" /> <button type="button" class="fileToggle" onclick="jQuery(this).parents('dl.attachedFile').toggleClass('open');return false;">{$lang->uploaded_file} ({$oDocument->get('uploaded_count')})</button></dt>
+			<dd>
+				<ul class="files">
+					{@ $uploaded_list = $oDocument->getUploadedFiles() }
+					{@ $file_count=0}
+					<!--@foreach($uploaded_list as $key => $file)-->
+					<!--@if( $module_info->file_excpetimage=='Y' && (substr_count(strtolower($file->source_filename),'.jpg') || substr_count(strtolower($file->source_filename),'.gif') || substr_count(strtolower($file->source_filename),'.bmp') || substr_count(strtolower($file->source_filename),'.png')))-->
+					<!--@else-->
+					{@ $file_count++}
+					<li<!--@if($module_info->file_style=='close_br' || $module_info->file_style=='open_br')--> style="width:100%"<!--@end-->><a <!--@if($module_info->file_downmessage=="Y")-->onclick="return file_download_check();"<!--@end--> href="{getUrl('')}{$file->download_url}">{$file->source_filename} ({number_format($file->download_count)}{$lang->text_times})  <span class="bubble">[File Size:{FileHandler::filesize($file->file_size)}/Download:{number_format($file->download_count)}]</span></a></li>
+					<!--@end-->
+					<!--@end-->
+				</ul>
+			</dd>
+		</dl>
+		<!--@if(!$file_count)-->
+		<script>document.getElementById('files_middle').style.display='none'</script>
+		<!--@end-->
+		<!--@end-->
+
+		<div class="boardReadBody">
+			<!--@if($module_info->content_textarea_top)-->
+				<div style="width:100%; float:left; border-bottom:1px solid #ccc; padding-bottom:7px; margin-bottom:7px">{nl2br($module_info->content_textarea_top)}</div>
+			<!--@end-->
+			<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+				<form action="./" method="get" onsubmit="return procFilter(this, input_password)" class="secretMessage">
+				<input type="hidden" name="mid" value="{$mid}" />
+				<input type="hidden" name="page" value="{$page}" />
+				<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+
+					<p>&quot;{$lang->msg_is_secret}&quot;</p>
+					<dl>
+						<dt><label for="cpw">{$lang->password}</label> :</dt>
+						<dd><input type="password" name="password" id="cpw" class="inputText" /><span class="buttonOfficial"><input type="submit" value="{$lang->cmd_input}" /></span></dd>
+					</dl>
+
+				</form>
+			<!--@elseif($module_info->display_contentlink=="N" && !$grant->manager)-->
+				{$oDocument->getContent(false)}
+				<p>&nbsp;</p>
+			<!--@else-->
+				{$oDocument->getContent()}
+			<!--@end-->
+			<!--@if($module_info->content_textarea_bottom)-->
+				<div style="width:100%; float:left; border-top:1px solid #ccc; padding-top:7px; margin-bottom:7px">{nl2br($module_info->content_textarea_bottom)}</div>
+			<!--@end-->
+		</div>
+
+		<div class="boardReadFooter">
+			<!--@if($module_info->display_sign != 'N' && ($oDocument->getProfileImage() || $oDocument->getSignature()))-->
+
+				<!--@if($module_info->display_sign == 'expand' )-->
+					<!-- sejin7490 수정 - 프로필에 상세 회원정보 넣기 위해서 (시작) -->
+					{@
+					$oMemberModel = &getModel('member');
+					$group_list = $oMemberModel->getGroups($module_info->site_srl);
+					$member_info = $oMemberModel->getMemberInfoByMemberSrl($oDocument->getMemberSrl(), $module_info->site_srl);
+					$extend_form_list = $oMemberModel->getCombineJoinForm($member_info);
+					}
+					<!-- 회원 추가입력사항의 변수 받기 위해서 -->
+					<!--@foreach($extend_form_list as $key => $val)-->
+						<!--@if($val->column_title == "전화번호")-->
+						{@ $member_info->tel = $val->value;}
+						<!--@end-->
+					<!--@end-->
+					<!-- sejin7490 수정 - 프로필에 상세 회원정보 넣기 위해서 (끝) -->
+
+					<div class="memberSignature">
+					<table border=0 cellpadding=0 cellspacing=0 width=100% style="line-height:160%">
+					<tr><td width=80>
+					<!--@if($oDocument->getProfileImage())-->
+						<img src="{$oDocument->getProfileImage()}" alt="profile" class="profile" />
+					<!--@else-->
+						<img src="./img/{$module_info->colorset}/noimage.gif" width="80" height="80" alt="profile" class="profile" />
+					<!--@end-->
+					</td>
+					<td width=150 valign="top"><strong>글쓴이 : </strong>	
+						<!--@if(!$oDocument->getMemberSrl())-->
+							<!--@if($oDocument->isExistsHomepage())-->
+								<a href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;" class="author">{$oDocument->getNickName()}</a>
+							<!--@else-->
+								{$oDocument->getNickName()} 
+							<!--@end-->
+						<!--@else-->
+							<a href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
+						<!--@end-->
+						
+						<br>
+						<strong>그룹 : </strong>
+						<!--@foreach($member_info->group_list as $key => $val)-->{$val} <!--@end-->
+						<br>
+						<div style="padding:10px 0px 0px 15px" style="display:none">
+						<!--@if($oDocument->get('member_srl')!=$logged_info->member_srl)-->
+						<a onclick=window.open("./?module=communication&act=dispCommunicationSendMessage&receiver_srl={$oDocument->get('member_srl')}") style="cursor:pointer">
+						<img src="./img/{$module_info->colorset}/signature_message.gif" alt="쪽지보내기" /></a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<!--@end-->
+						<!--@if($member_info->homepage)-->
+						<a onclick=window.open("{$member_info->homepage}") style="cursor:pointer"><img src="./img/{$module_info->colorset}/signature_sedamblog.gif" alt="홈페이지" /></a>
+						<!--@end-->
+						</div>
+					</td>
+					<td width=80 valign="top"><img src="./img/{$module_info->colorset}/signature_introduce.gif" /></td>
+					<td width="*">
+					<!--@if($oDocument->getSignature())-->
+						{$oDocument->getSignature()}
+					<!--@end-->
+					</td>
+				</tr>
+				</table>
+				</div>
+				<!--@else-->
+					<div class="memberSignature">
+					<!--@if($oDocument->getProfileImage())-->
+						<img src="{$oDocument->getProfileImage()}" alt="profile" class="profile" align="left" />
+					<!--@end-->
+					<!--@if($oDocument->getSignature())-->
+						{$oDocument->getSignature()}
+					<!--@end-->
+					</div>
+				<!--@end-->
+			<!--@end-->
+			
+			{@ $tag_list = $oDocument->get('tag_list') }
+			<!--@if(count($tag_list) && $module_info->use_tag=="Y" )-->
+			<dl class="tag">
+				<dt><img src="./img/common/iconTag.gif" width="27" height="11" alt="{$lang->tag}" /></dt>
+				<!--@for($i=0;$i<count($tag_list);$i++)-->
+					{@ $tag = $tag_list[$i]; }
+					<dd><a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','')}" rel="tag">{htmlspecialchars($tag)}</a></dd>
+				<!--@end-->
+			</dl>
+			<!--@end-->
+			
+			<!--@if($oDocument->hasUploadedFiles() && ($module_info->display_file=='bottom' || $module_info->display_file=='top_bottom'))-->
+			<dl id="files_bottom" class="attachedFile<!--@if($module_info->file_style=='open_line' || $module_info->file_style=='open_br')--> open<!--@end-->" style="border-bottom:1px solid #ccc" >
+				<dt><img src="./img/common/iconFiles.gif" width="27" height="11" alt="{$lang->uploaded_file}" /> <button type="button" class="fileToggle" onclick="jQuery(this).parents('dl.attachedFile').toggleClass('open');return false;">{$lang->uploaded_file} ({$oDocument->get('uploaded_count')})</button></dt>
+				<dd>
+					<ul class="files">
+						{@ $uploaded_list = $oDocument->getUploadedFiles() }
+						{@ $file_count=0}
+						<!--@foreach($uploaded_list as $key => $file)-->
+							<!--@if( $module_info->file_excpetimage=='Y' && (substr_count(strtolower($file->source_filename),'.jpg') || substr_count(strtolower($file->source_filename),'.gif') || substr_count(strtolower($file->source_filename),'.bmp') || substr_count(strtolower($file->source_filename),'.png')))-->
+							<!--@else-->
+							{@ $file_count++}
+							<li<!--@if($module_info->file_style=='close_br' || $module_info->file_style=='open_br')--> style="width:100%"<!--@end-->><a <!--@if($module_info->file_downmessage=="Y")-->onclick="return file_download_check();"<!--@end--> href="{getUrl('')}{$file->download_url}">{$file->source_filename} ({number_format($file->download_count)}{$lang->text_times})  <span class="bubble">[File Size:{FileHandler::filesize($file->file_size)}/Download:{number_format($file->download_count)}]</span></a></li>
+							<!--@end-->
+						<!--@end-->
+					</ul>
+				</dd>
+			</dl>
+			<!--@if(!$file_count)-->
+			<script>document.getElementById('files_bottom').style.display='none'</script>
+			<!--@end-->
+			<!--@end-->
+			
+			<!--@if(!$oDocument->getTrackbackCount() && $module_info->display_trackback!='N')-->
+			<dl class="trackbackURL">
+				<dt>{$lang->trackback} : </dt>
+				<dd><a href="{$oDocument->getTrackbackUrl()}" onclick="return false;">{$oDocument->getTrackbackUrl()}</a></dd>
+			</dl>
+			<!--@end-->
+			
+		</div>
+
+		<div class="boardNavigation">
+			<!--@if($module_info->default_style != 'blog'  && !($module_info->default_style == 'order' && !$grant->manager))-->
+			<div class="buttonLeft">
+				<a href="{getUrl('document_srl','')}" class="buttonOfficial"><span>{$lang->cmd_list}</span></a>
+			</div>
+			<!--@end-->
+
+			<div class="buttonRight">
+				<!--@if($module_info->display_btnVoteup=="Y")-->
+				<a href="javascript:doCallModuleAction('document','procDocumentVoteUp',{$document_srl})" class="buttonOfficial btn_recommend"><span>{$lang->btn_vote}</span></a>
+				<!--@end-->
+				<!--@if($module_info->display_btnVotedown=="Y")-->
+				<a href="javascript:doCallModuleAction('document','procDocumentVoteDown',{$document_srl})" class="buttonOfficial btn_recommend"><span>{$lang->btn_blame}</span></a>
+				<!--@end-->			
+				<!--@if($module_info->display_btnScrap=="Y" && $logged_info)-->
+				<a href="javascript:doCallModuleAction('member','procMemberScrapDocument',{$document_srl})" class="buttonOfficial btn_recommend"><span>{$lang->btn_scrap}</span></a>
+				<!--@end-->
+				<!--@if($module_info->display_btnDeclare=="Y" && $logged_info)-->
+				<a href="javascript:doCallModuleAction('document','procDocumentDeclare',{$document_srl})" class="buttonOfficial"><span>신고</span></a>
+				<!--@end-->
+
+
+				<!--@if($oDocument->isEditable())-->
+				<!--  댓글 달린 경우 자신의 글 삭제 못하게 하는 기능 추가  -->
+				<!--@if(!( !$grant->manager && $oDocument->getCommentCount() && $module_info->use_afteredit=="Y" ))-->	
+				<a href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}" class="buttonOfficial"><span>{$lang->cmd_modify}</span></a>
+				<!--@end-->
+				<!--@if(!( !$grant->manager && $oDocument->getCommentCount() && $module_info->use_afterdelete=="Y" ))-->	
+				<a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}" class="buttonOfficial"><span>{$lang->cmd_delete}</span></a>
+				<!--@end-->
+				<!--@end-->
+			</div>
+		</div>
+
+	</div>
+
+	<!--@if($oDocument->allowTrackback())-->
+		<!--#include("./trackback.html")-->
+	<!--@end-->
+
+
+
+	{@
+	$prev_num=$module_info->prev_num;
+	$next_num=$module_info->next_num;
+	}
+	<!--@if( $prev_num || $next_num)-->
+	<ul id="prevnext">
+	<!--@foreach($document_list as $no => $document)-->
+		{@$document_list_next = $document_list;}
+		<!--@if($document->document_srl == $document_srl)-->
+			<!--@if( $prev_num )-->
+				<!--@for($i=$prev_num;$i>0;$i--)-->
+					<!--@if($document_list_next[$no+$i]->document_srl)-->
+						<li><a href={getUrl('document_srl',$document_list_next[$no+$i]->document_srl)} style="float:left">> <!--@if($prev_num>1)-->{$i}번째 <!--@end-->윗&nbsp;&nbsp;&nbsp;글 - {$document_list_next[$no+$i]->getTitle($module_info->subject_cut_size)}</a><span style="float:right">{$document_list_next[$no+$i]->getRegdate('Y.m.d')}</span></li>
+					<!--@elseif($page==1)-->
+						<!--@if($message_first!="Y")--><li>> 더 이상 글이 없습니다</li><!--@end-->
+						{@ $message_first="Y";}
+					<!--@elseif($page>1)-->
+						<li><a href={getUrl('','mid',$mid,'page',$page-1,category,$category,search_keyword,$search_keyword,search_target,$search_target,sort_index,$sort_index,order_type,$order_type)}>> <!--@if($prev_num>1)-->{$i}번째 <!--@end-->윗&nbsp;&nbsp;&nbsp;글 - 이전 페이지 목록으로 이동합니다</a></li>
+					<!--@end-->
+				<!--@end-->
+			<!--@end-->
+			<!--@if( $next_num )-->
+				<!--@for($i=1;$i<=$next_num;$i++)-->
+					<!--@if($document_list_next[$no-$i]->document_srl)-->
+						<li <!--@if($prev_num && $next_num && $i==1)-->class="line"<!--@end-->><a href={getUrl('document_srl',$document_list_next[$no-$i]->document_srl)} style="float:left">> <!--@if($next_num>1)-->{$i}번째 <!--@end-->아래글 - {$document_list_next[$no-$i]->getTitle($module_info->subject_cut_size)}</a><span style="float:right">{$document_list_next[$no-$i]->getRegdate('Y.m.d')}</span></li>
+					<!--@elseif($page_navigation->last_page==$page)-->
+						<!--@if($message_last!="Y")--><li <!--@if($prev_num && $next_num && $i==1)-->class="line"<!--@end-->>> 더 이상 글이 없습니다</li><!--@end-->
+						{@ $message_last="Y";}
+					<!--@else-->
+						<li <!--@if($prev_num && $next_num && $i==1)-->class="line"<!--@end-->>> <a href={getUrl('','mid',$mid,'page',$page+1,category,$category,search_keyword,$search_keyword,search_target,$search_target,sort_index,$sort_index,order_type,$order_type)}><!--@if($next_num>1)-->{$i}번째 <!--@end-->아래글 - 다음 페이지 목록으로 이동합니다</a></li>
+					<!--@end-->
+				<!--@end-->
+			<!--@end-->
+		<!--@end-->
+	<!--@end-->
+	</ul>
+	<!--@end-->
+
+
+	{@$member_grantAA=$oDocument->getExtraEidValue('member_grantAA')}
+	{@$group_grantAA=$oDocument->getExtraEidValue('group_grantAA')}
+	<!--@if($oDocument->allowComment() && $module_info->use_comment!="N")-->
+	<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+	<!--@elseif(!(((!$member_grantAA || ($member_grantAA &&  substr_count(",".$member_grantAA.",", ",".$logged_info->user_id.","))) && (!$group_grantAA || ($group_grantAA &&  substr_count(",".$group_grantAA.",", ",".$logged_info->group.",")))) || $grant->manager=="Y" || $grant->document_grant=="N"))-->
+	<!--@else-->
+
+		<a name="comment"></a>
+		<!--@if($module_info->comment_skin=="narrow")-->
+			<!--#include("./comment_narrow.html")-->
+		<!--@else-->
+			<!--#include("./comment.html")-->
+		<!--@end-->
+
+
+		<div style="<!--@if(!$oDocument->getCommentCount() && ($module_info->use_comment=='button_page' || $module_info->use_comment=='button_view') && $module_info->use_sub!='Y' )-->margin-top:-35px;<!--@end--> text-align:center; width:100%">
+		<!--@if($grant->write_comment && $oDocument->isEnableComment() && $module_info->use_comment=="button_page")-->
+			<a href="{getUrl('act','dispBoardWriteComment','document_srl',$oDocument->document_srl)}" class="buttonOfficial"><span style=" width:100px; text-align:center;">{$lang->cmd_comment_registration}</span></a>
+		<!--@elseif($grant->write_comment && $oDocument->isEnableComment() && $module_info->use_comment=="button_view")-->
+			<a onclick="document.getElementById('div_comment_form').style.display='inline';this.style.display='none';" style="pointer:cursor;" class="buttonOfficial"><span style=" width:100px; text-align:center;">{$lang->cmd_comment_registration}</span></a>
+		<!--@end-->
+		</div>
+
+		<!--@if($grant->write_comment && $oDocument->isEnableComment() && ($module_info->use_comment=="Y" || $module_info->use_comment=="button_view") )-->
+		<div id="div_comment_form" <!--@if($module_info->use_comment=="button_view")-->style="display:none"<!--@end-->>
+			<form action="./" method="post" onsubmit="jQuery(this).find('input').each(function(){if(this.title==this.value)this.value='';});return procFilter(this, insert_comment)" class="boardEditor" <!--@if($module_info->use_comment=="button_view" && !$oDocument->getCommentCount())-->style="margin-top:35px;"<!--@end-->>
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+			<input type="hidden" name="comment_srl" value="" />
+			<!--<input type="hidden" name="content" value="" />-->
+			<input type="hidden" name="content" value="{nl2br(htmlspecialchars($module_info->comment_default))}" />
+
+				<div class="boardWrite commentEditor">
+					<div class="editor">{$oDocument->getCommentEditor()}</div>
+
+					<div class="editorOption">
+					<!--@if(!$is_logged)-->
+					   <input type="text" name="nick_name" class="inputText userName" value="{$lang->writer}"  title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+					   <input type="password" name="password" class="inputText userPw" value="{$lang->password}" title="{$lang->password}" onfocus="if(this.value==this.title)this.value='';return false;" />
+					   <input type="text" name="email_address" class="inputText emailAddress" value="{$lang->email_address}" title="{$lang->email_address}" onfocus="if(this.value==this.title)this.value='';return false;" />
+					   <input type="text" name="homepage" class="inputText homePage" value="{$lang->homepage}" title="{$lang->homepage}" onfocus="if(this.value==this.title)this.value='';return false;" />
+					<!--@end-->
+
+					<!--@if($is_logged)-->
+						<input type="checkbox" name="notify_message" value="Y" id="notify_message" class="inputCheck" />
+						<label for="notify_message">{$lang->notify}</label>
+					<!--@end-->
+						<input type="checkbox" name="is_secret" value="Y" id="is_secret" class="inputCheck" />
+						<label for="is_secret">{$lang->secret}</label>
+					</div>
+			
+					<div class="boardNavigation">
+						<!--@if($module_info->display_commentvote=="Y")-->
+						<span class="buttonOfficial"><input onclick="doCallModuleAction('document','procDocumentVoteUp',{$oDocument->document_srl});" type="submit" value="추천하며 댓글 등록" accesskey="s" /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<!--@end-->
+						<span class="buttonOfficial"><input type="submit" value="{$lang->cmd_comment_registration}" accesskey="s" /></span>
+					</div>
+
+				</div>
+
+			</form>
+		</div>
+		<!--@end-->
+	<!--@end-->
+	<!--@end-->
+<!--@end-->

@@ -1,0 +1,147 @@
+.boardHeaderleft h4,
+.boardHeaderleft h5,
+.boardHeaderleft h6 { margin:10px 0 0 15px; }
+.boardHeaderleft { float:left; border:0px solid #a98a60; width:99.8%; background:transparent; overflow:hidden; }
+.boardHeaderright { _float:right; width:0%; background:transparent; overflow:hidden; }
+
+/* board Description */
+.boardDescription { border:1px solid #a98a60; border-top:none; padding:10px 10px 5px 10px; margin-top:0px; background:transparent; overflow:hidden; }
+
+/* board Information */
+.articleNum { float:left; background:url(../images/black/iconArticle.gif) no-repeat left top; }
+.articleNum strong { font:bold 11px Tahoma; color:#ffffff;}
+
+/* account Navigation */
+.accountNavigation li.join a { background:url(../images/black/iconMyInfo.gif) no-repeat left top; padding-left:14px; }
+.accountNavigation li.myInfo a { background:url(../images/black/iconMyInfo.gif) no-repeat left top; padding-left:14px; }
+
+/* boardRead */
+.boardRead .fileAttached li { background:url(../images/black/iconFile.gif) no-repeat left top;}
+.boardRead .titleAndUser { border-bottom:0px solid #555555; }
+.boardRead .contentButton { border-top:1px solid #555555; }
+
+/* style.list */
+.boardList th { background:transparent url(../images/black/lineBoardListTh.gif) no-repeat left bottom; }
+.boardList td.recommend { color:#ff6600; }
+.boardList td .replyAndTrackback { color:#BBBBBB; }
+.boardList td.title strong.category { color:#BBBBBB; }
+.buttonTypeGo { background:url(../images/black/buttonTypeInput24.gif) no-repeat; }
+
+/* Pagination*/
+.pagination a, .pagination strong{ color:#888; }
+.pagination a:hover, .pagination a:active, .pagination a:focus{ background-color:#555 !important; }
+.pagination strong{ color:#ff6600 !important;}
+.pagination.a1 a, .pagination.a1 strong{ background:transparent; border-left:1px solid #555; border-right:1px solid #666; color:#888;}
+.pagination.a1 a.prev, .pagination.a1 a.prevEnd, .pagination.a1 a.next, .pagination.a1 a.nextEnd { background:transparent; }
+
+.pagination.a2 a, .pagination.a2 strong{ background:#000; border-left:1px solid #555; border-right:1px solid #666; color:#888; }
+.pagination.a2 a.prev, .pagination.a2 a.prevEnd, .pagination.a2 a.next, .pagination.a2 a.nextEnd { background:#000; }
+/* replyAndTrackback */
+.buttonBox .replyAndTrackback a strong { color:#BBBBBB;}
+
+.replyBox .fileAttached li { background:url(../images/black/iconFile.gif) no-repeat left top;}
+
+/* replace common images */
+.boardHeader { border:1px solid #ABA9B4; border-bottom:0; background:transparent url(../images/black/bgH3.gif) repeat-x left bottom; overflow:hidden;}
+.boardHeader h1,
+.boardHeader h2,
+.boardHeader h3,
+.boardHeader h4,
+.boardHeader h5,
+.boardHeader h6
+{ background:transparent  url(../images/black/lineH3.gif) no-repeat right bottom; color:#AAAAAA; border-bottom:3px solid #ABA9B4;}
+.boardDescription { color:#666666; border:1px solid #666666; overflow:hidden; padding:10px; margin-top:5px; background-color:transparent;}
+.accountNavigation li.setup a { background:url(../images/black/iconSetup.gif) no-repeat left top; padding-left:14px; }
+.accountNavigation li.admin a { background:url(../images/black/iconAdmin.gif) no-repeat left top; padding-left:12px; }
+.accountNavigation li.loginAndLogout a { background:url(../images/black/line_1x10_e0e0e0.gif) no-repeat left 2px; padding-left:8px; }
+
+.boardSubMenu { border-bottom:1px solid #444444;}
+.boardList { width:100%; border:1px solid #444444; border-top:none; overflow:hidden;}
+.boardList thead th { color:#999999; font-weight:normal; border-top:1px solid #444444; border-bottom:1px solid #888888; white-space:nowrap; padding-top:5px; height:28px; overflow:hidden;}
+.boardList thead th a { color:#999999; }
+.boardList thead th.num { border-left:0px solid #444444; }
+.boardList tbody td { border-top:1px solid #444444; padding:.5em;}
+.boardList tbody td.title, .boardList tr.notice { background-color:transparent; }
+
+#board_category { background-color:#444444; color:#a98a60; }
+#go_button { color:#a98a60; }
+
+.boardList tr.bg1, .boardList tr.bg2 { background-color:transparent; }
+.boardList td.topic strong a, .boardList td.title  a { color:#a98a60; }
+.boardList td.author div { color:#a98a60; }
+.boardList td.topic div.author strong { font-size:9pt; }
+.boardList td.webzineTitle, .boardList td.webzineTitle a { color:#a98a60; }
+
+.boardRead .titleAndUser .title .title1 a { color:#BBBBBB; text-decoration:none; }
+.boardRead .titleAndUser .title .title1 a:hover { color:#C60014; }
+.boardRead .dateAndCount .replyAndTrackback .replyCount { background:transparent url(../images/black/iconReply.gif) no-repeat left 1px; color:#888888; }
+.boardRead .dateAndCount .replyAndTrackback .trackbackCount { background:transparent url(../images/black/iconTrackback.gif) no-repeat left 1px; color:#888888; }
+.boardRead .dateAndCount .replyAndTrackback .replyCount a,.boardRead .dateAndCount .replyAndTrackback .trackbackCount a { color:#888888; }
+.boardRead .dateAndCount .readedCount { background:transparent url("../images/black/read.gif") no-repeat left top; color:#4A3FD7;}
+.boardRead .dateAndCount .date { color:#888888; background:transparent url("../images/black/calendar.gif") no-repeat left top; }
+.comment_popup_menu, .document_popup_menu { background:url(../images/black/document_menu.gif) no-repeat right top;}
+
+.tagsBox { border:1px solid #888888; padding:10px; overflow:hidden;}
+.tags div a:hover { background-color:#444444; color:#FFFFFF;}
+.tags .tagTypeA a { color:#555555; background-color:#444444; margin:0;}
+.tags .tagTypeB a { color:#888888; }
+.tags .tagTypeC a { background-color:#333333;}
+.tags .tagTypeD a { background-color:#111111;}
+.boardRead .tag { background:transparent url(../images/common/iconTag.gif) no-repeat 3px 2px; }
+.boardRead .fileAttached { border:1px solid #888888; background-color:transparent; padding:5px; margin-top:10px; overflow:hidden;}
+.boardRead .fileAttached ul li a { color:#a98a60; }
+.boardRead .readHeader .dateLabel { background:url(../images/black/cal.png); }
+.boardRead .titleAndUser span.replyCount { background:url(../images/black/iconReply.gif) no-repeat; }
+.boardRead .readHeader .dateLabel .dateMonth { color:#ffffff; }
+.boardRead .tag li a { color:#fff;}
+.replyBox { padding:10px; color:#C4AE91; border:1px dotted #bbbbbb; margin-top:.5em;}
+.replyBox .fileAttached { border:1px solid #888888; background-color:transparent; padding:5px; margin-top:10px; overflow:hidden;}
+.replyBox .fileAttached ul li a { color:#a98a60; }
+.boardWrite dl.option dd * { color:#888888; }
+.replyBox .replyItem { background-color:transparent; border-bottom:1px dotted #888888; }
+.replyBox .date { color:#888888; }
+.trackbackBox .trackbackItem { background-color:transparent; }
+
+.attachedFile li a { color:#a98a60; }
+.attachedFile li a:visited { color:#ffffff;}
+
+#fo_search select { background-color:#444444; color:#a98a60; }
+
+.inputTypeText { background-color:transparent; color:#a98a60; }
+.inputTypeText:hover, .inputTypeText:focus { background-color:transparent; color:#a98a60; }
+.boardWrite .tag .inputTypeText { background:transparent; }
+
+.secretContent { border:1px solid #888888; width:240px; }
+.secretContent .title { background-color:#444444; color:#a98a60;}
+.secretContent .content { background-color:#222222; color:#888888; }
+.boardRead .readBody { color:#BBBBBB; }
+.smallBox { border:1px solid #555555; }
+.smallBox .messageBox { background-color:#444444; border-bottom:1px solid #888888; color:#a98a60;}
+.smallBox .header { background:transparent !important; }
+
+.boardList .r { background:transparent; }
+
+/* button */
+a.button, span.button, del.button,
+a.button span, span.button button, span.button input, del.button span{
+    background-image:url(../images/black/form_buttons.png);
+    _background-image:url(../images/black/form_buttons.gif);
+}
+
+del.button span,
+a.button, span.button, del.button,
+a.button span, span.button button, span.button input, del.button span{
+ color:#a98a60;
+}an,
+a.button, span.button, del.button,
+a.button span, span.button button, span.button input, del.button span{
+ color:#a98a60;
+}
+
+/* category List */
+.categoryList { margin:10px 0 3px 0; }
+.categoryList .categoryItemOver { border:solid 1px #444; border-bottom:none; margin-right:2px; padding:5px; }
+.categoryList .categoryItemOver a { color:#a98a60;  }
+.categoryList .categoryItemOver a:hover { color:#FCC00E; }
+.categoryList .categoryThisItem { border:solid 1px #444; border-bottom:none; margin-right:2px; padding:5px; }
+.categoryList .categoryThisItem a { font-weight:bold; color: #ff6600; }

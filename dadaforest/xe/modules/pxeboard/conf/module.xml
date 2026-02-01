@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants>
+        <grant name="list" default="guest">
+            <title xml:lang="ko">목록</title>
+            <title xml:lang="zh-CN">目录</title>
+            <title xml:lang="jp">リスト</title>
+            <title xml:lang="en">list</title>
+			<title xml:lang="vi">Danh sách</title>
+            <title xml:lang="es">Lista</title>
+            <title xml:lang="zh-TW">列表</title>
+        </grant>
+        <grant name="view" default="guest">
+            <title xml:lang="ko">열람</title>
+            <title xml:lang="zh-CN">查看</title>
+            <title xml:lang="jp">閲覧</title>
+            <title xml:lang="en">view</title>
+			<title xml:lang="vi">Xem</title>
+            <title xml:lang="es">Opinión</title>
+            <title xml:lang="zh-TW">檢視</title>
+        </grant>
+        <grant name="write_document" default="guest">
+            <title xml:lang="ko">글 작성</title>
+            <title xml:lang="zh-CN">发表新主题</title>
+            <title xml:lang="jp">書き込み作成</title>
+            <title xml:lang="en">write document</title>
+			<title xml:lang="vi">Gửi bài viết</title>
+            <title xml:lang="es">Escribir el documento</title>
+            <title xml:lang="zh-TW">發表主題</title>
+        </grant>
+        <grant name="write_comment" default="guest">
+            <title xml:lang="ko">댓글 작성</title>
+            <title xml:lang="zh-CN">发表评论</title>
+            <title xml:lang="jp">コメント作成</title>
+            <title xml:lang="en">write comment</title>
+			<title xml:lang="vi">Gửi bình luận</title>
+            <title xml:lang="es">Escribir comentario</title>
+            <title xml:lang="zh-TW">發表評論</title>
+        </grant>
+        <grant name="download" default="guest">
+            <title xml:lang="ko">다운로드</title>
+            <title xml:lang="en">Download</title>
+        </grant>
+    </grants>
+    <permissions>
+        <permission action="dispPxeboardAdminInsertBoard" target="manager" />
+        <permission action="dispPxeboardAdminBoardInfo" target="manager" />
+        <permission action="dispPxeboardAdminExtraVars" target="manager" />
+        <permission action="dispPxeboardAdminBoardAdditionSetup" target="manager" />
+        <permission action="dispPxeboardAdminSkinInfo" target="manager" />
+        <permission action="dispPxeboardAdminListSetup" target="manager" />
+
+        <permission action="procPxeboardAdminInsertBoard" target="manager" />
+        <permission action="procPxeboardAdminInsertListConfig" target="manager" />
+        <permission action="procPxeboardAdminImportBoard" target="manager" />
+        <permission action="procPxeboardAdminExportBoard" target="manager" />
+
+        <permission action="getPxeboardAdminBoardSkins" target="manager" />
+    </permissions>
+    <actions>
+        <!-- original board method -->
+        <action name="dispBoardContent" type="view" index="true" />
+        <action name="dispBoardNoticeList" type="view" />
+        <action name="dispBoardContentList" type="view" />
+        <action name="dispBoardContentView" type="view" />
+        <action name="dispBoardCatogoryList" type="view" />
+        <action name="dispBoardContentCommentList" type="view" />
+        <action name="dispBoardContentFileList" type="view" />
+
+        <action name="dispBoardTagList" type="view" />
+        <action name="dispBoardWrite" type="view" />
+        <action name="dispBoardDelete" type="view" />
+        <action name="dispBoardWriteComment" type="view" />
+        <action name="dispBoardReplyComment" type="view" />
+        <action name="dispBoardModifyComment" type="view" />
+        <action name="dispBoardDeleteComment" type="view" />
+        <action name="dispBoardDeleteTrackback" type="view" />
+        <action name="dispBoardMessage" type="view" />
+
+
+        <action name="procBoardInsertDocument" type="controller" />
+        <action name="procBoardAttachFile" type="controller" />
+        <action name="procBoardDeleteDocument" type="controller" />
+        <action name="procBoardVoteDocument" type="controller" />
+        <action name="procBoardInsertComment" type="controller" />
+        <action name="procBoardDeleteComment" type="controller" />
+        <action name="procBoardDeleteTrackback" type="controller" />
+        <action name="procBoardVerificationPassword" type="controller" />
+        <action name="procBoardDeleteFile" type="controller" />
+        <action name="procBoardUploadFile" type="controller" />
+        <action name="procBoardDownloadFile" type="controller" />
+
+        <!-- pxe board extension -->
+        <action name="dispPxeboardReaderRating" type="view" />
+        <action name="dispPxeboardLabelBox" type="view" />
+        <action name="dispPxeboardLabelBoxAdd" type="view" />
+
+        <action name="procPxeboardLabelBoxAdd" type="controller" />
+        <action name="procPxeboardLabelBoxDelete" type="controller" />
+
+        <!-- admin -->
+        <action name="dispPxeboardAdminContent" type="view" standalone="true" admin_index="true" />
+        <action name="dispPxeboardAdminBoardInfo" type="view" standalone="true" />
+        <action name="dispPxeboardAdminExtraVars" type="view" standalone="true" />
+        <action name="dispPxeboardAdminBoardAdditionSetup" type="view" standalone="true" />
+        <action name="dispPxeboardAdminInsertBoard" type="view" standalone="true" setup_index="true" />
+        <action name="dispPxeboardAdminImportBoard" type="view" standalone="true" />
+        <action name="dispPxeboardAdminExportBoard" type="view" standalone="true" />
+        <action name="dispPxeboardAdminDeleteBoard" type="view" standalone="true" />
+        <action name="dispPxeboardAdminSkinInfo" type="view" standalone="true" />
+        <action name="dispPxeboardAdminGrantInfo" type="view" standalone="true" />
+        <action name="dispPxeboardAdminListSetup" type="view" standalone="true" />
+        <action name="dispPxeboardAdminCategoryInfo" type="view" />
+
+        <action name="procPxeboardAdminInsertBoard" type="controller" standalone="true" />
+        <action name="procPxeboardAdminDeleteBoard" type="controller" standalone="true" />
+        <action name="procPxeboardAdminInsertListConfig" type="controller" standalone="true" />
+        <action name="procPxeboardAdminImportBoard" type="controller" standalone="true" />
+        <action name="procPxeboardAdminExportBoard" type="controller" standalone="true" />
+
+        <action name="getPxeboardAdminBoardSkins" type="model" standalone="true" />
+    </actions>
+</module>

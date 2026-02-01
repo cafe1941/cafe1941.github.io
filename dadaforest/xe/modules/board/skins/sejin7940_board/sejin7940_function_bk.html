@@ -1,0 +1,72 @@
+
+<?php
+
+    class documentItem_sejin7940 extends documentItem {
+        var $document_srl = 0;
+		var $regdate=0;
+		var $last_update=0;
+		var $content;
+		var $upload_count=0;
+		var $is_secret="";
+
+        var $allow_trackback_status = null;
+
+		function getExtraImages($time_interval = 43200, $sort) {
+            if(!$this->document_srl) return;
+
+            // 아이콘 목록을 담을 변수 미리 설정
+            $buffs = array();
+            $check_files = false;
+            $content = $this->content;
+
+			if ($sort=="new" || $sort=="file" ) {
+				// 비밀글 체크
+				if($this->is_secret == true) $buffs[] = "secret";
+
+				// 최신 시간 설정
+				$time_check = date("YmdHis", time()-$time_interval);
+
+				// 새글 체크
+				if($this->regdate>$time_check) $buffs[] = "new";
+				else if($this->last_update>$time_check) $buffs[] = "update";
+			}
+			if ($sort=="file") {
+				// 사진 이미지 체크
+				preg_match_all('!<img([^>]*?)>!is', $content, $matches);
+				$cnt = count($matches[0]);
+				if($cnt) {
+					for($i=0;$i<$cnt;$i++) {
+						if(preg_match('/editor_component=/',$matches[0][$i])&&!preg_match('/image_(gallery|link)/i',$matches[0][$i])) continue;
+						$buffs[] = "image";
+						$check_files = true;
+						break;
+					}
+				}
+				// 동영상 체크
+				if(preg_match('!<embed([^>]*?)>!is', $content) || preg_match('/editor_component=("|\')*multimedia_link/i', $content) ) {
+					$buffs[] = "movie";
+					$check_files = true;
+				}
+				// 첨부파일 체크
+				if($this->upload_count) $buffs[] = "file";
+			}
+            return $buffs;
+        }
+
+        function printExtraImages($time_check = 43200, $sort) {
+			if($sort=="none") return;
+			if(!$this->document_srl) return;
+
+            $buffs = $this->getExtraImages($time_check, $sort);
+            if(!count($buffs)) return;
+
+            $buff = null;
+
+            foreach($buffs as $key => $val) {
+                $buff .= sprintf('<img src="%s.gif" alt="%s" title="%s" style="margin-right:2px;" />', '/img/icons/'.$val, $val, $val);
+            }
+            return $buff;
+        }
+
+}
+?>

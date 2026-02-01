@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>dadaForest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<script type="text/javascript">
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+
+var img1 = new Image();   //이미지 객체 생성
+img1.src = "images/main01.jpg";  
+
+var img2 = new Image();   //이미지 객체 생성 
+img2.src = "images/main02.jpg";
+
+var img3 = new Image();   //이미지 객체 생성 
+img3.src = "images/main03.jpg";
+
+var img4 = new Image();   //이미지 객체 생성 
+img4.src = "images/main04.jpg";
+
+var img5 = new Image();   //이미지 객체 생성 
+img5.src = "images/main05.jpg";
+
+var img6 = new Image();   //이미지 객체 생성 
+img6.src = "images/main06.jpg";
+
+
+var maxLoops = 6;  //순환하는 이미지수
+var count = 6;        //증가 값
+
+
+function trans_effect() {
+   blend_img.filters.blendTrans.apply();
+   
+   //"img"+count+".src" --> img1.src , img2.src
+   document.images.blend_img.src = eval("img"+count+".src");
+   blend_img.filters.blendTrans.play();
+   if (count < maxLoops) { 
+      count++;
+   }else{ 
+      count = 1;
+   }
+   setTimeout("trans_effect()", 8000);
+   // 함수의 재귀적 호출을 사용하여 8초를 주기로 반복작업을 함.
+} 
+
+
+</script>
+
+
+
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="trans_effect()">
+<div align="center">
+<table id="Table_01" width="975" height="100" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+		<td rowspan="4"><a href="index.html"><img src="images/dadaForest_01.png" alt="" width="300" height="100" border="0"></a></td>
+		<td rowspan="4">
+			<img src="images/dadaForest_02.png" width="75" height="100" alt=""></td>
+		<td colspan="10">
+			<img src="images/dadaForest_03.png" width="600" height="60" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="6" rowspan="2">
+			<img src="images/dadaForest_04.png" width="495" height="30" alt=""></td>
+		<td colspan="2"><a href="signin.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('signin','','images/dadaForest_05_on.png',1)"><img src="images/dadaForest_05.png" name="signin" width="43" height="10" border="0"></a></td>
+		<td>
+			<img src="images/dadaForest_06.png" width="11" height="10" alt=""></td>
+		<td><a href="sitemap.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('sitemap','','images/dadaForest_07_on.png',1)"><img src="images/dadaForest_07.png" name="sitemap" width="51" height="10" border="0"></a></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<img src="images/dadaForest_08.png" width="105" height="20" alt=""></td>
+	</tr>
+	<tr>
+		<td><a href="about.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('about','','images/dadaForest_09_on.png',1)"><img src="images/dadaForest_09.png" alt="" name="about" width="62" height="10" border="0"></a></td>
+		<td>
+			<img src="images/dadaForest_10.png" width="101" height="10" alt=""></td>
+		<td><a href="photo.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('photo','','images/dadaForest_11_on.png',1)"><img src="images/dadaForest_11.png" name="photo" width="87" height="10" border="0"></a></td>
+		<td>
+			<img src="images/dadaForest_12.png" width="114" height="10" alt=""></td>
+		<td><a href="issue.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('issue','','images/dadaForest_13_on.png',1)"><img src="images/dadaForest_13.png" name="issue" width="38" height="10" border="0"></a></td>
+		<td colspan="2">
+			<img src="images/dadaForest_14.png" width="117" height="10" alt=""></td>
+		<td colspan="3"><a href="community.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('community','','images/dadaForest_15_on.png',1)"><img src="images/dadaForest_15.png" name="community" width="81" height="10" border="0"></a></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="2">
+			<img src="images/dadaForest_16.png" width="375" height="20" alt=""></td>
+		<td colspan="10">
+			<img src="images/dadaForest_17.png" width="600" height="10" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="10">
+			<img src="images/dadaForest_18.png" width="600" height="10" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="12">
+			<img src="images/dadaForest_19.png" width="975" height="20" alt=""></td>
+	</tr>
+	<tr>
+		<td colspan="12">
+			<img src="images/main01.jpg" name="blend_img" alt="" width="975" height="580" border="0" style="filter: blendTrans(duration=3)"></td>
+	</tr>
+	<tr>
+    <td colspan="5"><img class="zbxe_widget_output" widget="newest_document" skin="blog_newest_document" colorset="normal" order_target="list_order" order_type="desc" list_count="3" duration_new="12" subject_cut_size="12" display_regdate="Y" module_srls="80,79,77,78" /></td>
+		<td colspan="5"><img class="zbxe_widget_output" widget="newest_images" skin="cloud" colorset="normal" thumbnail_type="crop" thumbnail_width="200" thumbnail_height="120" cols_list_count="3" display_author="N" display_regdate="N" display_readed_count="N" display_voted_count="N" module_srls="87,81,86,89,88" /></td>
+	</tr>
+	<tr>
+		<td colspan="12">
+			<img src="images/dadaForest_22.png" width="975" height="50" alt=""></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/spacer.gif" width="300" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="75" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="62" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="87" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="114" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="38" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="93" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="24" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="19" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="11" height="1" alt=""></td>
+		<td>
+			<img src="images/spacer.gif" width="51" height="1" alt=""></td>
+	</tr>
+</table>
+</div>
+<!-- End Save for Web Slices -->
+</body>
+</html>

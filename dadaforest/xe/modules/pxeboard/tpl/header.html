@@ -1,0 +1,29 @@
+<!--%import("js/board_admin.js")-->
+
+<h3 class="xeAdmin">{$lang->board} <span class="gray">{$lang->cmd_management}</span></h3>
+
+<div class="infoText">{nl2br($lang->about_board)}</div>
+
+<!--@if($module_info)-->
+<div class="header4">
+    <!--@if($module_info->mid)-->
+    <h4 class="xeAdmin">{$module_info->mid} <!--@if($module_info->is_default=='Y')--><span class="bracket">({$lang->is_default})</span><!--@end--> <span class="vr">|</span> <a href="{getSiteUrl($module_info->domain,'','mid',$module_info->mid)}" onclick="window.open(this.href); return false;" class="view">View</a></h4>
+    <!--@end-->
+
+    <ul class="localNavigation">
+        <!--@if($module=='admin')-->
+        <li <!--@if($act=='dispPxeboardAdminContent')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminContent','module_srl','')}">{$lang->cmd_board_list}</a></li>
+        <!--@else-->
+        <li><a href="{getUrl('act','')}">{$lang->cmd_back}</a></li>
+        <!--@end-->
+        <li <!--@if($act=='dispPxeboardAdminBoardInfo'||$act=='dispPxeboardAdminInsertBoard')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminBoardInfo')}">{$lang->cmd_view_info}</a></li>
+        <li <!--@if($act=='dispPxeboardAdminCategoryInfo')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminCategoryInfo')}">{$lang->cmd_manage_category}</a></li>
+        <li <!--@if($act=='dispPxeboardAdminExtraVars')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminExtraVars')}">{$lang->extra_vars}</a></li>
+        <li <!--@if($act=='dispPxeboardAdminListSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminListSetup')}">{$lang->cmd_list_setting}</a></li>
+        <li <!--@if($act=='dispPxeboardAdminGrantInfo')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminGrantInfo')}">{$lang->cmd_manage_grant}</a></li>
+        <li <!--@if($act=='dispPxeboardAdminBoardAdditionSetup')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminBoardAdditionSetup')}">{$lang->cmd_addition_setup}</a></li>
+        <li <!--@if($act=='dispPxeboardAdminSkinInfo')-->class="on"<!--@end-->><a href="{getUrl('act','dispPxeboardAdminSkinInfo')}">{$lang->cmd_manage_skin}</a></li>
+    </ul>
+</div>
+<!--@end-->
+

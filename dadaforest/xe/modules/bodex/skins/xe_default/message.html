@@ -1,0 +1,24 @@
+
+{@ $form_include = (Context::get('is_poped') || $form_include)}
+
+<!--@if(!$form_include)--><!--#include("__header.html")--><!--@endif-->
+
+<div class="smallBox <!--@if($iframe_include)-->iframe_include<!--@endif-->">
+
+    <div class="boxHeader">
+        <h3>{$lang->msg_alert}</h3>
+    </div>
+
+    <div class="tCenter messageBox">{$message}</div>
+
+    <!--@if(!Context::get('is_poped'))-->
+    <div class="gap1 tCenter">
+        <!--@if(!$is_logged && !$iframe_include)-->
+        <a href="{getUrl('act','dispMemberLoginForm')}" class="button {$btn_class}"><span>{$lang->cmd_login}</span></a>
+        <!--@endif-->
+        <a href="#" onclick="<!--@if($iframe_include)-->_exSkinIframeCompleteComment();<!--@else-->history.back();<!--@endif--> return false;" class="button {$btn_class}"><span>{$lang->cmd_back}</span></a>
+    </div>
+    <!--@endif-->
+</div>
+
+<!--@if(!$form_include)--><!--#include("__footer.html")--><!--@endif-->

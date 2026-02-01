@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">모바일 기본 스킨</title>
+    <title xml:lang="en">Mobile Basic Skin</title>
+    <description xml:lang="ko">
+        게시판EX의 모바일용 기본 스킨입니다.
+        디자인, HTML/CSS : 정찬명 (http://naradesign.net)
+    </description>
+    <description xml:lang="en">
+        This is the basic Mobile skin of boardEX.
+        Design, HTML/CSS : Chan-Myung Jeong (http://naradesign.net)
+    </description>
+    <version>0.1</version>
+    <date>2010-06-10</date>
+
+    <author email_address="developers@xpressengine.com" link="http://xpressengine.com">
+        <name xml:lang="ko">zero</name>
+        <name xml:lang="en">zero</name>
+    </author>
+    <extra_vars />
+</skin>

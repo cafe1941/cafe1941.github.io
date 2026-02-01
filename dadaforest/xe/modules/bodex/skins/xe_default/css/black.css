@@ -1,0 +1,249 @@
+@charset "utf-8";
+
+body {background-color:#000; color:#eee}
+
+input.dStyle {background:url(../images/black/inputBg.gif) no-repeat right bottom}
+
+select.dStyle,
+textarea.dStyle,
+input.dStyle {color:#aaa;background-color:#000; border-color:#444 #666 #666 #444}
+
+select.dStyle:hover,
+textarea.dStyle:hover,
+input.dStyle:hover,
+select.dStyle:focus,
+textarea.dStyle:focus,
+input.dStyle:hover {border-color:#ccc}
+
+/* bodex Title */
+.bodexHeader {border-color:#666; background: url(../images/black/bgH3.png) repeat-x left bottom}
+.bodexHeader h3{border-color:eee;background:url(../images/black/line_H3_3x15.gif) no-repeat right bottom}
+.bodexHeader h3 a{color:#eee}
+.bodexHeader h4{color:#888}
+
+/* bodex Description */
+.bodexDescription {color:#ccc;border-color:#555}
+.displayPointConfig li div {color:#555}
+
+/* account Navigation */
+.accountNavigation a {color:#aaa}
+.accountNavigation a:hover {color:#eee}
+.accountNavigation li.loginAndLogout a {background:url(../images/black/line_1x10.gif) no-repeat left bottom }
+.accountNavigation li.icon a{background-image:url(../images/black/listTypeIcon.gif)}
+.accountNavigation li.rss a{background-image:url(../images/common/iconRss.gif)}
+
+/* document count */
+.articleNum {color:#eee; background:url(../images/black/iconArticle.gif) no-repeat left top}
+
+/* category Navigation */
+.categoryMenu a {color:#aaa}
+.categoryMenu a:hover {color:#eee}
+.categoryTab li a{color:#aaa; border-color:#555;background:url(../images/black/bgListTh.png) repeat-x top}
+.categoryTab li a:hover{border-color:#999}
+.categoryMenu td .localNavigation,
+.categoryMenu td .localNavigation div.total {border-color:#555}
+
+/* secret Content */
+.secretContent {color:#aaa;border-color:#555}
+
+/* message box */
+/* multimedia box */
+.exSkinMediaBox,
+.exSkinMediaBox h3,
+.smallBox,
+.smallBox h3 {color:#aaa;border-color:#555}
+.smallBox .boxHeader {color:#eee;background:url(../images/black/bgH3.png) repeat-x left bottom}
+
+/* Page */
+.pagination.a1 {color:#ddd}
+.pagination a {color:#ccc}
+.pagination a:hover {color:#999}
+.pagination.a1 a,
+.pagination.a1 strong{border-left-color:#ccc; border-right-color:#555}
+
+.documentNavigation a {color:#ccc}
+.documentNavigation a:hover {color:#999}
+
+/* profile & signature */
+.memberSignature {border-color:#555}
+.memberSignature .signature p {color:#777}
+.commentProfileImage span.adoptComment {color:#666}
+.memberSignature .profile img,
+.commentProfileImage .profile .image {border-color: #2a2a2a}
+
+/* popup menu */
+#popup_menu_area {background-color:#000}
+#popup_menu_area ul li a {color:#aaa}
+.comment_popup_menu,
+.document_popup_menu {background:url(../images/black/document_menu.gif) no-repeat right top !important}
+
+.bodexRead.xe_content {color:#ccc}
+#popup_content div {background-color:#000}
+
+/* star */
+.bodexBg0,
+.starPointFrame span.bodexBg0 {background-color:#111}
+.bodexBg1,
+.starPointFrame span.bodexBg1 {background-color:#000}
+.replyBox .replyBg0,
+.starPointFrame span.replyBg0 {background-color:#222}
+.replyBox .replyBg1,
+.starPointFrame span.replyBg1 {background-color:#111}
+
+/* tag List */
+.tagsBox {border-color:#555}
+.tags div a {color:#555}
+.tags div a:hover {background-color:#666; color:#fff}
+.tags .tagTypeA a {color:#aaa; background-color:#333}
+.tags .tagTypeB a {color:#ddd}
+.tags .tagTypeC a {background-color:#444}
+.tags .tagTypeD a {background-color:#222}
+
+/* Bodex Write */
+.bodexWrite {border-color:#555; color:#ddd}
+.bodexWrite .info {color:#707070}
+.bodexWrite .option label {color:#aaa}
+.bodexWrite .option label:hover {color:#666}
+
+.bodexWrite .extraVarsList {border-color:#555}
+.bodexWrite .extraVarsList th,
+.bodexWrite .extraVarsList td {color:#aaa; border-color:#555}
+
+.bodexWrite .extraVarsList select,
+.bodexWrite .extraVarsList textarea,
+.bodexWrite .extraVarsList input[type="password"],
+.bodexWrite .extraVarsList input[type="text"] {color:#aaa;background-color:#000; border-color:#444 #666 #666 #444}
+
+.bodexWrite .extraVarsList select:hover,
+.bodexWrite .extraVarsList textarea:hover,
+.bodexWrite .extraVarsList input[type="password"]:hover,
+.bodexWrite .extraVarsList input[type="text"]:hover,
+.bodexWrite .extraVarsList select:focus,
+.bodexWrite .extraVarsList textarea:focus,
+.bodexWrite .extraVarsList input[type="password"]:focus,
+.bodexWrite .extraVarsList input[type="text"]:focus {border-color:#ccc}
+
+.bodexWrite .extraVarsList input[type="password"],
+.bodexWrite .extraVarsList input[type="text"] {background:url(../images/black/inputBg.gif) no-repeat right bottom}
+
+.commentWrite {color:#aaa; border-color:#555}
+.commentWrite .writerInfo .votePoint {border-bottom-color:#555}
+.commentWrite .writerInfo .votePoint label  {color:#aaa}
+.commentWrite .writerInfo .votePoint label:hover  {color:#666}
+
+/* Bodex Read */
+.bodexRead {color:#ddd}
+.bodexRead a {color:#aaa}
+.bodexRead a:hover {color:#eee}
+
+.bodexRead .titleAndUser {border-bottom-color:#555}
+.bodexRead .dateAndCount div {color:#666}
+.bodexRead .dateAndCount .category a {color:#888}
+
+.bodexRead .extraVarsList {border-top-color:#555}
+.bodexRead .extraVarsList th,
+.bodexRead .extraVarsList td {color:#999; border-color:#555}
+.bodexRead .extraVarsList td a {color:#999}
+.bodexRead .extraVarsList td a:hover {color:#ccc}
+
+.bodexRead .tag,
+.bodexRead .readBody.review,
+.bodexRead div.thumb {border-color:#555}
+.bodexRead .starRating  {color:#666}
+.filelistFrame {color:#eee;border-color: #555;background-color:#000}
+.filelistFrame a {color:#888}
+
+.bodexRead .fileAttached {border-color:#555; background-color:#222}
+.bodexRead .fileAttached li a:visited,
+.bodexRead .fileAttached span.fileDownloaded {color:#666}
+.bodexRead .fileAttached span.fileError {color:#555}
+
+.bodexRead .docReadIpAndUrl .docReadIp,
+.bodexRead .docReadIpAndUrl .docReadUri a {color:#555}
+
+.bodexRead .contentButton {border-top-color:#555}
+
+/* replyBox */
+.replyBox {border-color:#555}
+.replyBox .replyItem {border-color:#555}
+.replyBox .author {color:#eee}
+.replyBox .voted {color:#666}
+.replyBox .voted a {color:#999}
+.replyBox .date {color:#707070}
+.replyBox .replyContent .xe_content {color:#999}
+
+/* trackbackBox */
+.trackbackBox {color:#999; border-color:#555}
+.trackbackBox .trackbackItem {color:#aaa;background-color:#1A1A1A; border-top-color:#555}
+.trackbackBox address a {color:#aaa}
+.trackbackBox address a:hover {color:#666}
+.trackbackBox address .date {color:#707070}
+.trackbackBox hr {color:#555; border-color:#555}
+
+/* list */
+.bodexList ,
+.bodexList th,
+.bodexList td,
+.bodexList thead th,
+.bodexList tr.notice td {border-color:#555}
+
+.bodexList th {color:#ddd;background: url(../images/black/bgListTh.png) repeat-x top}
+.bodexList th a {color:#ddd}
+.bodexList th a:hover {color:#eee}
+
+.bodexList td a {color:#aaa}
+.bodexList td a:hover {color:#eee}
+
+.bodexList td.title a:visited {color:#666}
+
+.documentNavigation strong.category,
+.bodexList td strong.category {color:#eee;  background:url(../images/black/line_1x10.gif) no-repeat right center}
+
+.bodexList td.user_name,
+.bodexList td.nick_name {color:#ddd}
+
+.bodexList td.no,
+.bodexList td.regdate,
+.bodexList td.ipaddress,
+.bodexList td.last_update,
+.bodexList td.readed_count,
+.bodexList td.voted_count,
+.bodexList td.doc_state,
+.bodexList td.blamed_count {color:#777}
+
+.bodexList td span.rewardPoint {background-color:#555; border-color:#bbb; color:#eee}
+.bodexList td span.rewardAdopt {background-color:#000;color:#666}
+
+.bodexList td.extravalue {color:#555}
+
+/* bodexList webzine */
+.bodexList div.summary {color:#333}
+.bodexList .extraTable th,
+.bodexList .extraTable td {color:#555}
+.bodexList td.thumb img {border-color:#555}
+
+ /* bodexList gallery */
+.bodexList .exSkinThumbnailBox li .exSkinThumb,
+.bodexList .exSkinThumbnailBox li .exSkinThumb img{border-color: #555}
+.bodexList .exSkinThumbnailBox li .info{ background:#fff; opacity:.6; filter:alpha(opacity=60); color:#555}
+.bodexList .exSkinThumbnailBox li .info p {color:#444}
+
+ /* bodexList download */
+.bodexList .downloadBox,
+.bodexList .downloadBox div.thumb,
+.bodexList .downloadBox div.info li.title {border-color:#555}
+.bodexList .downloadBox div.info li .category strong  {background:url(../images/black/line_1x10.gif) no-repeat right bottom }
+.bodexList .downloadBox div.info li .category strong,
+.bodexList .downloadBox div.info li .category span.author {color:#eee}
+.bodexList .downloadBox div.info li .star span.average {color:#444}
+.bodexList .downloadBox div.info li .star,
+.bodexList .downloadBox div.info li .star a,
+.bodexList .downloadBox div.info li .last_updater,
+.bodexList .downloadBox div.info li .extravalue {color:#888}
+.bodexList .downloadBox div.info li .summary {color:#666}
+
+.bodexList .downloadBox div.date,
+.bodexList .downloadBox div.date a {color:#444}
+.bodexList .downloadBox div.date a:hover {color:#666}
+
+.blogView {border-color:#555}

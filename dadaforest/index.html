@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DADA FOREST - Architecture Studio</title>
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="assets/dada_styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="../assets/DADA_logo.svg" alt="DADA Forest">
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">Philosophy</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="../index.html">Cafe 1941</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>DADA FOREST</h1>
+      <p>Crafting Timeless Architecture Between Nature and Human Life</p>
+    </section>
+
+    <section id="about" class="about">
+      <h2 class="section-title">Design Philosophy</h2>
+      <div class="about-content">
+        <p>다다포레스트는 1941년부터 이어져 온 역사적 터전 위에 새로운 시대적 가치를 짓는 건축 설계 스튜디오입니다. 우리는 인위적인 개발보다는 주변 환경과의 조화로운 공존을 중시하며, 단순한 건물을
+          넘어 그 시대와 사람의 삶을 담아내는 그릇으로서의 건축을 지향합니다.</p>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2 class="section-title">Selected Works</h2>
+
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="architecture">Architecture</button>
+        <button class="filter-btn" data-filter="residence">Residence</button>
+        <button class="filter-btn" data-filter="traditional">Traditional</button>
+        <button class="filter-btn" data-filter="urban">Urban</button>
+        <button class="filter-btn" data-filter="interior">Interior</button>
+        <button class="filter-btn" data-filter="research">Research</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Architecture -->
+        <a href="projects/architecture/woojung.html" class="project-card" data-category="architecture">
+          <div class="project-img" style="background-image: url('proj/archi/woojung.JPG')"></div>
+          <div class="project-info">
+            <h3>Woojung Bio</h3>
+            <p>Architecture</p>
+          </div>
+        </a>
+        <a href="projects/architecture/dentium.html" class="project-card" data-category="architecture">
+          <div class="project-img" style="background-image: url('proj/archi/dentium.jpg')"></div>
+          <div class="project-info">
+            <h3>Dentium</h3>
+            <p>Architecture</p>
+          </div>
+        </a>
+        <a href="projects/architecture/bnlsolucom.html" class="project-card" data-category="architecture">
+          <div class="project-img" style="background-image: url('proj/archi/bnlsolucom.jpg')"></div>
+          <div class="project-info">
+            <h3>BNL Solucom</h3>
+            <p>Architecture</p>
+          </div>
+        </a>
+        <a href="projects/architecture/vision22.html" class="project-card" data-category="architecture">
+          <div class="project-img" style="background-image: url('proj/archi/vision22.jpg')"></div>
+          <div class="project-info">
+            <h3>Vision 22</h3>
+            <p>Architecture</p>
+          </div>
+        </a>
+
+        <!-- Residence -->
+        <a href="projects/residence/beahouse.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/beahouse.jpg')"></div>
+          <div class="project-info">
+            <h3>Bea House</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+        <a href="projects/residence/hahouse.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/hahouse.jpg')"></div>
+          <div class="project-info">
+            <h3>HA House</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+        <a href="projects/residence/leehouse1.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/leehouse1.jpg')"></div>
+          <div class="project-info">
+            <h3>Lee House 1</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+        <a href="projects/residence/leehouse2.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/leehouse2.jpg')"></div>
+          <div class="project-info">
+            <h3>Lee House 2</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+        <a href="projects/residence/gwanggyo.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/gwanggyo.jpg')"></div>
+          <div class="project-info">
+            <h3>Gwanggyo Residence</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+
+        <!-- Traditional -->
+        <a href="projects/traditional/mbj.html" class="project-card" data-category="traditional">
+          <div class="project-img" style="background-image: url('proj/tradarchi/MBJ.jpg')"></div>
+          <div class="project-info">
+            <h3>MBJ Temple</h3>
+            <p>Traditional Architecture</p>
+          </div>
+        </a>
+        <a href="projects/traditional/bgd.html" class="project-card" data-category="traditional">
+          <div class="project-img" style="background-image: url('proj/tradarchi/BGD.jpg')"></div>
+          <div class="project-info">
+            <h3>BGD Temple</h3>
+            <p>Traditional Architecture</p>
+          </div>
+        </a>
+
+        <!-- More Residence -->
+        <a href="projects/residence/sonhouse.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/sonhouse.jpg')"></div>
+          <div class="project-info">
+            <h3>Son House</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+        <a href="projects/residence/parkhouse.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/parkhouse.jpg')"></div>
+          <div class="project-info">
+            <h3>Park House</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+        <a href="projects/residence/hsj.html" class="project-card" data-category="residence">
+          <div class="project-img" style="background-image: url('proj/residence/hsj.jpg')"></div>
+          <div class="project-info">
+            <h3>HSJ House</h3>
+            <p>Residence</p>
+          </div>
+        </a>
+
+        <!-- Urban -->
+        <a href="projects/urban/scj.html" class="project-card" data-category="urban">
+          <div class="project-img" style="background-image: url('proj/urban/scj.jpg')"></div>
+          <div class="project-info">
+            <h3>SCJ Urban Design</h3>
+            <p>Urban Design</p>
+          </div>
+        </a>
+        <a href="projects/urban/nhs02.html" class="project-card" data-category="urban">
+          <div class="project-img" style="background-image: url('proj/urban/NHS02.jpg')"></div>
+          <div class="project-info">
+            <h3>NHS02 Masterplan</h3>
+            <p>Urban Design</p>
+          </div>
+        </a>
+
+        <!-- Interior -->
+        <a href="projects/interior/leeresidence.html" class="project-card" data-category="interior">
+          <div class="project-img" style="background-image: url('proj/interior/leeresidence.jpg')"></div>
+          <div class="project-info">
+            <h3>Lee Residence</h3>
+            <p>Interior</p>
+          </div>
+        </a>
+        <a href="projects/interior/frtek.html" class="project-card" data-category="interior">
+          <div class="project-img" style="background-image: url('proj/interior/frtek.jpg')"></div>
+          <div class="project-info">
+            <h3>FRTEK</h3>
+            <p>Interior</p>
+          </div>
+        </a>
+        <a href="projects/interior/junghouse.html" class="project-card" data-category="interior">
+          <div class="project-img" style="background-image: url('proj/interior/junghouse.jpg')"></div>
+          <div class="project-info">
+            <h3>Jung House</h3>
+            <p>Interior</p>
+          </div>
+        </a>
+        <a href="projects/interior/dadaoffice.html" class="project-card" data-category="interior">
+          <div class="project-img" style="background-image: url('proj/interior/dadaforest_int.jpg')"></div>
+          <div class="project-info">
+            <h3>Dada Forest Office</h3>
+            <p>Interior</p>
+          </div>
+        </a>
+
+        <!-- Research -->
+        <a href="projects/research/silhakmuseum.html" class="project-card" data-category="research">
+          <div class="project-img" style="background-image: url('proj/research/silhakmuseum.jpg')"></div>
+          <div class="project-info">
+            <h3>Silhak Museum</h3>
+            <p>Research</p>
+          </div>
+        </a>
+        <a href="projects/research/museumpark.html" class="project-card" data-category="research">
+          <div class="project-img" style="background-image: url('proj/research/museumpark.jpg')"></div>
+          <div class="project-info">
+            <h3>Museum Park</h3>
+            <p>Research</p>
+          </div>
+        </a>
+        <a href="projects/research/nongwoo.html" class="project-card" data-category="research">
+          <div class="project-img" style="background-image: url('proj/research/nongwoo.jpg')"></div>
+          <div class="project-info">
+            <h3>Nongwoo Bio</h3>
+            <p>Research</p>
+          </div>
+        </a>
+
+        <!-- Global (New Category in Filter) -->
+        <a href="projects/global/beijing.html" class="project-card" data-category="architecture">
+          <div class="project-img" style="background-image: url('proj/foreign/beijing.jpg')"></div>
+          <div class="project-info">
+            <h3>Beijing Archive</h3>
+            <p>Global Architecture</p>
+          </div>
+        </a>
+        <a href="projects/global/ulaanbaator.html" class="project-card" data-category="architecture">
+          <div class="project-img" style="background-image: url('proj/foreign/ulaanbaator.jpg')"></div>
+          <div class="project-info">
+            <h3>Ulaanbaatar Tower</h3>
+            <p>Global Architecture</p>
+          </div>
+        </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 DADA FOREST ARCHITECTURE STUDIO. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/dada_script.js"></script>
+</body>
+
+</html>

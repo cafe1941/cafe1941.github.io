@@ -1,0 +1,14 @@
+<table name="pxeboard_attachment">
+    <column name="module_srl" type="number" size="11" default="0" notnull="notnull" index="idx_module_srl" />
+    <column name="document_srl" type="number" size="11" notnull="notnull" default="0" index="idx_document_srl" />
+    <column name="file_srl" type="number" size="11" default="0" />
+    <column name="screenshot_file_srl" type="number" size="11" default="0" />
+    <column name="screenshot_url" type="varchar" size="255" default="" />
+    <column name="screenshot_link" type="varchar" size="255" default="" />
+    <column name="preview_file_srl" type="number" size="11" default="0" />
+    <column name="preview_url" type="varchar" size="255" default="" />
+    <column name="label_file_srl" type="number" size="11" default="0" />
+    <column name="label_url" type="varchar" size="255" default="" />
+    <column name="downloaded" type="number" size="11" notnull="notnull" default="0" index="idx_downloaded" />
+    <column name="regdate" type="date" index="idx_regdate" />
+</table>

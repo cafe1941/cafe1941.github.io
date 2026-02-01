@@ -1,0 +1,58 @@
+{@ $is_poped = Context::get('is_poped')}
+<!--@if($is_poped)-->
+    <!--// CSS 파일 로드 (컬러셋에 따라서) -->
+    <!--%import("css/common.css")-->
+
+    <!--@if($module_info->colorset == "black")-->
+        <!--%import("css/black.css")-->
+        {@ $btn_class = "black" }
+    <!--@else-->
+        <!--%import("css/white.css")-->
+    <!--@endif-->
+    
+<!--@else-->
+    <!--#include("__header.html")-->
+<!--@endif-->
+
+<!--// print tags -->
+
+<div class="tagsBox">
+    <h4><img src="./images/common/iconTag.gif" alt="{$lang->tag}" width="27" height="11" class="tagIcon" /> {$lang->tag} ({count($tag_list)})</h4>
+    <div class="tags">
+        <!--@foreach($tag_list as $val)-->
+
+            <!--@if($val->count>5)-->
+                {@ $tag_class = "tagTypeA" }
+            <!--@elseif($val->count>3)-->
+                {@ $tag_class = "tagTypeB" }
+            <!--@elseif($val->count>2)-->
+                {@ $tag_class = "tagTypeC" }
+            <!--@elseif($val->count>1)-->
+                {@ $tag_class = "tagTypeD" }
+            <!--@else-->
+                {@ $tag_class = "tagTypeE" }
+            <!--@endif-->
+
+            <div {$tag_class?'class="'.$tag_class.'"':''}>
+                <!--@if($is_poped)-->
+                    <a onclick="setSelectTag('{$val->tag}');return false;" href="#">{htmlspecialchars($val->tag)}</a>
+                <!--@else-->
+                    <!--@if($layout_info->mid)-->
+                        <a href="{getUrl('','mid',$layout_info->mid,'search_target','tag','search_keyword',$val->tag)}">{htmlspecialchars($val->tag)}</a>
+                    <!--@else-->
+                        <a href="{getUrl('','mid',$mid,'search_target','tag','search_keyword',$val->tag)}">{htmlspecialchars($val->tag)}</a>
+                    <!--@endif-->
+                <!--@endif-->
+            </div>
+        <!--@endforeach-->
+    </div>
+    <div class="clear"></div>
+</div>
+
+<!--@if(!$is_poped)-->
+    <div class="rightButtonBox gap1">
+        <a href="{getUrl('act','')}" class="button {$btn_class}"><span>{$lang->cmd_back}</span></a>
+    </div>
+
+    <!--#include("__footer.html")-->
+<!--@endif-->

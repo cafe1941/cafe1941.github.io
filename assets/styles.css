@@ -103,12 +103,20 @@ body {
     opacity: 1;
 }
 
-/* Logo Container */
-.logo-container {
+/* Logo and Navigation */
+.header-container {
     position: absolute;
     top: 40px;
     left: 40px;
-    z-index: 3;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
 }
 
 .dada-logo {
@@ -121,6 +129,46 @@ body {
 
 .dada-logo:hover {
     opacity: 1;
+}
+
+.main-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-tabs {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-tab a {
+    display: block;
+    padding: 10px 24px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
+}
+
+.nav-tab.active a {
+    background: white;
+    color: var(--brand-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-tab:not(.active) a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 
@@ -434,13 +482,22 @@ body {
         font-size: 1.9rem;
         margin-bottom: 24px;
     }
-    .logo-container {
+
+    .header-container {
         top: 20px;
         left: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
 
     .dada-logo {
         width: 60px;
+    }
+
+    .nav-tab a {
+        padding: 8px 18px;
+        font-size: 0.85rem;
     }
 
     .hero-logo {
@@ -530,6 +587,7 @@ body {
         font-size: 1.4rem;
         margin-bottom: 20px;
     }
+
     .hero {
         min-height: 600px;
     }
@@ -634,6 +692,12 @@ body {
     padding: 60px 40px;
     text-align: center;
     background: linear-gradient(135deg, #ffffff 0%, #fdf9f7 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    /* Ensure strictly visual centering */
 }
 
 .popup-text-content {
@@ -661,7 +725,8 @@ body {
     font-size: 1.1rem;
     color: var(--text-dark);
     line-height: 1.8;
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    /* Remove mismatched margin since there are no buttons */
     word-break: keep-all;
 }
 
@@ -686,7 +751,8 @@ body {
 
 @media (max-width: 480px) {
     .popup-body {
-        padding: 0;
+        padding: 40px 20px;
+        /* Restore padding for text visibility */
     }
 
     .popup-image {

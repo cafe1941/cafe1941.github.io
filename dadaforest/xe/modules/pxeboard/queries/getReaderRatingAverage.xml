@@ -1,0 +1,21 @@
+<query id="getReaderRatingAverage" action="select">
+    <tables>
+        <table name="pxeboard_reader_rating" />
+    </tables>
+    <columns>
+        <column name="document_srl" />
+        <column name="COUNT(document_srl)" alias="count" />
+        <column name="SUM(point)" alias="point" />
+    </columns>
+    <groups>
+        <group column="document_srl" />
+    </groups>
+    <conditions>
+        <condition operation="equal" column="document_srl" var="document_srl" filter="number" />
+        <condition operation="in" column="document_srl" var="document_srls" />
+        <group pipe="and">
+            <condition operation="equal" column="member_srl" var="member_srl" filter="number" pipe="and" />
+            <condition operation="equal" column="ipaddress" var="ipaddress" pipe="and" />
+        </group>
+    </conditions>
+</query>

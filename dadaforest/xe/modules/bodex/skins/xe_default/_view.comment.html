@@ -1,0 +1,203 @@
+
+{@
+        $_comment_list = $oDocument->getComments();
+        $oDocument = $oBodex->getWith($oDocument, array('document_srl','reward_srl','reward_point'));
+        $oDocument->reward_point=round($oDocument->reward_point/2);
+        $_comment_review_r = $_comment_review_l = array();
+}
+
+<!--@if($module_info->display_pang_point == 'Y')-->
+    {@$pang_extra_vars= unserialize($oDocument->get('extra_vars'))}
+<!--@endif-->
+
+<div class="replyBox">
+    <!--// 댓글 형태가 리뷰이면 댓글 목록 재구성 -->
+    <!--@if(count($_comment_list) && $module_info->display_review_comment == 'Y')-->
+        <div class="replyReviewHead">
+            <div class="fl">{$lang->col_vote}</div><div class="fr">{$lang->col_blame}</div>
+        </div>
+        <div class="clear"></div>
+        {@ $_temp_val = false}
+        <!--@foreach($_comment_list as $key => $comment)-->
+            {@ $_temp_val = (!$comment->depth) ? ($comment->member_srl && $oDocument->voted_list[$comment->member_srl] < 0):$_temp_val}
+            <!--@if($_temp_val)-->
+                {@ $_comment_review_r[] = $comment}
+            <!--@else-->
+                {@ $_comment_review_l[] = $comment}
+            <!--@endif-->
+        <!--@endforeach-->
+    <!--@endif-->
+
+    <!--@for($_i = 0;$_i < 4;$_i++)-->
+        <!--@if($_i == 0 && !($best_comment_list && count($best_comment_list))) continue;--><!--@endif-->
+        <!--@if($_i == 1 && !($_comment_review_r && count($_comment_review_r))) continue;--><!--@endif-->
+        <!--@if($_i == 2 && !($_comment_review_l && count($_comment_review_l))) continue;--><!--@endif-->
+        <!--@if($_i == 3 && $module_info->display_review_comment == 'Y') continue;--><!--@endif-->
+
+        {@ $class_string = ''}
+
+        <!--@if($_i == 0)-->
+            {@
+                $_tmp_comment_list = $best_comment_list;
+                $class_string = 'bestReply';
+            }
+        <!--@elseif($_i == 1)-->
+            {@ $_tmp_comment_list = $_comment_review_r}
+            <div class="replyFr">
+        <!--@elseif($_i == 2)-->
+            {@ $_tmp_comment_list = $_comment_review_l}
+            <div class="replyFl">
+        <!--@elseif($_i == 3)-->
+            {@ $_tmp_comment_list = $_comment_list}
+        <!--@endif-->
+
+        <!--@foreach($_tmp_comment_list as $key => $comment)-->
+
+            {@
+                $comment->profileImage = $comment->getProfileImage();
+                $comment->nickName = $comment->getNickName();
+                $comment->nickName = ($comment->nickName=='anonymous'?$lang->anonymous:$comment->nickName);
+                $comment->member_srl = (!$grant->manager && $comment->member_srl && $comment->get('user_id')=='anonymous')?0:$comment->member_srl;
+            }
+
+
+            <div class="replyItem {$comment->depth?'replyBg0':'replyBg1'} {$class_string}">
+                <!--@if($comment->depth)--><div style="margin-left:{($comment->depth-1)*20}px" class="replyIndent"><!--@endif-->
+
+                <a name="comment_{$comment->comment_srl}"></a>
+
+                <div class="replyOption">
+                    <!--@if($comment->isGranted() || (!$comment->member_srl && !$comment->user_name))-->
+                        <!--// 포인트 사용시 답글이 있으면 관리자외 수정 삭제 불가 -->
+                        <!--@if($grant->manager || ($oDocument->reward_srl != $comment->comment_srl) || ($module_info->use_reward != 'Y' && $module_info->use_reward != 'R'))-->
+                            <a href="#" onclick="_exSkinControllerReplySimpleForm('delete',{$comment->comment_srl}); return false;"><img src="./images/common/buttonDeleteX.gif" title="{$lang->cmd_delete}" width="12" height="13" /></a>
+                            <a href="#" onclick="_exSkinControllerReplySimpleForm('modify',{$comment->comment_srl}); return false;"><img src="./images/{$module_info->colorset}/buttonModifyE.gif" title="{$lang->cmd_modify}" width="20" height="17" /></a>
+                        <!--@endif-->
+                    <!--@endif-->
+                        <a href="#" onclick="_exSkinControllerReplySimpleForm('comment_srl',{$comment->comment_srl}); return false;"><img src="./images/{$module_info->colorset}/buttonReply.gif" title="{$lang->cmd_reply}" width="20" height="17" /></a>
+                </div>
+
+                <div class="date">
+                    <strong>{$comment->getRegdate('Y.m.d')}</strong> {$comment->getRegdate('H:i:s')}
+                    <!--@if($grant->manager || $module_info->display_ip_address=='Y' || ($module_info->display_ip_address=='G'&&!$grant->manager))-->({$comment->getIpaddress()})<!--@endif-->
+                </div>
+
+                <div class="replyImage">
+                    <!--@if($comment->isAccessible() && $comment->isSecret())--><img src="./images/common/iconSecret.gif" border="0" alt="{$lang->secret}" title="{$lang->secret}" /><!--@endif-->
+                    <!--// 베스트 글이면 표시후 카운트 줄임 -->
+                    <!--@if($best_comment_count>0)-->{@ $best_comment_count--}
+                        <img src="./images/common/iconBest.gif" title="Best" alt="Best" border="0" />
+                    <!--@endif-->
+                </div>
+
+                <!--@if($logged_info && $logged_info->member_srl == $comment->member_srl && $module_info->login_nickname_color)-->{@ $_tmp_nick_color = ' style="color:'.$module_info->login_nickname_color.'"'}<!--@else-->{@ $_tmp_nick_color = ''}<!--@endif-->
+
+                <div class="author">
+                    <div class="{($comment->member_srl?'member_'.$comment->member_srl:'bodex_1'.$comment->comment_srl)}"{$_tmp_nick_color}>{$comment->nickName}</div>
+                </div>
+                <div class="fl"><!--// 투표을 했으면 * 표시 -->
+                    <!--@if($comment->member_srl && ($module_info->display_voted_state=='Y' && $module_info->use_vote != 'N' && $oDocument->voted_list[$comment->member_srl] != 0))--><span class="voteInfo">{$oDocument->voted_list[$comment->member_srl]>0?'&uarr;':'&darr;'}</span><!--@endif-->
+                    <!--@if($module_info->display_pang_point == 'Y' && $pang_extra_vars)-->
+                            {@ $pangpang_point=$pang_extra_vars->point_pang_pang->comment[$comment->get('comment_srl')]->point;}
+                            <!--@if($pangpang_point > 0)-->
+                            {@$pangpang_point = sprintf($lang->pang_pang, $pangpang_point)}
+                            <img src="./images/{$module_info->colorset}/coin.gif" title="{$pangpang_point}" alt="{$pangpang_point}">
+                            <!--@endif-->
+                    <!--@endif-->
+                </div>
+
+                <!--@if($is_logged && ($module_info->display_vote_button == 'A' || $module_info->display_vote_button == 'C'))-->
+                <div class="voted">
+                    (<a href="#" onclick="doCallModuleAction('comment','procCommentVoteUp','{$comment->comment_srl}'); return false; ">{$lang->col_vote}</a>
+                    <strong>{$comment->voted_count?$comment->voted_count:0} / {$comment->blamed_count?$comment->blamed_count:0}</strong>
+                    <a href="#" onclick="doCallModuleAction('comment','procCommentVoteDown','{$comment->comment_srl}'); return false; ">{$lang->col_blame}</a>)
+                </div>
+                <!--@elseif($comment->voted_count != 0 || $comment->blamed_count != 0)-->
+                <div class="voted">
+                    ({$lang->voted_count}:
+                    <strong>{$comment->voted_count?$comment->voted_count:0} / {$comment->blamed_count?$comment->blamed_count:0}</strong>)
+                </div>
+                <!--@endif-->
+
+                <div class="clear"></div>
+
+                <div class="exSkinOriginalContent" rel="{$comment->comment_srl}" style="display:block">
+                    <div class="replyContent" >
+                        <!--@if(!$comment->isAccessible())-->
+                            <div class="secretContent">
+                                <form action="./" method="get" onsubmit="return procFilter(this, input_password)">
+                                <input type="hidden" name="mid" value="{$mid}" />
+                                <input type="hidden" name="page" value="{$page}" />
+                                <input type="hidden" name="document_srl" value="{$comment->document_srl}" />
+                                <input type="hidden" name="comment_srl" value="{$comment->comment_srl}" />
+                                    <div class="title">{$lang->msg_is_secret}</div>
+                                    <div class="content"><input type="password" name="password" class="userPw dStyle" /><span class="button {$btn_class}"><input type="submit" value="{$lang->cmd_input}" accesskey="s" /></span></div>
+                                </form>
+                            </div>
+                        <!--@else-->
+                            <div class="commentProfileImage">
+                                <div class="profile">
+                                <!--@if(($module_info->use_vote == 'S' || $module_info->use_vote == 'Z') && $comment->member_srl != $oDocument->member_srl && $oDocument->voted_list[$comment->member_srl] > 0)-->
+                                    <div class="starPointFrame small" style="margin-bottom:3px" title="{$oDocument->voted_list[$comment->member_srl]}">
+                                        <span class="starColor{$module_info->star_color} {($comment->depth)?'replyBg0':'replyBg1'}" style="width:{$oDocument->voted_list[$comment->member_srl]*8}px"></span>
+                                        <i>{$oDocument->voted_list[$comment->member_srl]}</i>
+                                    </div>
+                                <!--@endif-->
+                                <!--@if($oDocument->reward_point > 0 && ($module_info->use_reward == 'Y' || $module_info->use_reward == 'R'))-->
+                                    <div class="adoptComment">
+                                    <!--@if($oDocument->reward_srl == $comment->comment_srl)-->
+                                    <span>{$lang->cmd_adopted_comment}</span>
+                                    <!--@elseif($oDocument->reward_srl <= 0 && $comment->member_srl != $oDocument->member_srl && $oDocument->isGranted())-->
+                                    <a href="#" onclick="doCallModuleAction('{$module_info->module}','procBoardAdoptComment','{$comment->comment_srl}'); return false;" class="button {$btn_class}"><span>{$lang->cmd_adopt_comment}</span></a>
+                                    <!--@endif-->
+                                    </div>
+                                <!--@endif-->
+                                <!--@if($module_info->display_sign != 'N' && $comment->member_srl && $comment->profileImage)-->
+                                    <div class="image"><img src="{$comment->profileImage}" alt="profile" /></div>
+                                <!--@endif-->
+                                </div>
+                            </div>
+                            {$comment->getContent()}
+                        <!--@endif-->
+                        <div class="clear"></div>
+                    </div>
+
+                    <!--@if($comment->hasUploadedFIles() && $comment->isAccessible())-->
+                        <div class="fileAttached">
+                            <ul>
+                                {@ $_uploaded_files = $comment->getUploadedFiles() }
+                                <!--@foreach($_uploaded_files as $key => $file)-->
+                                <li>
+                                    <a  href="{getUrl('').$file->download_url}" onclick="return {$file->isvalid=='Y'?'true':'false'}"><img src="./images/{$module_info->colorset}/{$file->isvalid=='Y'?($file->direct_download=='Y'?'iconImage':'iconFile'):'iconError'}.gif" border="0" />
+                                        <span {$file->isvalid=='Y'?'':'class="fileError" title="invalid"'}>{$file->source_filename}({FileHandler::filesize($file->file_size)})[{number_format($file->download_count)}]</span>
+                                    </a>
+                                </li>
+                                <!--@endforeach-->
+                            </ul>
+                        </div>
+                    <!--@endif-->
+                </div>
+
+                <!--@if($comment->depth)--></div><!--@endif-->
+                <div class="exSkinControllerContent" rel="{$comment->comment_srl}" style="display:none"></div>
+            </div>
+        <!--@endforeach-->
+
+        <!--@if($_i == 0)--><div class="clear"></div><!--@elseif($_i == 1)--></div><!--@elseif($_i == 2)--></div><!--@endif-->
+    <!--@endfor-->
+
+    <div class="clear"></div>
+
+    <!--// 댓글 페이지 네비게이션 -->
+    <!--@if($oDocument->comment_page_navigation)-->
+        {@
+            $c_url_tail = '#comment';
+            $blog_style_doc_no?$c_url_tail = '&document_srl='.$comment->document_srl.$c_url_tail:'';
+
+            $pagination_navigation = $oDocument->comment_page_navigation;
+            $pagination_name='comment';
+        }
+        <!--#include("_view.pagination.html")-->
+    <!--@endif-->
+
+</div>

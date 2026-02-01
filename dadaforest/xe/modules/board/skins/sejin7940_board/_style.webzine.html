@@ -1,0 +1,512 @@
+{@$list_count = 0}
+
+<form action="./" method="get" class="boardListForm">
+    <fieldset>
+        <legend>List of Articles</legend>
+        <table cellspacing="0" border="1" summary="List of Articles" class="boardList webZine">
+			<!--@if(($module_info->display_header!="N") || ($module_info->display_subheader!="N" && $search_keyword!="N" && $use_sub=="Y"))-->
+			<thead>
+                <tr>
+					<!--// 목록 설정으로 table theader 생성 -->
+					<!--@foreach($list_config as $key => $val)-->
+						<!--// 기본 컨텐츠일 경우 -->
+						<!--@if($val->idx == -1)-->
+	
+							<!--// 컨텐츠 종류에 따라서 출력 -->
+							<!--@if($val->type == 'no')-->
+							    {@$list_count++}							
+								<th scope="col">{$lang->no}</th>
+							<!--@elseif($val->type == 'title')-->
+							    {@$list_count++}														
+								<th scope="col" class="title">
+									<!--@if($module_info->use_category == "Y" && ($module_info->category_style == "list_select" || $module_info->category_style == "wide_and_select" ))-->
+									<span class="jumpTo">
+										<select name="category" id="board_category">
+											<option value="">{$lang->category}</option>
+											<!--@foreach($category_list as $val)-->
+											<option value="{$val->category_srl}" <!--@if($category==$val->category_srl)-->selected="selected"<!--@end-->>{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} <!--@if($val->document_count)-->({$val->document_count})<!--@end--></option>
+											<!--@end-->
+										</select>
+										<button type="button" name="go_button" id="go_button" onclick="doChangeCategory(); return false;" class="button">Go</button>
+									</span>
+									<!--@end-->
+									<a href="{getUrl('sort_index','title','sortkey','','order_type',$order_type)}">{$lang->title}<!--@if($sort_index=='title')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a>
+								</th>
+							<!--@elseif($val->type == 'regdate')-->
+							    {@$list_count++}														
+								<th scope="col"><a href="{getUrl('sort_index','regdate','sortkey','','order_type',$order_type)}">{$lang->date}<!--@if($sort_index=='regdate')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@elseif($val->type == 'last_update')-->
+							    {@$list_count++}														
+								<th scope="col"><a href="{getUrl('sort_index','last_update','sortkey','','order_type',$order_type)}">{$lang->last_update}<!--@if($sort_index=='last_update')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@elseif($val->type == 'nick_name')-->
+							    {@$list_count++}	
+								<th scope="col"><a href="{getUrl('sort_index','nick_name','sortkey','','order_type',$order_type)}">{$lang->writer}<!--@if($sort_index=='nick_name')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@elseif($val->type == 'user_id')-->
+							    {@$list_count++}	
+								<th scope="col"><a href="{getUrl('sort_index','user_id','sortkey','','order_type',$order_type)}">{$lang->user_id}<!--@if($sort_index=='user_id')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@elseif($val->type == 'user_name')-->
+							    {@$list_count++}	
+								<th scope="col"><a href="{getUrl('sort_index','user_name','sortkey','','order_type',$order_type)}">{$lang->user_name}<!--@if($sort_index=='user_name')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></th>
+							<!--@elseif($val->type == 'readed_count')-->
+							    {@$list_count++}														
+								<th scope="col"><a href="{getUrl('sort_index','readed_count','sortkey','','order_type',$order_type)}">{$lang->readed_count}<!--@if($sort_index=='readed_count')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@elseif($val->type == 'voted_count')-->
+							    {@$list_count++}														
+								<th scope="col"><a href="{getUrl('sort_index','voted_count','sortkey','','order_type',$order_type)}">{$lang->voted_count}<!--@if($sort_index=='voted_count')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@elseif($val->type == 'last_post')-->
+							    {@$list_count++}														
+                                <th scope="col"><a href="{getUrl('sort_index','last_update','sortkey','','order_type',$order_type)}">{$lang->last_post}<!--@if($sort_index=='last_update')--><img src="./img/common/{$order_icon}" alt="sort" width="5" height="3" class="sort" /><!--@end--></a></th>
+							<!--@end-->
+							<!--// 사용자 선언 확장변수일 경우 -->
+							<!--@elseif( $module_info->grant_extra=="Y" && (((substr_count($val->eid,'_grantAA') || substr_count($val->eid,'_grantMA') || substr_count($val->eid,'_grantGA')) && !$grant->manager) || ((substr_count($val->eid,'_grantAM') || substr_count($val->eid,'_grantMM') || substr_count($val->eid,'_grantGM')) && !$logged_info)) )-->
+							<!--@else-->
+								<!--@if(!(!$grant->manager && strstr(strtolower($val->eid),"ordering") ))-->
+								    {@$list_count++}
+									<th scope="col"><a href="{getUrl('sort_index','','sortkey',$val->eid,'order_type',$order_type)}">{$val->name}</a></th>
+								<!--@end-->		
+							<!--@end-->
+						<!--@end-->
+						<!--@if($grant->manager)--><th scope="col"><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;" title="Check All" /></th>
+						<!--@elseif($module_info->display_list_edit=="Y")-->
+						<th scope="col">{$lang->cmd_modify}/{$lang->cmd_delete}</th>
+						<!--@end-->
+                    </tr>
+			</thead>
+			<!--@end-->
+
+			
+			<tbody>
+	
+				<!--@if(!$document_list && !$notice_list)-->
+				<tr>
+					<td colspan="{$_col_count}" style="text-align:center">
+						{$lang->no_documents}
+					</td>
+				</tr>
+				<!--@else-->
+			
+
+				<!--@if($module_info->notice_type!='same' && $notice_list)-->
+					<!--@foreach($notice_list as $no => $document)-->
+					<!--@if(  !($document->isSecret() && ($module_info->secret_list=="hide_all" || (($module_info->secret_list=="hide") && ($document->getUserID()!=$logged_info->user_id)) )) || $grant->manager )-->
+					{@$member_grant=$document->getExtraEidValue('member_grantAA')}
+					{@$group_grant=$document->getExtraEidValue('group_grantAA')}
+					<!--@if( ((!$member_grant || ($member_grant &&  substr_count(",".$member_grant.",", ",".$logged_info->user_id.","))) && (!$group_grant || ($group_grant &&  substr_count(",".$group_grant.",", ",".$logged_info->group.",")))) || $grant->manager=="Y" || $grant->document_grant=="N")-->
+					<tr class="notice">
+						<!--// 목록 설정으로 table theader 생성 -->
+						<!--@foreach($list_config as $key => $val)-->
+		
+							<!--// 기본 컨텐츠일 경우 -->
+							<!--@if($val->idx == -1)-->
+		
+								<!--// 컨텐츠 종류에 따라서 출력 -->
+								<!--@if($val->type == 'no')-->
+									<td class="notice"><!--@if($document_srl == $document->document_srl)-->&raquo;<!--@else-->{$lang->notice}<!--@end--></td>
+								<!--@elseif($val->type == 'title')-->
+									<td class="title">
+										{@$subject_cut_size=$module_info->subject_cut_size}
+										<!--@if($module_info->icon_hot && $module_info->icon_hot<=$document->get('readed_count'))--><img src="./img/icons/hot.gif" class="iePngFix" />{@$subject_cut_size-=10}<!--@end-->
+										<!--@if($module_info->display_category!="N" && $module_info->use_category == "Y" && $document->get('category_srl') )-->
+										<span class="category" <!--@if($module_info->category_cut_size< strlen($category_list[$document->get('category_srl')]->title) )-->title="{$category_list[$document->get('category_srl')]->title}"<!--@end--> <!--@if($category_list[$document->get('category_srl')]->color!="transparent")-->style="color:{$category_list[$document->get('category_srl')]->color};"<!--@end-->>{cut_str($category_list[$document->get('category_srl')]->title, $module_info->category_cut_size, '..')}</span>
+										<!--@end-->
+
+
+										{@$link_url = $document->getExtraEidValue('link_url');}
+										{@$link_popup = $document->getExtraEidValue('link_popup');}
+										<!--@if ($grant->manager!="Y" && $logged_info->user_id!=$document->get('user_id') && $module_info->use_link == "Y" && $link_url)-->
+											<!--@if (!strstr($link_url,'http://'))-->
+												{@$link_url = 'http://'.$link_url;}
+											<!--@end-->
+
+											<!--@if($module_info->link_hit!="N" && $read_count == $document->document_srl && $read_counted[$document->document_srl]!="Y")-->
+												{@	
+													$oDocumentController = &getController('document');
+													$oDocumentController->updateReadedCount($document);	
+													$read_counted[$document->document_srl]="Y";
+												}
+												<script>location.href="{getUrl('','mid',$mid,'page',$page,'document_srl','','listStyle',$listStyle)}"</script>
+											<!--@end-->
+											<a href="{getUrl('','read_count',$document->document_srl,'mid',$mid,'page',$page,'document_srl','','listStyle',$listStyle)}"  onclick="window.open('{$link_url}');" style="cursor:pointer">
+										<!--@elseif($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+										<!--@else-->
+											<a <!--@if((!$document->isSecret() || $grant->manager=="Y") && $module_info->subject_mouseover=="subject" && ($subject_cut_size< strlen(strip_tags($document->getTitle())))  )-->title="{strip_tags($document->getTitle())}" <!--@elseif((!$document->isSecret() || $grant->manager=="Y") && $module_info->subject_mouseover=="content")-->title="{strip_tags($document->getContentText($module_info->content_cut_size))}"<!--@end--> href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+										<!--@end-->
+										{$document->getTitle($subject_cut_size)}</a>
+										<!--@if($module_info->display_new!="N")-->
+											{$document->printExtraImages(60*60*$module_info->duration_new)}
+										<!--@end-->
+										
+										<!--@if($document->getCommentCount())-->
+											<!--@if($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+											<!--@else-->
+											<a href="{getUrl('document_srl', $document->document_srl)}#comment" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+											<!--@end-->
+											<span class="replyNum" title="Replies">[{$document->getCommentCount()}]</span></a>
+										<!--@end-->
+		
+										<!--@if($document->getTrackbackCount())-->
+											<!--@if($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+											<!--@else-->
+											<a href="{getUrl('document_srl', $document->document_srl)}#trackback" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+											<!--@end-->
+											<span class="trackbackNum" title="Trackbacks">[{$document->getTrackbackCount()}]</span></a>
+										<!--@end-->
+		
+									</td>
+								<!--@elseif($val->type == 'regdate')-->
+									<td class="date">{$document->getRegdate('Y-m-d')}</td>
+								<!--@elseif($val->type == 'last_update')-->
+									<td class="date">{zdate($document->get('last_update'),'Y-m-d H:i')}</td>
+								<!--@elseif($val->type == 'nick_name')-->
+									<td class="author"><!--@if(!($sortkey=='regdate' && $grant->manager!="Y"))--><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false"><!--@end-->{$document->getNickName()}</a></td>
+								<!--@elseif($val->type == 'user_id')-->
+									<td class="author">{$document->getUserID()}</a></td>
+								<!--@elseif($val->type == 'user_name')-->
+									<td class="author"><!--@if(!($sortkey=='regdate' && $grant->manager!="Y"))--><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false"><!--@end-->{$document->getUserName()}</a></td>
+								<!--@elseif($val->type == 'readed_count')-->
+									<td class="reading">{$document->get('readed_count')>0?$document->get('readed_count'):'&nbsp;'}</td>
+								<!--@elseif($val->type == 'voted_count')-->
+									<td class="recommend">{$document->get('voted_count')!=0?$document->get('voted_count'):'&nbsp;'}</td>
+								<!--@elseif($val->type == 'last_post')-->
+									<td class="lastReply">
+									<!--@if((int)($document->get('comment_count'))>0)-->
+										<!--@if($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+										<!--@else-->
+										<a href="{$document->getPermanentUrl()}#comment" class="replyAnchor" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+										<!--@end-->
+										{zdate($document->get('last_update'),'Y-m-d')} {zdate($document->get('last_update'),'H:i')}</a>
+										<!--@if($document->get('last_updater'))-->
+											<sub class="by">by</sub>
+											{htmlspecialchars($document->get('last_updater'))}
+										<!--@end-->
+									<!--@else-->
+										&nbsp;
+									<!--@end-->
+									</td>
+								<!--@end-->
+		
+							<!--// 사용자 선언 확장변수일 경우 -->
+							<!--@elseif( $module_info->grant_extra=="Y" && (((substr_count($val->eid,'_grantAA') || substr_count($val->eid,'_grantMA') || substr_count($val->eid,'_grantGA')) && !$grant->manager) || ((substr_count($val->eid,'_grantAM') || substr_count($val->eid,'_grantMM') || substr_count($val->eid,'_grantGM')) && !$logged_info)) )-->
+							<!--@else-->
+									<td>{$document->getExtraValueHTML($val->idx)}&nbsp;</td>
+							<!--@end-->
+						<!--@end-->
+						<!--@if($grant->manager || $module_info->display_list_edit=="Y")-->
+							<td class="checkbox"><!--@if($grant->manager)--><input type="checkbox" name="cart" value="{$document->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($document->isCarted())-->checked="checked"<!--@end--> /><!--@end-->
+							<!--@if($module_info->display_list_edit=="Y" && $grant->manager)--><br><!--@end-->
+							<!--@if($module_info->display_list_edit=="Y")-->
+								<!--@if($document->isEditable() || $grant->manager)-->
+									<a href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}" class="button {$btn_class}">
+										<span>{$lang->cmd_modify}</span>
+									</a>
+									<a href="{getUrl('act','dispBoardDelete','document_srl',$document->document_srl,'comment_srl','')}" class="button {$btn_class}">
+										<span>{$lang->cmd_delete}</span>
+									</a>
+								<!--@endif-->
+							<!--@end-->
+							</td>
+						<!--@end-->
+					</tr>
+					<!--@end-->
+					<!--@end-->
+					<!--@end-->
+				<!--@end-->
+	
+
+<!--@if($module_info->notice_type=="same")-->
+{@$document_list_bk = $document_list;}
+{@$loop_list=2}
+<!--@else-->
+{@$loop_list=1}
+<!--@end-->
+<!--@for($loop=0;$loop<$loop_list;$loop++)-->
+
+	<!--@if($module_info->notice_type=="same")-->
+		<!--@if($loop==0)-->{@$document_list = $notice_list}
+		<!--@else-->{@$document_list = $document_list_bk}
+		<!--@end-->
+	<!--@end-->
+				<!--// 일반 글 출력 -->
+				<tr class="bg{($no+1)%2+1}">
+					<td class="title" colspan="{$list_count+1}"  style="margin-left:{$module_info->list_leftmargin}px;">
+
+					<!--@if($module_info->webzine_col>1)-->
+					{@
+					$webzine_col = (int)$module_info->webzine_col;
+					$webzine_width=100/$webzine_col;
+					$count=0;
+					}
+					<!--@else-->
+					{@ $webzine_width=100;}
+					<!--@end-->
+
+					<table border=0 style="padding:0px; margin:0px; width:100%">
+					<!--@foreach($document_list as $no => $document)-->
+					<!--@if(  !($document->isSecret() && ($module_info->secret_list=="hide_all" || (($module_info->secret_list=="hide") && ($document->getUserID()!=$logged_info->user_id)) )) || $grant->manager )-->
+					{@$member_grant=$document->getExtraEidValue('member_grantAA')}
+					{@$group_grant=$document->getExtraEidValue('group_grantAA')}
+					<!--@if( ((!$member_grant || ($member_grant &&  substr_count(",".$member_grant.",", ",".$logged_info->user_id.","))) && (!$group_grant || ($group_grant &&  substr_count(",".$group_grant.",", ",".$logged_info->group.",")))) || $grant->manager=="Y" || $grant->document_grant=="N")-->
+					{@ $count++}
+
+					<!--@if( $module_info->webzine_col<=1 || ($module_info->webzine_col>1 && $count % $module_info->webzine_col ==1))--><tr><!--@end-->
+
+						<td class="title <!--@if($module_info->webzine_col>1)-->box<!--@end-->" style=" width:{$webzine_width}%; vertical-align:top">
+
+							{@$link_url = $document->getExtraEidValue('link_url');}
+							<!--  moveon21 사이트의 마이그레이션에 따른 특이사항 대응하기 위해서 추가한 부분 (시작) -->
+							<!--@if( $mid=="editor" && $document->document_srl<= $editor_last)-->
+								{@
+									$args_link->search_target = 'extra_vars1';
+									$args_link->search_keyword = $link_url;
+									$oDocumentModel = &getModel('document');
+									$output_link = $oDocumentModel->getDocumentList($args_link, $noticeTF);
+								}
+								{@$link_url=''}
+								<!--@foreach($output_link->data as $no_link => $document_link)-->
+									<!--@if(!$link_url)-->{@$link_url = $document_link->document_srl}<!--@end-->
+								<!--@end-->
+							<!--@end-->
+							<!--  moveon21 사이트의 마이그레이션에 따른 특이사항 대응하기 위해서 추가한 부분 (끝) -->
+
+							
+							<!--@if (!strstr($link_url,'http://') && strstr($link_url,'.') )-->
+								{@$link_url_bk = 'http://'.$link_url;}
+							<!--@elseif (!strstr($link_url,'http://'))-->
+								{@$link_url_bk = $layout_info->index_url."/?document_srl=".$link_url;}
+							<!--@end-->
+
+							<!--@if($module_info->link_hit!="N" && $read_count == $document->document_srl && $read_counted[$document->document_srl]!="Y")-->
+								{@	
+									$oDocumentController = &getController('document');
+									$oDocumentController->updateReadedCount($document);	
+									$read_counted[$document->document_srl]="Y";
+								}
+								<!--@if (strstr($module_info->link_traget,'self_')!='')-->
+									<script>location.href="{getUrl('','mid',$mid,'category',$category,'page',$page,'document_srl','','listStyle',$listStyle)}"</script>  <!-- 이건 조회수 증가한 상태 보여줄려고 일부러 한번 더 리플래시 시킨 것임 -->
+								<!--@else-->
+									<script>location.href="{$link_url}"</script>  <!-- 이건 조회수 증가한 상태 보여줄려고 일부러 한번 더 리플래시 시킨 것임 -->
+								<!--@end-->
+							<!--@end-->
+
+
+
+							<!--@foreach($list_config as $key => $val)-->
+
+								<!--// 기본 컨텐츠일 경우 -->
+								<!--@if($val->idx == -1)-->
+
+									<!--@if($val->type == 'thumbnail')-->
+
+										<!-- sejin7940 - 썸네일 정보 추출 (시작) -->
+										{@$thumbnail=$thumbnail_temp=""}
+										<!--@if($document->hasUploadedFiles())-->
+											{@$uploaded_list = $document->getUploadedFiles() }
+											<!--@foreach($uploaded_list as $key => $file)-->
+												<!--@if(strstr(strtolower($file->uploaded_filename),"_thumb"))-->
+													{@$thumbnail = $file->uploaded_filename}
+												<!--@end-->
+												<!--@if( $module_info->thumbnail_link=='expand' && !$thumbmail_temp && (substr_count(strtolower($file->source_filename),'.jpg') || substr_count(strtolower($file->source_filename),'.gif') || substr_count(strtolower($file->source_filename),'.bmp') || substr_count(strtolower($file->source_filename),'.png')))-->
+													{@$thumbnail_temp = $file->uploaded_filename}
+												<!--@end-->
+											<!--@end-->
+											<!--@if(!$thumbnail)-->{@$thumbnail = $thumbnail_temp}<!--@end-->
+										<!--@end-->
+										<!--@if(!$thumbnail)-->
+											{@$thumbnail = $document->getThumbnail($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type)}
+										<!--@end-->
+										<!-- sejin7940 - 썸네일 정보 추출 (끝) -->
+
+
+										<!--@if($document->hasUploadedFiles() && $module_info->thumbnail_link=='expand' && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y"))-->
+											<!--BeforeDocument({$document_srl},{$document->get('member_srl')})-->
+											<div align="center" style="float:left; width:{$module_info->thumbnail_width+($module_info->thumbnail_padding+1)*2}px; margin-bottom:5px; padding-right:10px">
+												<!--@if($browser=="IE6")-->  <!-- 확대하기 섬네일이 IE6에서 안 나오는 버그 수정위해 중복출력 (이유는 모름 ㅡㅡ;)  -->
+													<div class="document_{$document_srl}_{$document->get('member_srl')} xe_content" style="border:0px solid red; display:none">
+														<img editor_component='image_link' src="{$thumbnail}"  width="{$module_info->thumbnail_width}" height="{$module_info->thumbnail_height}" />
+													</div>
+												<!--@end-->
+												<div class="document_{$document_srl}_{$document->get('member_srl')} xe_content" style="border:0px solid red">
+													<img editor_component='image_link' src="{$thumbnail}"  width="{$module_info->thumbnail_width}" height="{$module_info->thumbnail_height}" />
+												</div>
+											</div>
+											<!--AfterDocument({$document_srl},{$document->get('member_srl')})-->
+
+										<!--@else-->
+											<p>
+											<!--@if ($grant->manager!="Y" && $logged_info->user_id!=$document->get('user_id') && $module_info->use_link == "Y" && $link_url)-->
+
+												<a href="{getUrl('','read_count',$document->document_srl,'mid',$mid,'category',$category,'page',$page,'document_srl','','listStyle',$listStyle,'layout_srl',$layout_srl)}"  <!--@if (strstr($module_info->link_traget,'self_')!='')-->onclick="window.open('{$link_url}');"<!--@end-->  class="thumb" style="border:1px solid #ccc; padding:{$module_info->thumbnail_padding}px; width:{$module_info->thumbnail_width+($module_info->thumbnail_padding+1)*2}px; text-align:center;">
+
+											<!--@elseif($module_info->default_style=="slide" || ($module_info->list_link=="noview" && (!$document->get('member_srl') || $document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+											<!--@else-->
+												<a href="{getUrl('document_srl',$document->document_srl,'listStyle',$listStyle, 'cpage','')}" class="thumb" style="border:1px solid #ccc; padding:{$module_info->thumbnail_padding}px; width:{$module_info->thumbnail_width+($module_info->thumbnail_padding+1)*2}px; text-align:center;" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+											<!--@end-->
+											<!--@if($thumbnail)-->
+												<img src="{$thumbnail}" style="width:{$module_info->thumbnail_width}px; height:{$module_info->thumbnail_height}px; padding:{$module_info->thumbnail_padding}px;" class="iePngFix" />
+											<!--@elseif($module_info->thumbnail_noimage)-->
+												<img src="{$module_info->thumbnail_noimage}"  style="width:{$module_info->thumbnail_width}px; height:{$module_info->thumbnail_height}px; padding:{$module_info->thumbnail_padding}px;" class="iePngFix" >
+											<!--@else-->
+												<img src="./img/{$module_info->colorset}/noimage.gif"  style="width:{$module_info->thumbnail_width}px; height:{$module_info->thumbnail_height}px; padding:{$module_info->thumbnail_padding}px;" class="iePngFix" >
+											<!--@end-->
+												</a>
+
+											<!-- tscale 기능을 넣기 위해서 -->										
+											<!--@if($module_info->use_tscale=="Y")-->
+												{@$tscale1=$document->getExtraEidValue('tscale1')};
+												{@$tscale2=$document->getExtraEidValue('tscale2')};
+												{@$tscale3=$document->getExtraEidValue('tscale3')};
+												{@$tscale4=$document->getExtraEidValue('tscale4')};
+												{@$tscale5=$document->getExtraEidValue('tscale5')};
+												<p style="float:right; width:140px; border:1px solid blue; padding:0px;">
+													<iframe src="{$layout_info->index_url}{substr($tpl_path,1)}tscale.php?tscale_shape={$module_info->tscale_shape}&tscale1={$tscale1}&tscale2={$tscale2}&tscale3={$tscale3}&tscale4={$tscale4}&tscale5={$tscale5}" width="100%"  Scrolling='No' cellspacing=0 cellpadding=0 Frameborder='1'  onLoad="iframe_autoresize(this);" ></iframe>
+												</p>
+											<!--@end-->
+											</p>
+										{@$_meta_display = false}
+										<!--@end-->
+									<!--@end-->
+
+									<!--@if($val->type == 'title')-->
+										<!--@if($_meta_display)--></ul>{@$_meta_display = false}<!--@end-->
+										<p class="title" style="padding:2px 0px 6px 0px;">
+											<!--@if($list_config['no'])-->
+												<!--@if($document_srl == $document->document_srl)-->&raquo;<!--@elseif($module_info->notice_type=='same' && $loop==0)-->{$lang->notice}<!--@elseif($sortkey)-->{$total_count-($no+(($page-1)*$module_info->list_count))}.<!--@else-->{$no}.<!--@end-->
+											<!--@end-->
+										<!--@if($document->isSecret() && $module_info->secret_list=="delete" && $grant->manager!="Y" )-->
+											<span>{$lang->secret_delete}</span>
+										<!--@else-->
+											{@$subject_cut_size=$module_info->subject_cut_size}
+											<!--@if($module_info->icon_hot && $module_info->icon_hot<=$document->get('readed_count'))--><img src="./img/icons/hot.gif" class="iePngFix" />{@$subject_cut_size-=10}<!--@end-->
+											<!--@if($module_info->use_category == "Y" && $module_info->display_category=="Y" && $document->get('category_srl') )-->
+											<span class="category" <!--@if($module_info->category_cut_size< strlen($category_list[$document->get('category_srl')]->title) )-->title="{$category_list[$document->get('category_srl')]->title}"<!--@end--> <!--@if($category_list[$document->get('category_srl')]->color!="transparent")-->style="color:{$category_list[$document->get('category_srl')]->color};"<!--@end-->>[ {cut_str($category_list[$document->get('category_srl')]->title, $module_info->category_cut_size, '..')} ]</span>
+											<!--@end-->
+
+
+											<!--@if ($grant->manager!="Y" && $logged_info->user_id!=$document->get('user_id') && $module_info->use_link == "Y" && $link_url)-->
+												<a href="{getUrl('','read_count',$document->document_srl,'mid',$mid,'category',$category,'page',$page,'document_srl','','listStyle',$listStyle,'layout_srl',$layout_srl)}"  <!--@if (strstr($module_info->link_traget,'self_')!='')-->onclick="window.open('{$link_url}');"<!--@end--> style="cursor:pointer">
+
+											<!--@elseif($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+											<!--@else-->
+												<a <!--@if((!$document->isSecret() || $grant->manager=="Y") && $module_info->subject_mouseover=="subject" && ($subject_cut_size< strlen(strip_tags($document->getTitle())))  )-->title="{strip_tags($document->getTitle())}" <!--@elseif((!$document->isSecret() || $grant->manager=="Y") && $module_info->subject_mouseover=="content")-->title="{strip_tags($document->getContentText($module_info->content_cut_size))}"<!--@end--> href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+											<!--@end-->
+											<!--@if($document->isSecret() && $module_info->secret_list=="delete" && $grant->manager=="Y" )-->
+											<span>{$lang->secret_delete}</span>
+											<!--@else-->
+											<span class="webzine_title">{$document->getTitle($subject_cut_size)}</span>
+											<!--@end-->
+											</a>
+											<!--@if($module_info->display_new!="N")-->
+												{$document->printExtraImages(60*60*$module_info->duration_new)}
+											<!--@end-->
+											<!--@if($document->getCommentCount())-->
+												<!--@if($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+												<!--@else-->
+												<a href="{getUrl('document_srl', $document->document_srl)}#comment" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+												<!--@end-->
+												<span class="replyNum" title="Replies">[{$document->getCommentCount()}]</span></a>
+											<!--@end-->
+											<!--@if($document->getTrackbackCount())-->
+												<!--@if($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+												<!--@else-->
+												<a href="{getUrl('document_srl', $document->document_srl)}#trackback" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+												<!--@end-->
+												<span class="trackbackNum" title="Trackbacks">[{$document->getTrackbackCount()}]</span></a>
+											<!--@end-->
+										<!--@end-->
+										</p>
+									<!--@elseif($val->type == 'last_post' && $document->get('comment_count')>0)-->
+										<!--@if($_meta_display)--></ul>{@$_meta_display = false}<!--@end-->
+										<p class="title">
+											<!--@if($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+											<!--@else-->
+											<a href="{$document->getPermanentUrl()}#comment" class="replyAnchor" <!--@if($module_info->list_link=="popup")-->onclick="window.open(this.href+'&layout_srl={$popup_layout}','','menubar=no,toolbar=no,location=no,resizable=yes,status=no,scrollbars=yes,fullscreen=no,width={$module_info->popup_width}px,height={$module_info->popup_height}px,top=50px,left=50px');return false"<!--@end-->>
+											<!--@end-->
+											{zdate($document->get('last_update'),'Y-m-d')} {zdate($document->get('last_update'),'H:i')}</a>
+											<!--@if($document->get('last_updater'))-->
+												<sub class="by">by</sub>
+												{htmlspecialchars($document->get('last_updater'))}
+											<!--@end-->
+										</p>
+									<!--@elseif($val->type=='summary')-->
+										<!--@if($document->isSecret() && $module_info->secret_list=="delete" && $grant->manager!="Y" )-->
+											<p class="summary">{$lang->secret_delete}</p>
+										<!--@else-->
+											<!--@if($_meta_display)--></ul>{@$_meta_display = false}<!--@end-->
+											<p class="summary" <!--@if($module_info->use_tscale=="Y")-->style="margin-right:250px;"<!--@end-->>
+
+											<!--@if ($grant->manager!="Y" && $logged_info->user_id!=$document->get('user_id') && $module_info->use_link == "Y" && $link_url)-->
+												<a href="{getUrl('','read_count',$document->document_srl,'mid',$mid,'category',$category,'page',$page,'document_srl','','listStyle',$listStyle,'layout_srl',$layout_srl)}"  <!--@if (strstr($module_info->link_traget,'self_')!='')-->onclick="window.open('{$link_url}');"<!--@end--> style="cursor:pointer">
+
+											<!--@elseif($module_info->default_style=="slide" || ($module_info->list_link=="noview" && ($document->get('member_srl')!=$logged_info->member_srl || $grant->manager!="Y") ))-->
+											<!--@else-->
+												<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}" style="cursor:pointer">
+											<!--@end-->
+											<!--@if($module_info->summary_use_html=="Y")-->
+											{cut_str($document->getContent(false),$module_info->content_cut_size)}
+											<!--@else-->
+											{$document->getSummary($module_info->content_cut_size)}
+											<!--@end-->
+										</a></p>
+										<!--@end-->
+									<!--@elseif(in_array($val->type,array('regdate','last_update', 'nick_name','user_id','user_name','readed_count','voted_count')))-->
+										<!--@if(!$_meta_display)--><ul class="meta">{@$_meta_display = true}<!--@end-->
+										<!--@if($val->type == 'regdate')-->
+											<li class="author">{$document->getExtraEidValue('parent_name')}</li>
+											<li class="date">{$document->getRegdate('Y-m-d')}</li>
+										<!--@elseif($val->type == 'last_update')-->
+											<li class="date">{zdate($document->get('last_update'),'Y-m-d H:i')}</li>
+										<!--@elseif($val->type == 'nick_name')-->
+											<li class="author"><!--@if(!($sortkey=='regdate' && $grant->manager!="Y"))--><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false"><!--@end-->{$document->getNickName()}</a></li>
+										<!--@elseif($val->type == 'user_id')-->
+											<li class="author">{$document->getUserID()}</a></li>
+										<!--@elseif($val->type == 'user_name')-->
+											<li class="author"><!--@if(!($sortkey=='regdate' && $grant->manager!="Y"))--><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false"><!--@end-->{$document->getUserName()}</a></li>
+										<!--@elseif($val->type == 'readed_count')-->
+											<li class="reading">{$lang->readed_count} {$document->get('readed_count')>0?$document->get('readed_count'):'0'}</li>
+										<!--@elseif($val->type == 'voted_count')-->
+											<li class="recommend">{$lang->voted_count} {$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</li>
+										<!--@end-->
+									<!--@end-->
+								<!--@elseif( $module_info->grant_extra=="Y" && (((substr_count($val->eid,'_grantAA') || substr_count($val->eid,'_grantMA') || substr_count($val->eid,'_grantGA')) && !$grant->manager) || ((substr_count($val->eid,'_grantAM') || substr_count($val->eid,'_grantMM') || substr_count($val->eid,'_grantGM')) && !$logged_info)) )-->
+								<!--@else-->
+									<!--@if($_meta_display)--></ul>{@$_meta_display = false}<!--@end-->
+									<!--@if(!(!$grant->manager && strstr(strtolower($val->eid),"ordering") ))-->
+										<p class="title"><!--@if($module_info->display_extra_name!="N")--><span <!--@if($val->eid=='regdate' && $sortkey=='regdate' )-->class="date"<!--@else-->class="category"<!--@end-->>{$val->name}</span> <!--@end-->{$document->getExtraValueHTML($val->idx)}&nbsp;</p>
+									<!--@end-->
+								<!--@end-->
+							<!--@end-->
+							<!--@if($_meta_display)--></ul>{@$_meta_display = false}<!--@end-->
+						</td>
+						
+					<!--@if($grant->manager || $module_info->display_list_edit=="Y")-->
+						<td class="checkbox" style="width:20px; padding-left:0px; padding-right:0px;  vertical-align:top; text-align:left; <!--@if( $module_info->webzine_col>1 )-->border:0px<!--@end-->" ><!--@if($grant->manager)--><input type="checkbox" name="cart" value="{$document->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" <!--@if($document->isCarted())-->checked="checked"<!--@end--> /><!--@end-->
+						<!--@if($module_info->display_list_edit=="Y" && $grant->manager)--><br><!--@end-->
+						<!--@if($module_info->display_list_edit=="Y")-->
+							<!--@if($document->isEditable() || $grant->manager)-->
+								<a href="{getUrl('act','dispBoardWrite','document_srl',$document->document_srl,'comment_srl','')}" class="button {$btn_class}">
+									<span>{$lang->cmd_modify}</span>
+								</a><br>
+								<a href="{getUrl('act','dispBoardDelete','document_srl',$document->document_srl,'comment_srl','')}" class="button {$btn_class}">
+									<span>{$lang->cmd_delete}</span>
+								</a>
+							<!--@endif-->
+						<!--@end-->
+						</td>
+					<!--@end-->
+
+					<!--@if($module_info->webzine_col<=1 || ( $module_info->webzine_col>1 && $count % $module_info->webzine_col ==0 ))-->
+						</tr>
+						<!--@if( $module_info->webzine_col>1 )--><tr><td colspan="{$module_info->webzine_col*2}" style="padding:0px; margin:0px; border:0px solid red; height:10px; ">&nbsp;</td></tr><!--@end-->
+					<!--@end-->
+
+				<!--@end-->
+				<!--@end-->
+				<!--@end-->
+				</table></td></tr>
+<!--@end-->
+			<!--@end-->
+			</tbody>
+        </table>
+		
+    </fieldset>
+</form>

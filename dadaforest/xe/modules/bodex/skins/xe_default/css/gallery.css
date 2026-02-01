@@ -1,0 +1,21 @@
+@charset "utf-8";
+.bodexList th {text-align:right}
+.bodexList th.checkbox {width:20px}
+
+ /* bodexList gallery */
+
+.bodexList .exSkinThumbnailBox{ border:0; *zoom:1; margin:0; margin-right:-30px; padding:0;}
+.bodexList .exSkinThumbnailBox:after{ content:""; display:block; clear:both;}
+.bodexList .exSkinThumbnailBox li{ position:relative; margin:17px; padding:0; list-style:none; float:left; display:inline;}
+
+.bodexList .exSkinThumbnailBox li .exSkinThumb { position:relative; float:left; clear:both; overflow:hidden; padding:8px; border:1px solid;}
+.bodexList .exSkinThumbnailBox li .exSkinThumb img{ display:block;border:1px solid;}
+.bodexList .exSkinThumbnailBox li .exSkinThumb a { display:block; position:relative; *zoom:1; text-decoration:none !important;}
+.bodexList .exSkinThumbnailBox li .exSkinThumb a *{ cursor:pointer;}
+
+.bodexList .exSkinThumbnailBox li .checkbox{ position:absolute; left:0; top:0; z-index:999;}
+
+.bodexList .exSkinThumbnailBox li .info{ position:absolute; left:0; bottom:0; width:100%; overflow:hidden; padding:0; white-space:nowrap; }
+.bodexList .exSkinThumbnailBox li .info p {font-weight:normal; font-size:.9em; line-height:.8em; line-height:.7em\9; margin:7px; text-align:left}
+.bodexList .exSkinThumbnailBox li .info p.title {font-weight:bold;font-size:1em}
+.bodexList .exSkinThumbnailBox li .info p.title span {font-weight:normal}

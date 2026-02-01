@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">문하우스 게시판 스킨</title>
+    <title xml:lang="jp">MoonHouseXE掲示板のデフォルトスキン</title>
+    <title xml:lang="en">MoonHouse Board Skin</title>
+    <description xml:lang="ko">
+        제로보드XE 문하우스 게시판 스킨 V3.0입니다.
+        문하우스 / 팔공산
+    </description>
+    <description xml:lang="jp">
+        ゼロボードXE MoonHouse掲示板スキン V3.0です
+         MoonHouse / 80san
+    </description>
+    <description xml:lang="en">
+        This is the basic board skin of XE.
+        Design : Ki-Jeong Seo (http://blog.naver.com/addcozy)
+        HTML/CSS : Chan-Myung Jeong (http://naradesign.net)
+    </description>
+    <license xml:lang="ko">XE 코어와 동일 (LGPL v2)</license>
+	<license xml:lang="jp">XE コアと同一 (LGPL v2)</license>
+	<license xml:lang="en">XE Core (LGPL v2)</license>
+    <version>3.0</version>
+    <date>2010-08-01</date>
+
+    <author email_address="mbg1346@hotmail.com" link="http://moonhouse.co.kr">
+        <name xml:lang="ko">80san</name>
+        <name xml:lang="jp">80san</name>
+        <name xml:lang="en">80san</name>
+    </author>
+
+    <colorset>
+        <color name="white" src="screenshot/white.gif">
+            <title xml:lang="ko">은색(기본)</title>
+            <title xml:lang="jp">白（デフォルト）</title>
+            <title xml:lang="en">White (default)</title>
+        </color>
+        <color name="cyan" src="screenshot/cyan.gif">
+            <title xml:lang="ko">하늘색</title>
+            <title xml:lang="jp">青緑</title>
+            <title xml:lang="en">Cyan</title>
+        </color>
+        <color name="green" src="screenshot/green.gif">
+            <title xml:lang="ko">초록색</title>
+            <title xml:lang="jp">緑</title>
+            <title xml:lang="en">Green</title>
+        </color>
+        <color name="red" src="screenshot/red.gif">
+            <title xml:lang="ko">빨간색</title>
+            <title xml:lang="jp">赤</title>
+            <title xml:lang="en">Red</title>
+        </color>
+        <color name="orange" src="screenshot/orange.gif">
+            <title xml:lang="ko">연분홍색</title>
+            <title xml:lang="jp">桜色</title>
+            <title xml:lang="en">orange</title>
+        </color>
+        <color name="black" src="screenshot/black.gif">
+            <title xml:lang="ko">검정색</title>
+            <title xml:lang="jp">黒い色</title>
+            <title xml:lang="en">black</title>
+        </color>
+    </colorset>
+
+    <extra_vars>
+      <group>
+        <title xml:lang="ko">세부 정보</title>
+        <title xml:lang="jp">細部情報</title>
+        <title xml:lang="en">details info</title>
+
+        <var name="default_style" type="select">
+            <title xml:lang="ko">기본 형태</title>
+            <title xml:lang="jp">デフォルトスタイル</title>
+            <title xml:lang="en">Default Form</title>
+            <description xml:lang="ko">
+                목록형, 웹진형, 갤러리형, 포럼형의 기본 스타일을 지정할 수 있습니다.
+                포럼형 스타일은 정렬대상을 updated로 하셔야 합니다.
+            </description>
+             <description xml:lang="jp">
+                リスト型、ウェブジン型、ギャラリー型、フォーラム型の基本スタイルを指定することが出来ます。
+                フォーラム型のスタイルはソート対象を「updated」にしなければなりません。
+            </description>
+            <description xml:lang="en">
+                You may select default styles such as list style, webzine style, gallery stylz or forum style.
+                Align Target for forum style is required to be selected as 'updated'.
+            </description>
+            <options value="list">
+                <title xml:lang="ko">목록</title>
+                <title xml:lang="en">list</title>
+                <title xml:lang="jp">リスト型</title>
+            </options>
+            <options value="webzine">
+                <title xml:lang="ko">웹진</title>
+                <title xml:lang="en">webzine</title>
+                <title xml:lang="jp">ウェブジン(webzine)型</title>
+            </options>
+            <options value="gallery">
+                <title xml:lang="ko">갤러리</title>
+                <title xml:lang="en">gallery</title>
+                <title xml:lang="jp">ギャラリー型</title>
+            </options>
+            <options value="bookmark">
+                <title xml:lang="ko">북마크</title>
+                <title xml:lang="en">bookmark</title>
+                <title xml:lang="jp">ブックマーク</title>
+            </options>
+            <options value="studio">
+                <title xml:lang="ko">스튜디오</title>
+                <title xml:lang="en">studio</title>
+                <title xml:lang="jp">写真館</title>
+            </options>
+            <options value="forum">
+                <title xml:lang="ko">포럼</title>
+                <title xml:lang="en">forum</title>
+                <title xml:lang="jp">フォラム型</title>
+            </options>
+            <options value="blog">
+                <title xml:lang="ko">블로그</title>
+                <title xml:lang="en">blog</title>
+                <title xml:lang="jp">ブログ型</title>
+            </options>
+        </var>
+        <var name="board_info" type="select">
+            <title xml:lang="ko">게시판상단 정보 출력</title>
+			<title xml:lang="en">Top Info of Board</title>
+			<title xml:lang="jp">掲示板上端情報出力</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="jp">非表示</title>
+            </options>
+            <description xml:lang="ko">게시판상단의 글수/로그인/설정표시의 출력유무
+			단 관리자는 항상 보입니다.</description>
+			<description xml:lang="jp">掲示板上端の文書数/ログイン/設定表示の出力有無
+			ただし管理者は常に見えます.</description>
+        </var>
+        <var name="display_login_info" type="select">
+            <title xml:lang="ko">　┖ 로그인 정보 출력</title>
+            <title xml:lang="jp">ログイン情報表示</title>
+            <title xml:lang="en">Display Login Info</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_setup_button" type="select">
+            <title xml:lang="ko">　┖ 설정 표시</title>
+            <title xml:lang="jp">設定表示</title>
+            <title xml:lang="en">Display Setup</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="title" type="text">
+            <title xml:lang="ko">게시판 제목</title>
+            <title xml:lang="jp">掲示板タイトル</title>
+            <title xml:lang="en">Title of Board</title>
+            <description xml:lang="ko">게시판의 제목을 적어주세요.</description>
+            <description xml:lang="jp">掲示板タイトルを入力して下さい。</description>
+            <description xml:lang="en">Plase input the title of board.</description>
+        </var>
+        <var name="sub_title" type="text">
+            <title xml:lang="ko">게시판 부제목</title>
+            <title xml:lang="jp">掲示板サブタイトル</title>
+            <title xml:lang="en">Subtitle of Board</title>
+            <description xml:lang="ko">게시판 제목 옆에 나타날 부제목을 적어주세요.</description>
+            <description xml:lang="jp">掲示板タイトルの隣りに表示されるサブタイトルを入力して下さい。</description>
+            <description xml:lang="en">Please input the subtitle of board which will be displayed beside of board title.</description>
+        </var>
+        <var name="title_color" type="text" default="white">
+            <title xml:lang="ko">　┖ 게시판 제목/부제목 색상</title>
+            <title xml:lang="en">Title/SubTitle of Board</title>
+            <title xml:lang="jp">掲示板サブタイトル カラー</title>
+            <description xml:lang="ko">게시판의 제목과 부제목의 색상를 적어주세요.(기본색상 금색 #a98a60)</description>
+            <description xml:lang="en">Title/SubTitle of Board Color(Default Gold #a98a60)</description>
+            <description xml:lang="jp">掲示板サブタイトル カラー(Default Gold #a98a60)</description>
+        </var>
+        <var name="comment" type="textarea">
+            <title xml:lang="ko">게시판 상세 설명</title>
+            <title xml:lang="jp">掲示板の詳細</title>
+            <title xml:lang="en">Description of Board</title>
+            <description xml:lang="ko">게시판 제목 아래 표시될 설명을 입력하실 수 있습니다.</description>
+            <description xml:lang="jp">掲示板タイトルの下に表示される説明文を入力して下さい。</description>
+            <description xml:lang="en">You may input description which will be displayed under the board title.</description>
+        </var>
+        <var name="comment_color" type="text" default="white">
+            <title xml:lang="ko">　┖ 게시판 상세 설명 색상</title>
+            <title xml:lang="en">Description of Board Color</title>
+            <title xml:lang="jp">掲示板の詳細 カラー</title>
+            <description xml:lang="ko">게시판의 상세 설명의 색상적어주세요.(기본색상 금색 #a98a60)</description>
+            <description xml:lang="en">Description of Board Color.(Default Gold #a98a60)</description>
+            <description xml:lang="jp">掲示板の詳細 カラー(Default Gold #a98a60)</description>
+        </var>
+        <var name="subject_cut_size" type="text">
+            <title xml:lang="ko">제목 글자수</title>
+            <title xml:lang="jp">タイトルの文字数</title>
+            <title xml:lang="en">Length of Subject</title>
+            <description xml:lang="ko">제목 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+            <description xml:lang="jp">タイトルの文字数を設定します（「0」または空欄の場合は、文字数を制限しません）。</description>
+            <description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+        </var>
+        <var name="content_cut_size" type="text">
+            <title xml:lang="ko">내용 글자수</title>
+            <title xml:lang="jp">内容の文字数</title>
+            <title xml:lang="en">Length of Content</title>
+            <description xml:lang="ko">내용 글자수를 지정할 수 있습니다. (기본 240)</description>
+            <description xml:lang="jp">内容の文字数を指定します(デフォルト 240)。</description>
+            <description xml:lang="en">Length of Content can be assigned. (default 240)</description>
+        </var>
+        <var name="header_title_format" type="select">
+            <title xml:lang="ko">게시판 제목 형식</title>
+            <title xml:lang="jp">掲示板タイトルフォーマット</title>
+            <title xml:lang="en">Header_title_format</title>
+            <options value="h3">
+                <title xml:lang="ko">H3</title>
+                <title xml:lang="en">H3</title>
+                <title xml:lang="jp">H3</title>
+            </options>
+			<options value="h1">
+                <title xml:lang="ko">H1</title>
+                <title xml:lang="en">H1</title>
+                <title xml:lang="jp">H1</title>
+            </options>
+            <options value="h2">
+                <title xml:lang="ko">H2</title>
+                <title xml:lang="en">H2</title>
+                <title xml:lang="jp">H2</title>
+            </options>
+            <options value="h4">
+                <title xml:lang="ko">H4</title>
+                <title xml:lang="en">H4</title>
+                <title xml:lang="jp">H4</title>
+            </options>
+            <options value="h5">
+                <title xml:lang="ko">H5</title>
+                <title xml:lang="en">H5</title>
+                <title xml:lang="jp">H5</title>
+            </options>
+            <options value="h6">
+                <title xml:lang="ko">H6</title>
+                <title xml:lang="en">H6</title>
+                <title xml:lang="jp">H6</title>
+            </options>
+            <description />
+        </var>
+        <var name="document_title_format" type="select">
+            <title xml:lang="ko">글 제목 형식</title>
+            <title xml:lang="jp">書き込みタイトルフォーマット</title>
+            <title xml:lang="en">Document_title_format</title>
+            <options value="h4">
+                <title xml:lang="ko">H4</title>
+                <title xml:lang="en">H4</title>
+                <title xml:lang="jp">H4</title>
+            </options>
+			<options value="h1">
+                <title xml:lang="ko">H1</title>
+                <title xml:lang="en">H1</title>
+                <title xml:lang="jp">H1</title>
+            </options>
+            <options value="h2">
+                <title xml:lang="ko">H2</title>
+                <title xml:lang="en">H2</title>
+                <title xml:lang="jp">H2</title>
+            </options>
+            <options value="h3">
+                <title xml:lang="ko">H3</title>
+                <title xml:lang="en">H3</title>
+                <title xml:lang="jp">H3</title>
+            </options>
+            <options value="h5">
+                <title xml:lang="ko">H5</title>
+                <title xml:lang="en">H5</title>
+                <title xml:lang="jp">H5</title>
+            </options>
+            <options value="h6">
+                <title xml:lang="ko">H6</title>
+                <title xml:lang="en">H6</title>
+                <title xml:lang="jp">H6</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_number" type="select">
+            <title xml:lang="ko">번호 표시</title>
+            <title xml:lang="jp">番号表示</title>
+            <title xml:lang="en">Dispay Number</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_author" type="select">
+            <title xml:lang="ko">글쓴이 표시</title>
+            <title xml:lang="jp">投稿者表示</title>
+            <title xml:lang="en">Display Author</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_regdate" type="select">
+            <title xml:lang="ko">작성일 표시</title>
+            <title xml:lang="jp">作成日表示</title>
+            <title xml:lang="en">Display Registered Date</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_readed_count" type="select">
+            <title xml:lang="ko">조회수 표시</title>
+            <title xml:lang="jp">閲覧数表示</title>
+            <title xml:lang="en">Display Hit</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_voted_count" type="select">
+            <title xml:lang="ko">추천수 표시</title>
+            <title xml:lang="jp">推薦数表示</title>
+            <title xml:lang="en">Display Votes</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_ip_address" type="select">
+            <title xml:lang="ko">아이피주소 표시</title>
+            <title xml:lang="en">Display ip address</title>
+            <title xml:lang="jp">IPアドレス表示</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+        </var>
+        <var name="display_last_update" type="select">
+            <title xml:lang="ko">최근 변경시간 표시</title>
+            <title xml:lang="jp">最近の変更時間表示</title>
+            <title xml:lang="en">Display Latest Update</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+            <description />
+        </var>
+        <var name="display_sign" type="select">
+            <title xml:lang="ko">서명 표시</title>
+            <title xml:lang="jp">署名表示</title>
+            <title xml:lang="en">Display_sign</title>
+            <description xml:lang="ko">글내용 사용자의 서명과 프로필 이미지를 표시하거나 숨길 수 있습니다.</description>
+            <description xml:lang="jp">本文内で会員の署名とプロフィルイメージの表示を設定します。</description>
+              <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+        </var>
+        <var name="duration_new" type="text" default="24">
+            <title xml:lang="ko">new표시 시간 (hours)</title>
+            <title xml:lang="jp">Newの表示時間 (Hours)</title>
+            <title xml:lang="en">Duration of indication for new item</title>
+            <description xml:lang="ko">새로 등록된 게시물의 new 표시시간을 정할 수 있습니다. </description>
+            <description xml:lang="jp">新しく登録された書き込みに対して「New」の表示時間を設定します。 </description>
+            <description xml:lang="en">You may set the duration of indication for fresh item. </description>
+        </var>
+        <var name="thumbnail_type" type="select">
+            <title xml:lang="ko">썸네일 생성 방법</title>
+            <title xml:lang="jp">サムネール生成方法</title>
+            <title xml:lang="en">Type of Thumbnail</title>
+            <description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+            <description xml:lang="jp">サムネールの生成方法を選択します。</description>
+            <description xml:lang="en">Choose the type to create the thumnail.</description>
+            <options value="crop">
+                <title xml:lang="ko">꽉 채우기</title>
+                <title xml:lang="jp">刈り込み</title>
+                <title xml:lang="en">crop</title>
+            </options>
+            <options value="ratio">
+                <title xml:lang="ko">비율 맞추기</title>
+                <title xml:lang="jp">比率</title>
+                <title xml:lang="en">ratio</title>
+            </options>
+        </var>
+        <var name="thumbnail_width" type="text" default="100">
+            <title xml:lang="ko">썸네일 가로크기</title>
+            <title xml:lang="jp">サムネールの横サイズ</title>
+            <title xml:lang="en">Width of Thumbnail</title>
+            <description xml:lang="ko">썸네일의 가로 크기를 지정할 수 있습니다. (기본 100px)</description>
+            <description xml:lang="jp">サムネールの横サイズを指定します(デフォルト 100px)。</description>
+            <description xml:lang="en">Set the width of thumbnail. Default is 100px.</description>
+        </var>
+        <var name="thumbnail_height" type="text" default="100">
+            <title xml:lang="ko">썸네일 세로크기</title>
+            <title xml:lang="jp">サムネールの縦サイズ</title>
+            <title xml:lang="en">Height of Thumbnail</title>
+            <description xml:lang="ko">썸네일의 세로 크기를 지정할 수 있습니다. (기본 100px)</description>
+            <description xml:lang="jp">サムネールの縦サイズを指定します(デフォルト 100px)。</description>
+            <description xml:lang="en">Set the height of thumbnail. Default is 100px.</description>
+        </var>
+      </group>
+
+      <group>
+        <title xml:lang="ko">MH 추가 정보</title>
+        <title xml:lang="jp">MH 追加情報</title>
+        <title xml:lang="en">MH more info</title>
+        
+		<var name="box_category" type="select">
+            <title xml:lang="ko">카테고리 출력</title>
+			<title xml:lang="jp">リスト分類表示</title>
+            <title xml:lang="en">Display Checkbox</title>
+            <options value="B">
+                <title xml:lang="ko">상단박스</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="L">
+                <title xml:lang="ko">기본출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>            
+            <description xml:lang="ko">
+              게시판상단에 카테고리 출력유무를 선택합니다.
+            </description>
+            <description xml:lang="en">
+              Display of Category
+            </description>
+			<description xml:lang="jp">
+              リスト内容の前に分類の表示の有無を選択します.
+            </description>
+        </var>
+		<var name="display_category" type="select">
+            <title xml:lang="ko">제목글앞 카테고리 출력</title>
+			<title xml:lang="jp">リスト分類表示</title>
+            <title xml:lang="en">Display Checkbox</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>            
+            <description xml:lang="ko">
+              리스트제목글 앞에 카테고리의 출력유무를 선택합니다.
+            </description>
+            <description xml:lang="en">
+              Display of Category
+            </description>
+			<description xml:lang="jp">
+              リスト内容の前に分類の表示の有無を選択します.
+            </description>
+        </var>
+        <var name="list_replyContent" type="select">
+            <title xml:lang="ko">리스트 댓글 출력</title>
+            <title xml:lang="en">list_reply</title>
+            <title xml:lang="jp">リストコメント表示</title>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">リストコメント表示</title>
+            </options>            
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">リストコメント非表示</title>
+            </options>
+           <description xml:lang="ko">
+             리스트내용글 아래에 댓글의 출력유무를 선택합니다.
+           </description>
+		   <description xml:lang="jp">
+             リスト内容の下にコメントの表示有無を選択します.
+           </description>
+        </var>
+		<var name="display_comment_box" type="select" default="Y">
+			<title xml:lang="ko">댓글박스 접기</title>
+			<title xml:lang="en">Fold of Comment box</title>
+			<title xml:lang="jp">コメントボックス表示</title>
+			<options value="Y">
+				<title xml:lang="ko">펴기</title>
+				<title xml:lang="en">unfold</title>
+				<title xml:lang="jp">表示</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">접기</title>
+				<title xml:lang="en">fold</title>
+				<title xml:lang="jp">非表示</title>
+			</options>
+			<description xml:lang="ko">댓글 및 댓글에디터 펼칠지 접을지 지정할 수 있습니다.</description>
+			<description xml:lang="jp">コメント及びコメントエディタ-を表示、非表示を指定することができます.</description>
+		</var>
+		<var name="display_commentvote" type="select">
+            <title xml:lang="ko">댓글등록시 자동추천/비추천 버턴</title>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+            </options>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+            </options>
+			<description xml:lang="ko">댓글등록시 자동으로 추천/비추천을 선택할 수 있는 버턴 출력</description>
+        </var>
+        <var name="tag_view" type="select">
+            <title xml:lang="ko">태그입력부분출력</title>
+			<title xml:lang="en">Tag View</title>
+			<title xml:lang="jp">タグ入力部分出力</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="jp">非表示</title>
+            </options>
+           <description xml:lang="ko">
+             태그입력부분의 출력을 선택합니다.
+            </description>
+			<description xml:lang="jp">
+             タグ入力部分の出力を選択します.
+            </description>
+        </var>
+        <var name="display_file_view" type="select">
+            <title xml:lang="ko">파일 출력유무</title>
+            <title xml:lang="jp">ファイル出力有無</title>
+            <title xml:lang="en">File Display</title>
+            <options value="Y">
+                <title xml:lang="ko">전부출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <options value="N">
+                <title xml:lang="ko">이미지파일 출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+           <description xml:lang="ko">
+             본문글 아래에 이미지파일정보의 출력유무를 선택합니다.
+            </description>
+			<description xml:lang="jp">
+             本文の下にイメージファイル情報の出力有無を選択します.
+            </description>
+        </var>
+        <var name="auto_img_insert" type="select">
+            <title xml:lang="ko">본문 자동 이미지삽입</title>
+            <title xml:lang="jp">本文自動イメージ挿入</title>
+            <title xml:lang="en">auto_img_insert</title>
+            <options value="N">
+                <title xml:lang="ko">No</title>
+				<title xml:lang="jp">非挿入</title>
+                <title xml:lang="en">not display</title>
+            </options>            
+            <options value="Y">
+                <title xml:lang="ko">Yes</title>
+				<title xml:lang="jp">挿入</title>
+                <title xml:lang="en">display</title>
+            </options>
+           <description xml:lang="ko">
+             첨부파일이 이미지 파일이면 자동으로 본문에 삽입합니다. 
+			 기존게시판의 경우 기존문서에도 자동으로 적용됩니다. 
+           </description>
+		   <description xml:lang="jp">
+             添付ファイルがイメージファイルなら自動で本文に挿入します. 
+			 既存掲示板の場合既存文書にも自動で適用されます. 
+           </description>
+        </var>
+        <var name="check_notify" type="select">
+            <title xml:lang="ko">알림 체크</title>
+            <title xml:lang="en">Check Notifications</title>
+            <title xml:lang="jp">通知のチェック</title>
+            <description xml:lang="ko">알림 체크박스에 체크를 기본으로 둡니다.</description>
+            <description xml:lang="en">Check Notifications</description>
+            <description xml:lang="en">通知のチェック</description>
+			<options value="N">
+                <title xml:lang="ko">체크하지 않음</title>
+                <title xml:lang="en">not check</title>
+                <title xml:lang="jp">非点検</title>
+            </options>
+			<options value="Y">
+                <title xml:lang="ko">체크</title>
+                <title xml:lang="en">check</title>
+                <title xml:lang="jp">点検</title>
+            </options>
+        </var>
+        <var name="secret_document" type="select">
+            <title xml:lang="ko">비밀글 작성</title>
+            <title xml:lang="jp">秘密文書作成</title>
+            <title xml:lang="en">secret_document</title>
+            <options value="N">
+                <title xml:lang="ko">No</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>            
+            <options value="Y">
+                <title xml:lang="ko">Yes</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+           <description xml:lang="ko">
+             모든글을 자동으로 비밀글로 설정합니다.
+           </description>
+		   <description xml:lang="jp">
+             文書を自動で秘密文書に設定します.
+           </description>
+        </var>
+        <var name="next_prev" type="select">
+            <title xml:lang="ko">이전/다음 버튼 출력</title>
+			<title xml:lang="en">next_prev</title>
+			<title xml:lang="jp">以前/次ボタン出力</title>
+			<options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="jp">非表示</title>
+            </options>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+            </options>
+           <description xml:lang="ko">
+		     게시판문서의 이전글과 다음글 버턴을 표시합니다.
+		   </description>
+		</var>
+        <var name="next_prev_cut_size" type="text">
+            <title xml:lang="ko">　┖ 다음글/이전글 글자수</title>
+            <title xml:lang="jp">タイトルの文字数</title>
+            <title xml:lang="en">Length of Subject</title>
+            <description xml:lang="ko">다음글/이전글 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+            <description xml:lang="jp">タイトルの文字数を設定します（「0」または空欄の場合は、文字数を制限しません）。</description>
+            <description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+        </var>
+        <var name="write_buten" type="text">
+            <title xml:lang="ko">쓰기버턴이름교체</title>
+           <description xml:lang="ko">
+             게시판 쓰기버턴의 이름을 원하는 문구로 대치합니다.
+           </description>
+        </var>        
+		<var name="info" type="select">
+            <title xml:lang="ko">상단정보</title>
+			<title xml:lang="en">Top Information</title>
+			<title xml:lang="jp">上端情報</title>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="jp">非表示</title>
+             </options>
+           <description xml:lang="ko">
+             내용글위에 목록/수정/삭제/쓰기 출력유무를 선택합니다.
+           </description>
+		   <description xml:lang="jp">
+             内容文書の上にリスト/修正/削除/書く出力有無を選択します.
+           </description>
+        </var>
+        <var name="sub_Location" type="select">
+            <title xml:lang="ko">현재위치정보</title>
+			<title xml:lang="en">Current location</title>
+			<title xml:lang="jp">現在位置情報</title>
+			<options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="jp">非表示</title>
+             </options>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+            </options>
+           <description xml:lang="ko">
+             현재위치정보의 출력유무를 선택합니다.
+           </description>
+		   <description xml:lang="jp">
+             現在位置情報の出力有無を選択します.
+           </description>
+        </var>
+        <var name="subLocation_color" type="text" default="white">
+            <title xml:lang="ko">　┖ 현재위치정보 색상</title>
+			<title xml:lang="en">　┖ Current location_color</title>
+			<title xml:lang="jp">　┖ 現在位置情報色</title>
+            <description xml:lang="ko">현재위치정보의 색상를 적어주세요.(기본색상 금색 #a98a60)</description>
+			<description xml:lang="en">subLocation_color(Default Gold #a98a60)</description>
+			<description xml:lang="jp">現在位置情報の色を書いてください.(基本色、金色 #a98a60)</description>
+        </var>
+      </group>
+
+      <group>
+        <title xml:lang="ko">본문정보</title>
+		<title xml:lang="en">Textual information</title>
+		<title xml:lang="jp">本文情報</title>
+
+        <var name="display_content_writer" type="select">
+            <title xml:lang="ko">본문작성(Edit)기 출력</title>
+			<title xml:lang="en">Edit Display</title>
+			<title xml:lang="jp">本文作成(Edit)機出力</title>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not diaplay</title>
+				<title xml:lang="jp">非表示</title>
+             </options>
+           <description xml:lang="ko">본문작성(Edit)기의 출력여부를 선택합니다.
+		   출력하지 않을시 문서의 내용이 없이도 글이 작성됩니다.
+		   </description>
+		   <description xml:lang="jp">本文作成(Edit)機の出力可否を選択します.</description>
+		</var>
+		<var name="title_default_text" type="text">
+			<title xml:lang="ko">제목의 기본 내용</title>
+			<title xml:lang="en">Title of the basic information</title>
+			<title xml:lang="jp">題目の基本内容</title>
+			<description xml:lang="ko">문서 작성시 제목에 기본값을 입력할 수 있습니다.</description>
+			<description xml:lang="jp">文書作成の時題目に基本値を入力することができます.</description>
+		</var>
+		<var name="document_default_text" type="textarea">
+			<title xml:lang="ko">문서의 기본 내용</title>
+			<title xml:lang="en">The main contents page</title>
+			<title xml:lang="jp">文書の基本内容</title>
+			<description xml:lang="ko">문서 작성시 내용에 기본값을 입력할 수 있습니다.</description>
+			<description xml:lang="jp">文書作成の時内容に基本値を入力することができます.</description>
+		</var>
+		<var name="document_top_text" type="textarea">
+			<title xml:lang="ko">본문 상단 내용</title>
+			<title xml:lang="en">Top text of Document</title>
+			<title xml:lang="jp">本文上端内容</title>
+		</var>
+		<var name="document_bottom_text" type="textarea">
+			<title xml:lang="ko">본문 하단 내용</title>
+			<title xml:lang="en">Top bottom of Document</title>
+			<title xml:lang="jp">本文下端内容</title>
+			<description xml:lang="ko">본문 상, 하단에 표시되는 내용입니다. 
+			(광고, 위젯코드, 텍스트등... HTML 태그 사용 가능)</description>
+			<description xml:lang="jp">本文上,下端に表示される内容です. 
+			(広告,ウィゼッコド,テキスト等... HTML タグ使用可能)</description>
+		</var>
+      </group>
+
+	  <group>
+        <title xml:lang="ko">갤러리게시판 선택시</title>
+		<title xml:lang="en">Gallery Board</title>
+		<title xml:lang="jp">ギャラリースキン選択の時</title>
+
+        <var name="display_title" type="select">
+            <title xml:lang="ko">제목 표시</title>
+			<title xml:lang="jp">題目表示</title>
+            <title xml:lang="en">Display Title</title>
+            <options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+			<options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+           <description xml:lang="ko">
+             갤러리스킨 선택시 제목의 출력유무를 선택합니다.
+           </description>
+		   <description xml:lang="jp">
+             ギャラリースキン選択の時題目の出力有無を選択します.
+           </description>
+        </var>
+        <var name="list_shuffle" type="select">
+            <title xml:lang="ko">이미지 목록 섞기</title>
+			<title xml:lang="en">list_shuffle</title>
+			<title xml:lang="jp">イメージリスト交ぜる</title>
+            <options value="N">
+                <title xml:lang="ko">섞지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">交ぜない</title>
+            </options>            
+            <options value="Y">
+                <title xml:lang="ko">섞기</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">交ぜる</title>
+            </options>
+           <description xml:lang="ko">
+             갤러리스킨 선택시 이미지목록을 랜덤하게 설정합니다.
+           </description>
+		   <description xml:lang="jp">
+             ギャラリースキン選択の時イメージリストをランダムに設定します.
+           </description>
+        </var>
+      </group>
+	  
+	  <group>
+        <title xml:lang="ko">북마크/스튜디오게시판 프리뷰 출력</title>
+        <title xml:lang="en">Preview</title>
+        <title xml:lang="jp">プレビュー 出力</title>
+
+		<var name="preview_thumb" type="select">
+            <title xml:lang="ko">프리뷰 이미지 사이즈 조절기능</title>
+            <title xml:lang="en">preview_thumb</title>
+            <title xml:lang="jp">プレビュー_親指</title>
+			<description xml:lang="ko">프리뷰 출력시 이미지 사이즈를 조정할 수 있습니다.</description>
+            <description xml:lang="en">preview_thumb_size.</description>
+            <description xml:lang="jp">プレビュー_親指_寸法.</description>
+            <options value="N">
+                <title xml:lang="ko">원래 이미지크기</title>
+                <title xml:lang="en">Not Use</title>
+                <title xml:lang="jp">を無効にする</title>
+            </options>
+            <options value="Y">
+                <title xml:lang="ko">설정 이미지크기</title>
+                <title xml:lang="en">Use</title>
+                <title xml:lang="jp">使用</title>
+            </options>
+        </var>
+		<var name="preview_width" type="text">
+            <title xml:lang="ko">　┖ 프리뷰이미지 가로폭</title>
+            <title xml:lang="en">preview_thum_width</title>
+            <title xml:lang="jp">プレビュー_横幅</title>
+			<description xml:lang="ko">프리뷰이미지의 가로폭을 설정합니다.</description>
+            <description xml:lang="en">preview_thum_width</description>
+            <description xml:lang="jp">プレビュー_横幅.</description>
+        </var>
+		<var name="preview_height" type="text">
+            <title xml:lang="ko">　┖ 프리뷰이미지 세로폭</title>
+            <title xml:lang="en">preview_thum_height</title>
+            <title xml:lang="jp">プレビュー_セロポク</title>
+			<description xml:lang="ko">프리뷰이미지의 세로폭을 설정합니다.</description>
+            <description xml:lang="en">preview_thum_height</description>
+            <description xml:lang="jp">プレビュー_セロポク.</description>
+        </var>
+        <var name="display_Permalink" type="select">
+            <title xml:lang="ko">★바로가기 표시</title>
+            <title xml:lang="jp">リンク表示</title>
+            <title xml:lang="en">Display Permalink</title>
+            <options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+                <title xml:lang="en">not display</title>
+                <title xml:lang="jp">非表示</title>
+            </options>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+                <title xml:lang="en">display</title>
+                <title xml:lang="jp">表示</title>
+            </options>
+            <description xml:lang="ko">★북마크일때만 선택가능합니다.
+            </description>
+        </var>
+      </group>
+
+	  <group>
+        <title xml:lang="ko">목록게시판 확장변수 이미지출력(상담형게시판)</title>
+		<title xml:lang="en">Image of extra_val</title>
+		<title xml:lang="jp">拡張変数イメージ出力</title>
+
+        <var name="extra_val_mid" type="text">
+            <title xml:lang="ko">확장변수 mid</title>
+			<title xml:lang="en">extra_val_mid</title>
+			<title xml:lang="jp">拡張変数 mid</title>
+            <description xml:lang="ko">이미지로 출력하고 싶은 확장변수의 mid를 적어주세요.</description>
+			<description xml:lang="jp">イメージに出力したい拡張変数の midを書いてください.</description>
+        </var>
+		<var name="extra_val_name" type="select">
+            <title xml:lang="ko">확장변수 번호</title>
+			<title xml:lang="en">extra_val_name</title>
+			<title xml:lang="jp">拡張変数番号</title>
+			<options value="1">
+                <title xml:lang="ko">1</title>
+				<title xml:lang="en">1</title>
+				<title xml:lang="jp">1</title>
+            </options>
+			<options value="2">
+                <title xml:lang="ko">2</title>
+                <title xml:lang="en">2</title>
+				<title xml:lang="jp">2</title>
+            </options>
+			<options value="3">
+                <title xml:lang="ko">3</title>
+                <title xml:lang="en">3</title>
+				<title xml:lang="jp">3</title>
+            </options>
+			<options value="4">
+                <title xml:lang="ko">4</title>
+                <title xml:lang="en">4</title>
+				<title xml:lang="jp">4</title>
+            </options>
+			<options value="5">
+                <title xml:lang="ko">5</title>
+                <title xml:lang="en">5</title>
+				<title xml:lang="jp">5</title>
+            </options>
+			<options value="6">
+                <title xml:lang="ko">6</title>
+                <title xml:lang="en">6</title>
+				<title xml:lang="jp">6</title>
+            </options>
+			<options value="7">
+                <title xml:lang="ko">7</title>
+                <title xml:lang="en">7</title>
+				<title xml:lang="jp">7</title>
+            </options>
+			<options value="8">
+                <title xml:lang="ko">8</title>
+                <title xml:lang="en">8</title>
+				<title xml:lang="jp">8</title>
+            </options>
+			<options value="9">
+                <title xml:lang="ko">9</title>
+                <title xml:lang="en">9</title>
+				<title xml:lang="jp">9</title>
+            </options>
+			<options value="10">
+                <title xml:lang="ko">10</title>
+                <title xml:lang="en">10</title>
+				<title xml:lang="jp">10</title>
+            </options>
+            <description xml:lang="ko">이미지로 출력하고 싶은 확장변수 번호를 선택하세요</description>
+			<description xml:lang="jp">イメージに出力したい拡張変数番号を選択してください</description>
+        </var>
+		<var name="extra_val_name1" type="text">
+            <title xml:lang="ko">입력항목 이름1</title>
+			<title xml:lang="en">extra_val_name1</title>
+			<title xml:lang="jp">入力項目名前1</title>
+            <description xml:lang="ko">이미지로 출력하고 싶은 입력항목1의 이름을 적어주세요.</description>
+			<description xml:lang="jp">イメージに出力したい入力項目1の名前を書いてください.</description>
+        </var>
+		<var name="extra_val_name2" type="text">
+            <title xml:lang="ko">입력항목 이름2</title>
+            <title xml:lang="en">extra_val_name2</title>
+			<title xml:lang="jp">入力項目名前2</title>
+			<description xml:lang="ko">이미지로 출력하고 싶은 입력항목2의 이름을 적어주세요.</description>
+            <description xml:lang="jp">イメージに出力したい入力項目2の名前を書いてください.</description>
+        </var>
+		<var name="default_name1" type="text">
+            <title xml:lang="ko">기본값 이름1</title>
+			<title xml:lang="en">default_name1</title>
+			<title xml:lang="jp">基本値名前1</title>
+            <description xml:lang="ko">확정이미지로 출력하고 싶은 기본값 이름을 적어주세요.</description>
+			<description xml:lang="jp">確定イメージに出力したい基本値名前を書いてください.</description>
+        </var>
+		<var name="default_name2" type="text">
+            <title xml:lang="ko">기본값 이름2</title>
+			<title xml:lang="en">default_name2</title>
+			<title xml:lang="jp">基本値名前2</title>
+            <description xml:lang="ko">보류이미지로 출력하고 싶은 기본값 이름을 적어주세요.</description>
+			<description xml:lang="jp">保留イメージに出力したい基本値名前を書いてください.</description>
+        </var>
+		<var name="extra_val_image1" type="text">
+            <title xml:lang="ko">확정 이미지</title>
+			<title xml:lang="en">extra_val_image1</title>
+			<title xml:lang="jp">確定イメージ</title>
+            <description xml:lang="ko">확정이미지의 전체경로를 적어주세요.(http://도메인/이미지경로/ok.png)
+			공백시 기본 신청완료이미지가 출력됩니다. 60*20 이미지가 적당합니다.
+			</description>
+			<description xml:lang="jp">確定イメージの全体経路を書いてください.(http://ドメイン/イメージ経路/ok.png)
+			空白の時基本申し込み完了イメージが出力されます.60*20 イメージが適当です.
+			</description>
+        </var>
+		<var name="extra_val_image2" type="text">
+            <title xml:lang="ko">대기 이미지</title>
+			<title xml:lang="en">extra_val_image2</title>
+			<title xml:lang="jp">待機イメージ</title>
+            <description xml:lang="ko">대기이미지의 전체경로를 적어주세요.(http://도메인/이미지경로/wait.png)
+			공백시 기본 신청대기이미지가 출력됩니다. 60*20 이미지가 적당합니다.
+			</description>
+			<description xml:lang="jp">待機イメージの全体経路を書いてください.(http://ドメイン/イメージ経路/wait.png)
+			空白の時基本申し込み待機イメージが出力されます.60*20 イメージが適当です.
+			</description>
+        </var>
+		<var name="extra_val_image3" type="text">
+            <title xml:lang="ko">보류 이미지</title>
+			<title xml:lang="en">extra_val_image3</title>
+			<title xml:lang="jp">保留イメージ</title>
+            <description xml:lang="ko">보류이미지의 전체경로를 적어주세요.(http://도메인/이미지경로/hold.png)
+			공백시 기본 신청보류이미지가 출력됩니다. 60*20 이미지가 적당합니다. 
+			
+			* 확장변수이미지출력 설명 <![CDATA[<a href="http://moonhouse.co.kr/zbxe/272097" target="_bodexPopup" style="font-weight:bold; color:red;">보러가기</a>]]>	
+			</description>
+			<description xml:lang="jp">保留イメージの全体経路を書いてください.(http://ドメイン/イメージ経路/hold.png)
+			空白の時基本申し込み保留イメージが出力されます.60*20 イメージが適当です. 
+			
+			* 拡張変数イメージ出力説明 <![CDATA[<a href="http://moonhouse.co.kr/zbxe/272097" target="_bodexPopup" style="font-weight:bold; color:red;">見に行く</a>]]>	
+			</description>
+        </var>
+      </group>
+
+	  <group>
+        <title xml:lang="ko">지정한 확장변수 본문출력 Hidden</title>
+		<title xml:lang="en">Choice extra_val Display Hidden</title>
+		<title xml:lang="jp">選択した拡張変数の本文の出力 隠された</title>
+
+        <var name="extra_mid" type="text">
+            <title xml:lang="ko">Hidden 확장변수 mid</title>
+			<title xml:lang="en">Hidden extra_val_mid</title>
+			<title xml:lang="jp">隠された extra_val_mid</title>
+            <description xml:lang="ko">본문 확장변수 출력에서 Hidden을 원하는 mid(게시판명)를 적어주세요.</description>
+			<description xml:lang="jp">イメージに出力したい拡張変数の midを書いてください.</description>
+        </var>
+		<var name="extra_name1" type="text">
+            <title xml:lang="ko">　┖ Hidden 확장변수 입력항목이름1</title>
+			<title xml:lang="en">Hidden extra_val_name1</title>
+			<title xml:lang="jp">隠された extra_val_name1</title>
+            <description xml:lang="ko">Hidden을 원하는 확장변수의 입력항목1의 이름을 적어주세요.</description>
+			<description xml:lang="jp">イメージに出力したい入力項目1の名前を書いてください.</description>
+        </var>
+		<var name="extra_name2" type="text">
+            <title xml:lang="ko">　┖ Hidden 확장변수 입력항목이름2</title>
+            <title xml:lang="en">Hidden extra_val_name2</title>
+			<title xml:lang="jp">隠された extra_val_name2</title>
+			<description xml:lang="ko">Hidden을 원하는 확장변수의 입력항목2의 이름을 적어주세요.
+						
+			* 관리자는 항상 보입니다.
+			* 확장변수 Hidden 설명 <![CDATA[<a href="http://moonhouse.co.kr/zbxe/272940" target="_bodexPopup" style="font-weight:bold; color:red;">보러가기</a>]]>
+			</description>
+            <description xml:lang="jp">イメージに出力したい入力項目2の名前を書いてください.</description>
+        </var>
+      </group>
+
+	  <group>
+        <title xml:lang="ko">★모듈수정해야만 작동★</title>
+		<title xml:lang="en">★Only Module Edit★</title>
+		<title xml:lang="jp">★モジュールを修正しないと作動しません★</title>
+
+        <var name="module_point" type="select">
+            <title xml:lang="ko">모듈포인트정보 출력</title>
+			<title xml:lang="en">module_point</title>
+			<title xml:lang="jp">モジュールポイント情報出力</title>
+			<options value="N">
+                <title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+				<title xml:lang="jp">非表示</title>
+             </options>
+			<options value="Y">
+                <title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+				<title xml:lang="jp">表示</title>
+             </options>
+           <description xml:lang="ko">modules/point 폴더를 수정하시지 않은 경우 화면이 백지로 나타납니다.(필! 주의)
+
+			* modules/point 폴더 수정 방법 <![CDATA[<a href="http://moonhouse.co.kr/zbxe/272413" target="_bodexPopup" style="font-weight:bold; color:red;">보러가기</a>]]>
+           </description>
+		   <description xml:lang="jp">modules/point フォルダを修正しない場合画面が白紙で現われます.(!注意)
+
+			* modules/point フォルダ修正方法 <![CDATA[<a href="http://moonhouse.co.kr/zbxe/272413" target="_bodexPopup" style="font-weight:bold; color:red;">見に行く</a>]]>
+           </description>
+        </var>
+	  </group>
+
+    </extra_vars>
+</skin>

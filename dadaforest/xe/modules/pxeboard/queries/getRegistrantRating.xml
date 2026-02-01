@@ -1,0 +1,16 @@
+<query id="getRegistrantRating" action="select">
+    <tables>
+        <table name="pxeboard_registrant_rating" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="document_srl" var="document_srl" filter="number" />
+        <condition operation="in" column="document_srl" var="document_srls" />
+        <group pipe="and">
+            <condition operation="equal" column="member_srl" var="member_srl" filter="number" pipe="and" />
+            <condition operation="equal" column="ipaddress" var="ipaddress" pipe="and" />
+        </group>
+    </conditions>
+</query>

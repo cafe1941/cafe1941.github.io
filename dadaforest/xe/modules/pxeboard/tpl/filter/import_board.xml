@@ -1,0 +1,14 @@
+<filter name="import_board" module="pxeboard" act="procPxeboardAdminImportBoard" confirm_msg_code="confirm_submit">
+    <form>
+        <node target="module_srls" required="true" />
+        <node target="skin" required="true" />
+    </form>
+    <parameter>
+        <param name="module_srls" target="module_srls" />
+        <param name="skin" target="skin" />
+    </parameter>
+    <response callback_func="completeImportBoard">
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

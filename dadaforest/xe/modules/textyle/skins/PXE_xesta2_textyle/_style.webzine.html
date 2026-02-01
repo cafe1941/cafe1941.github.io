@@ -1,0 +1,17 @@
+<!--@foreach($document_list as $no => $document)-->      
+<div class="textyleContent xe_content">
+<span class="commentsShout">{$document->getCommentCount()}</span>
+    <!--@if($document->thumbnailExists())-->
+    <p class="summarySpot"><img src="{$document->getThumbnail(200,200)}" class="summaryThumb" alt="" /></p>
+    <!--@end-->
+    <h2 class="postTitle">
+        <a href="{getUrl('document_srl',$document->document_srl,'cpage','')}">{cut_str($document->getTitle(),60)}</a>
+    </h2>  
+    <div class="bx_meta">                     
+        <p class="postMeta">{$document->getRegdate('F d')} in category <strong>{$category_list[$document->get('category_srl')]->title}</strong> by {$document->getNickName()}</p>
+    </div><!--bx_meta 끝-->
+    <p class="summary">{$document->getSummary(800)}</p>
+    <a class="summaryMore" href="{$document->getPermanentUrl()}"></a>
+</div>
+<span class="lineBreaker"><img src="img/blank.gif" alt="" width="10" height="1" /></span>
+<!--@end-->
