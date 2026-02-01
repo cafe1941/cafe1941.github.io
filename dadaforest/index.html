@@ -249,6 +249,13 @@
     <p>&copy; 2026 DADA FOREST ARCHITECTURE STUDIO. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Force clean URL by removing index.html if present
+    if (window.location.pathname.endsWith('index.html')) {
+      var newPath = window.location.pathname.replace('index.html', '');
+      window.history.replaceState(null, '', newPath);
+    }
+  </script>
   <script src="assets/dada_script.js"></script>
 </body>
 
