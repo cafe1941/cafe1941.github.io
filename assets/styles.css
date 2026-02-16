@@ -632,14 +632,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .popup-overlay.active {
@@ -650,125 +652,95 @@ body {
 .popup-content {
     background: white;
     padding: 0;
-    border-radius: 24px;
-    max-width: 500px;
-    width: 90%;
+    border-radius: 16px;
+    max-width: 380px;
+    width: 85%;
     position: relative;
-    transform: scale(0.9);
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 40px 100px rgba(92, 37, 16, 0.25);
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
 .popup-overlay.active .popup-content {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
 }
 
 .popup-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.35);
     border: none;
-    font-size: 2rem;
-    color: var(--text-dark);
+    font-size: 1.4rem;
+    color: white;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: all 0.3s ease;
     z-index: 1;
+    line-height: 1;
 }
 
 .popup-close:hover {
-    background: rgba(92, 37, 16, 0.1);
-    transform: rotate(90deg);
+    background: rgba(0, 0, 0, 0.55);
 }
 
 .popup-body {
-    padding: 60px 40px;
+    padding: 0;
     text-align: center;
-    background: linear-gradient(135deg, #ffffff 0%, #fdf9f7 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    /* Ensure strictly visual centering */
-}
-
-.popup-text-content {
-    position: relative;
-    z-index: 1;
 }
 
 .popup-image {
     width: 100%;
     height: auto;
-    border-radius: 20px;
     display: block;
 }
 
-.popup-body h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--brand-dark);
-    margin-bottom: 24px;
-    line-height: 1.25;
-    letter-spacing: -0.03em;
+.popup-footer {
+    padding: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.popup-body p {
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    line-height: 1.8;
-    margin-bottom: 0;
-    /* Remove mismatched margin since there are no buttons */
-    word-break: keep-all;
-}
-
-.popup-btn {
-    background: var(--brand-dark);
-    color: white;
+.popup-today-close {
+    width: 100%;
+    padding: 14px;
+    background: none;
     border: none;
-    padding: 14px 40px;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #999;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    min-width: 120px;
+    transition: color 0.2s ease;
+    letter-spacing: -0.01em;
 }
 
-.popup-btn:hover {
-    background: var(--brand-medium);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(92, 37, 16, 0.3);
+.popup-today-close:hover {
+    color: #666;
 }
 
 @media (max-width: 480px) {
-    .popup-body {
-        padding: 40px 20px;
-        /* Restore padding for text visibility */
-    }
-
-    .popup-image {
-        border-radius: 20px;
-    }
-
-    .popup-body h2 {
-        font-size: 1.6rem;
-    }
-
-    .popup-body p {
-        font-size: 1rem;
+    .popup-content {
+        max-width: 320px;
+        width: 82%;
+        border-radius: 14px;
     }
 
     .popup-close {
-        top: 15px;
-        right: 15px;
+        top: 10px;
+        right: 10px;
+        width: 28px;
+        height: 28px;
+        font-size: 1.2rem;
+    }
+
+    .popup-today-close {
+        padding: 12px;
+        font-size: 0.8rem;
     }
 }

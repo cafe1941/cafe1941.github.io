@@ -165,12 +165,23 @@ document.head.appendChild(style);
 const initPopup = () => {
     const popup = document.getElementById('welcomePopup');
     const popupCloseBtn = document.querySelector('.popup-close');
+    const popupTodayCloseBtn = document.querySelector('.popup-today-close');
 
     if (!popup) return;
+
+    // Check if user dismissed popup today
+    const today = new Date().toDateString();
+    if (localStorage.getItem('popupDismissed') === today) return;
 
     // Close popup function
     const closePopup = () => {
         popup.classList.remove('active');
+    };
+
+    // Close and don't show again today
+    const closeTodayPopup = () => {
+        localStorage.setItem('popupDismissed', today);
+        closePopup();
     };
 
     // Show popup after a short delay
@@ -180,12 +191,25 @@ const initPopup = () => {
 
     // Close popup when close button is clicked
     if (popupCloseBtn) {
-        popupCloseBtn.addEventListener('click', closePopup);
+        popupCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closePopup();
+        });
     }
 
-    // Close popup when clicking anywhere in the popup overlay (including content)
-    popup.addEventListener('click', () => {
-        closePopup();
+    // "오늘 하루 안 보기" button
+    if (popupTodayCloseBtn) {
+        popupTodayCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeTodayPopup();
+        });
+    }
+
+    // Close popup when clicking overlay background
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            closePopup();
+        }
     });
 
     // Close popup with Escape key
